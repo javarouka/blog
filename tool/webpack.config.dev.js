@@ -1,15 +1,13 @@
-import dotenv from 'dotenv'
 import path from 'path'
 import webpack from 'webpack'
 import precss from 'precss'
 import autoprefixer from 'autoprefixer'
-import HtmlWebpackPlugin from 'html-webpack-plugin';
+import generatorPost from './generatorPost'
 
-dotenv.load();
 
 const basePath = path.resolve(__dirname, '../src');
-const host = process.env.DEV_HOST || 'localhost';
-const port = process.env.DEV_PORT || 1980;
+const host = 'localhost';
+const port = 9999;
 
 export default {
 
@@ -23,16 +21,16 @@ export default {
 	],
 
 	output: {
-		path: basePath + '/build',
+		path: basePath + '/',
 		filename: '[name].bundle.js',
-		publicPath: '/build'
+		publicPath: '/'
 	},
 
 	module: {
 		loaders: [
 
 			{
-				test: /\.(js|jsx)?$/,
+				test: /\.js?$/,
 				include: [
 					basePath
 				],
@@ -80,16 +78,7 @@ export default {
 	},
 
 	plugins: [
-		new HtmlWebpackPlugin({
-			template: basePath + '/views/index.html'
-		}),
-
-		new webpack.EnvironmentPlugin([
-			"NODE_ENV"
-		]),
-
-		new webpack.optimize.OccurenceOrderPlugin(),
-		new webpack.HotModuleReplacementPlugin(),
-		new webpack.NoErrorsPlugin()
+		...generatorPost,
+		new webpack.HotModuleReplacementPlugin()
 	]
 }

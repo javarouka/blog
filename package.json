@@ -1,8 +1,7 @@
 {
   "name": "javarouka-github-page",
   "version": "1.0.0",
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "autoprefixer": "^6.4.0",
     "babel-core": "^6.16.0",
@@ -28,6 +27,8 @@
     "postcss-loader": "^0.11.0",
     "precss": "^1.4.0",
     "raw-loader": "^0.5.1",
+    "recursive-readdir": "^2.1.0",
+    "recursive-readdir-sync": "^1.0.6",
     "resolve-url": "^0.2.1",
     "sass-loader": "^4.0.0",
     "style-loader": "^0.13.1",

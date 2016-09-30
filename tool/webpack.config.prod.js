@@ -1,18 +1,14 @@
-import dotenv from 'dotenv'
 import path from 'path'
 import webpack from 'webpack'
 import precss from 'precss'
 import autoprefixer from 'autoprefixer'
-import HtmlWebpackPlugin from 'html-webpack-plugin';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import CleanWebpackPlugin from 'clean-webpack-plugin';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
-
-dotenv.load();
+import generatorPost from './generatorPost'
 
 const VERBOSE = process.argv.includes('--verbose');
 const basePath = path.resolve(__dirname, '../src');
-const outPath = path.resolve(__dirname, '../build');
 
 export default {
 
@@ -34,8 +30,8 @@ export default {
 
 	// 번들링 후 파일을 생성하는 옵션
 	output: {
-		path: './build',
-		filename: 'bundle.js'
+		path: './',
+		filename: 'r.js'
 	},
 
 	module: {
@@ -55,10 +51,10 @@ export default {
 				loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
 			},
 
-			//{
-			//	test: /\.scss/,
-			//	loader: ExtractTextPlugin.extract('style', 'style!css!postcss-loader!resolve-url!sass')
-			//},
+			{
+				test: /\.scss/,
+				loader: ExtractTextPlugin.extract('style', 'style!css!postcss-loader!resolve-url!sass')
+			},
 
 			{
 				test: /\.(html|txt|eot|ttf)/,
@@ -91,37 +87,16 @@ export default {
 
 	plugins: [
 
+		...generatorPost,
+
 		new webpack.optimize.UglifyJsPlugin({
 			compress: {
 				warnings: false
 			}
 		}),
 
-		//new CleanWebpackPlugin([
-		//	outPath + '/index.html',
-		//	outPath + '/bundle.js',
-		//	outPath + '/bundle.js.map',
-		//	outPath + '/style.bundle.css',
-		//	outPath + '/style.bundle.css.map'
-		//], {
-		//	root:  path.resolve(__dirname, '../')
-		//}),
-
-		//new CopyWebpackPlugin([
-		//	{ from: outPath, to: path.resolve(__dirname, '../') }
-		//]),
-
 		new ExtractTextPlugin('./style.bundle.css'),
 
-		new HtmlWebpackPlugin({
-			template: basePath + '/views/index.html'
-		}),
-
-		new webpack.EnvironmentPlugin([
-			"NODE_ENV"
-		]),
-
-		new webpack.optimize.DedupePlugin(),
 		new webpack.optimize.OccurenceOrderPlugin()
 	]
 }

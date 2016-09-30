@@ -1,4 +1,3 @@
-import dotenv from 'dotenv'
 import fs from 'fs'
 import path from 'path'
 import Express from 'express'
@@ -8,10 +7,8 @@ import webpackDevMiddleware from 'webpack-dev-middleware'
 import webpackHotMiddleware from 'webpack-hot-middleware'
 import webpackConfig from './webpack.config.dev.js'
 
-dotenv.load();
-
 const compiler = webpack(webpackConfig);
-const port = process.env.DEV_PORT || 3002;
+const port = 9999;
 
 const app = new Express();
 
