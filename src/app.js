@@ -1,2 +1,3 @@
 import './css/index.css'
-console.log("hello...?");
+import config from './config'
+console.log("%cNow Working...", "font-size: 200%; color: green;");

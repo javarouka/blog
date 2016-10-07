@@ -8,9 +8,9 @@ const destPath = path.resolve(__dirname, 'posts');
 
 const files = recursiveReadSync(postPath);
 export default files.map(file => {
-    console.log("generate file...", file.substr(destPath.length));
+    const fileName = file.substr(destPath.length);
     return new HtmlWebpackPlugin({
         template: file,
-        filename: file.substr(destPath.length)
+        filename: fileName
     })
 });

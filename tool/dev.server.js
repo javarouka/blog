@@ -2,7 +2,6 @@ import fs from 'fs'
 import path from 'path'
 import Express from 'express'
 import webpack from 'webpack'
-import rewrite from 'express-urlrewrite'
 import webpackDevMiddleware from 'webpack-dev-middleware'
 import webpackHotMiddleware from 'webpack-hot-middleware'
 import webpackConfig from './webpack.config.dev.js'
@@ -13,10 +12,8 @@ const port = 9999;
 const app = new Express();
 
 app.use(webpackDevMiddleware(compiler, {
-	publicPath: webpackConfig.output.publicPath,
-	headers: {
-		'Access-Control-Allow-Origin': '*'
-	},
+	publicPath: '/',
+	hot: true,
 	stats: {
 		colors: true
 	}

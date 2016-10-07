@@ -1,11 +1,10 @@
 import path from 'path'
 import webpack from 'webpack'
-import precss from 'precss'
 import autoprefixer from 'autoprefixer'
 import generatorPost from './generatorPost'
 
-
 const basePath = path.resolve(__dirname, '../src');
+const entryMainFile = path.join(basePath, 'app.js');
 const host = 'localhost';
 const port = 9999;
 
@@ -15,9 +14,10 @@ export default {
 	context: basePath,
 
 	entry: [
+		//`webpack-dev-server/client?http://${host}:${port}/`,
 		'webpack-hot-middleware/client?path=http://' + host + ':' + port + '/__webpack_hmr',
-		'webpack/hot/only-dev-server',
-		path.join(basePath, 'app.js')
+		'webpack/hot/dev-server',
+		entryMainFile
 	],
 
 	output: {
@@ -44,8 +44,7 @@ export default {
 			},
 
 			{
-				test: /\.scss/,
-				loader: 'style!css!postcss-loader!resolve-url!sass'
+				test: /\.hbs$/, loader: "handlebars"
 			},
 
 			{
@@ -60,10 +59,6 @@ export default {
 		]
 	},
 
-	postcss() {
-		return [precss, autoprefixer];
-	},
-
 	resolve: {
 
 		root: [
@@ -73,12 +68,10 @@ export default {
 		extensions: [ '', '.js' ]
 	},
 
-	node: {
-		fs: "empty"
-	},
-
 	plugins: [
 		...generatorPost,
-		new webpack.HotModuleReplacementPlugin()
+		new webpack.optimize.OccurenceOrderPlugin(),
+		new webpack.HotModuleReplacementPlugin(),
+		new webpack.NoErrorsPlugin()
 	]
 }
