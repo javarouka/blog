@@ -1,8 +1,15 @@
 body {
-    font-size: 1.0em;
+    font-size: 1.1em;
     width: 95%;
     max-width: 900px;
     margin: 0 auto;
+}
+
+blockquote {
+    color: gray;
+    margin-left: 10px;
+    border-left: 6px solid #aaa;
+    padding: 25px 10px 25px 20px;
 }
 
 .header-summary {
@@ -10,9 +17,6 @@ body {
     text-align: right;
 }
 
-blockquote {
-    color: gray;
-    margin-left: 10px;
-    border-left: 10px solid #aaa;
-    padding: 10px 10px 10px 20px;
+ul > li {
+    font-size: 0.9em;
 }

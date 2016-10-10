@@ -32,71 +32,155 @@
                 <li>인자에 따른 Proxy 처리</li>
                 <li>기타등등...생각하기에 따라</li>
             </ul>
-
             <blockquote>ES2015 스펙에는 일단 없지만, 아마 다음 스펙엔 추가될 것 같다.</blockquote>
         </div>
-        <h2>Basic</h2>
-        <div>
-            Decorator 는 함수이기에 함수로 작성해야 한다. Arrow Function 도 좋고 function keyword 를 써도 좋다.
-            <br/>
-            일단 다음과 같은 함수를 정의해보자
-            <pre><code class="language-javascript">function something() {
-    console.log("뭔가 해보자!");
-}</code></pre>
-            <br/>
-            위의 함수에 권한 기능을 추가한다고 해보자. 권한이 있는 사용자만 수행을 할 수 있게 하는 거다.
-            <pre><code class="language-javascript">// 권한 에러 정의
-class NotAllowedError extends Error {}
 
-function something() {
-    if(!isAllowed()) throw new NotAllowedError('수행 권한이 없습니다');
-    console.log("뭔가 해보자!");
+        <h2>일단 타이핑</h2>
+        <h3>메서드에 실행 권한 추가하기</h3>
+        <div>
+            일단 다음과 같은 class 를 정의해보자
+            <pre><code class="language-javascript">class Something {
+    firstLove() {
+      console.log("첫번째 사랑");
+    }
+
+    secondLove() {
+      console.log("두번째 사랑");
+    }
 }</code></pre>
             <br/>
-            간단하다.
+            위의 class 의 첫사랑 (<em>firstLove</em>) 메서드에 권한 기능을 추가한다고 해보자. 권한이 있는 사용자만 수행(..)을 할 수 있게 하는 거다.
             <br/>
+            일단 전용 에러 객체부터 생성하자
+            <pre><code class="language-javascript">// 권한 에러 정의
+class NotAllowedError extends Error {}</code></pre>
             <br/>
-            하지만 보통 권한은 다수의 작업에 적용되기에 저 만일 <em>something</em> 함수 외에도 여러 다른 함수에 적용하려고 하면 그 수만큼 코드를 추가해야 할 것이다.
-            <pre><code class="language-javascript">// 이 코드가 권한을 부여할 함수 바디안에 중복된다!
+            이제 발생하는 에러들은 저 에러를 던지도록 한다.
+            <br/>
+            그 다음은 적용 코드 작성.
+            <pre><code class="language-javascript">class Something {
+    firstLove() {
+        if(!isAllowed()) throw new NotAllowedError('권한이 없습니다');
+        console.log("첫번째 사랑");
+    }
+
+    secondLove() {
+        console.log("두번째 사랑");
+    }
+}</code></pre>
+            <br/>
+            간단하다. 하지만 두번째 사랑에도 제약이 필요하다면...?
+            <br/>
+            <h3>중복이 많다!</h3>
+            하지만 보통 권한은 다수의 작업에 적용되기에 저 만일 <em>firstLove</em> 메서드 외에도 여러 다른 함수에 적용하려고 하면, <strong>그 수만큼 코드를 추가해야</strong> 할 것이다.
+            <pre><code class="language-javascript">class Something {
+    firstLove() {
+        if(!isAllowed()) throw new NotAllowedError('권한이 없습니다');
+        console.log("첫번째 사랑");
+    }
+
+    secondLove() {
+        if(!isAllowed()) throw new NotAllowedError('권한이 없습니다');
+        console.log("두번째 사랑");
+    }
+
+    marry() {
+        if(!isAllowed()) throw new NotAllowedError('권한이 없습니다');
+        console.log("결혼");
+    }
+}</code></pre>
+            <br/>
+            이런건 원하지 않을 것이다.
+            <pre><code class="language-javascript">// 이 코드가 권한을 부여할 메서드 바디안에 중복된다!
 if(!isAllowed()) throw new NotAllowedError('수행 권한이 없습니다');</code></pre>
             <br/>
-            보통 이런 경우 소싯적 JavaScript 를 좀 다뤄봤다 하는 프로그래머들은 다음과 같이 처리할 수 있겠다
+            어떻게 해야 할까...
             <br/>
-            먼저 다음과 같은 래핑 함수를 만든다
-            <pre><code class="language-javascript">const allowExecution = (fn, ctx) => {
-    if(!isAllowed()) throw new NotAllowedError('수행 권한이 없습니다');
-    return fn.apply(ctx, arguments);
+            <h3>해결책 : 래핑 함수로 실행 전에 끼어들자.</h3>
+            먼저 다음과 같은 권한 체크 함수를 만든다
+            <pre><code class="language-javascript">// 미리 예외 객체를 생성해두고 재활용한다
+const notAllowedErr = new NotAllowedError('수행 권한이 없습니다');
+const checkAllowExecution = () => {
+    if(!isAllowed()) throw notAllowedErr;
 }</code></pre>
             <br/>
             이제 래핑이다.
             <br/>
-            <pre><code class="language-javascript">// 기존의 함수에...
-function something() {
-    console.log("뭔가 해보자!");
-}
+            <pre><code class="language-javascript">function allowedExecution(klass) {
 
-// 권한 래핑!
-const wrapSomething = allowExecution(something);</code></pre>
+    // 기존의 메서드들을 전부 가져오기 위해 사용 될 prototype 을 캐시해둠
+    const proto = klass.prototype;
+
+    // 메서드만 전부 뽑는다
+    const declaredMethodNames = Object.getOwnPropertyNames(proto)
+                  .filter(method => (typeof proto[props] === 'function'));
+
+    // 래핑 함수 선언
+    const wrap = (obj, name, descriptor) => {
+        const origMethod = descriptor.value;
+        Object.defineProperty(proto, methodName, {
+            value() {
+                checkAllowExecution();
+                return origMethod.apply(this, arguments);
+            }
+        }
+    }
+
+    // 이제 루프를 돌며 메서드를 래핑한다.
+    declaredMethodNames.forEach(methodName => {
+
+        // 속성 디스크립터를 얻는다
+        const descriptor = Object.getOwnPropertyDescriptor(proto, methodName);
+
+        // 얻은 디스크립터로 해당 메서드를 래핑
+        wrap(proto, methodName, descriptor);
+    });
+}</code></pre>
             <br/>
-            이제 어떤 함수든 권한을 부여할 수 있다.
+            이제 적용하자.
+            <pre id="wrapping"><code class="language-javascript">const wrapClass = allowedExecution(Something);
+const myLove = new wrapClass();
+myLove.firstLove(); // throw !! ㅠ.ㅠ</code></pre>
+            <br/>
+            하지만 뭔가 요상한 Statement 다. 뭐 래핑을 한 클래스를 변수에 담에 사용하는게 그리 이상하진 않지만...
+            <br/>
+            자 이제...
+            <h3>답은 '@'</h3>
+            이제 Decorator 표현식을 써보자.
+            <br/>
+            <br/>
+            사용은 간단하다. 위의 랩 함수 호출부를 @캐릭터와 함께 써주는 방식으로 바꾸기만 하면 된다
+            <pre><code class="language-javascript">@allowedExecution // here
+class Something {
+    firstLove() {
+        console.log("첫번째 사랑");
+    }
 
+    secondLove() {
+        console.log("두번째 사랑");
+    }
 
-    </div>
+    marry() {
+        console.log("결혼");
+    }
+}</code></pre>
+            효과는 위의 <a href="#wrapping">명시적 래핑</a> 과 동일하다.
+      </div>
 
-    <h2>Function/Class</h2>
-    <p></p>
+      <h2>Class</h2>
+      <p></p>
 
-    <h2>Method</h2>
-    <p></p>
+      <h2>Method</h2>
+      <p></p>
 
-    <h2>Examples</h2>
-    <p></p>
+      <h2>Examples</h2>
+      <p></p>
 
-</section>
+  </section>
 
-<footer>
-    <h2></h2>
-</footer>
+  <footer>
+      <h2></h2>
+  </footer>
 
 </body>
 </html>
