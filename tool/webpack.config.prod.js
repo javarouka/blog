@@ -30,7 +30,7 @@ export default {
 
 	// 번들링 후 파일을 생성하는 옵션
 	output: {
-		path: './docs',
+		path: './',
 		filename: 'r.js'
 	},
 
