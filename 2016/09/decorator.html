@@ -8,7 +8,9 @@
 <body>
 
     <header>
-        <h1>ES7 Decorator 탐구생활</h1>
+        <h1>JavaRouka Github Blog</h1>
+        <h2>## ES7 Decorator 탐구생활</h2>
+        <p class="header-summary">2016년 9월 30일.</p>
         <p class="header-summary">ES7의 Decorator 에 대해 이모저모 알아보자.</p>
     </header>
 
@@ -168,15 +170,153 @@ class Something {
       <h2>적용 대상에 따른 시그니처</h2>
       <div>
           위에서는 class 의 경우만 해당되었는데, 사실 적용 대상에 따라 decorator 의 시그니처가 달라진다.
+          <h3>Class 일 경우</h3>
+          <div>
+              <pre><code class="language-javascript">function decorator(target) { /* ... */ }</code></pre>
+              <br/>
+              위에서 우리가 구현했던 내용과 같다.
+              <br/>
+              decorating 할 target 의 constructor 가 첫번째 인자로 오는 시그니처가 된다.
+              <pre><code class="language-javascript">function decorator(target) {
+    console.log(target.name); // drive
+    console.log(target.prototype); // object
+    console.log(Object.getOwnPropertyNames(target.prototype)); // [ drive, stop ]
+}
+
+@decorator
+class Car {
+    drive(){}
+    stop(){}
+}</code></pre>
+          </div>
+          <h3 id="class-method">Class Method 일 경우</h3>
+          <div>
+              <pre><code class="language-javascript">function decorator(target, name, descriptor) { /* ... */ }</code></pre>
+              <br/>
+              이 경우에는 인자가 3개이다.
+              <dl>
+                  <dt>target</dt>
+                  <dd>- 메서드의 소유자. Class 라면 해당 Class의 prototype 이 될 것이다.</dd>
+                  <dt>name</dt>
+                  <dd>- 메서드의 이름.</dd>
+                  <dt>descriptor</dt>
+                  <dd>- 메서드의 프로퍼티 디스크립터. 디스크립터에 대한 내용은 여기서 다루긴 많으므로 <a href="https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty#Description" target="_blank">여기</a>를 참조한다</dd>
+              </dl>
+
+              <pre><code class="language-javascript">function decorator(target, name, descriptor) {
+    // Car
+    console.log(target.name);
+
+    // drive
+    console.log(name);
+
+    // { value: function(){}, writable: true, enumerable: false, configurable: true }
+    console.log(descriptor);
+}
+class Car {
+    @decorator
+    drive(){}
+    stop(){}
+}</code></pre>
+              <br/>
+              물론 이 속성들을 활용해서 여러 처리가 가능하다.
+              <br/>
+              <br/>
+              이 작업을 위해서는 앞서 말한 ES5의 신규 Spec 이었던 <a href="https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty#Description" target="_blank">Object 프로퍼티</a> 관련 이해가 어느정도 필요하긴 하다.
+          </div>
+          <h3>Plain Object 의 Method 일 경우</h3>
+          <div>Plain Object 의 Method 라는 건 객체 속성에 할당된 함수를 말한다. 이 경우는 위의 <a href="#class-method">Class Method 의 경우</a>와 같다</div>
       </div>
 
-      <h2>Examples</h2>
-      <p></p>
+      <h2>몇가지 Examples</h2>
+      <div>
+          실행 전에 특정 함수를 실행하는 decorator 를 만들어보자
+          <br/>
+          먼저 사용법은 이런 형식으로 될 것이다.
+          <br/>
+          <pre><code class="language-javascript">class Programer {
+
+    @before(name => console.log(`${name} executed.`))
+    makeCode() {
+        console.log('코드를 만듭니다.');
+    }
+
+    makeIncident() {
+        console.log('장애를 냅니다.');
+    }
+}
+const chobo = new Programer();
+
+chobo.makeCode();
+// makeCode executed
+// 코드를 만듭니다
+
+chobo.makeIncident();
+// 장애를 냅니다.</code></pre>
+          <br/>
+          그럼 다음은 실제 코딩
+          <br/>
+          코드의 설명은 주석에 달아두었다.
+          <pre><code class="language-javascript">// 함수 구별 유틸 함수
+const isFunction = v => (typeof v === 'function');
+
+// 인자로 작업 전 수행할 액션을 받는다.
+function before(action) {
+
+    // 데코레이터는 함수이므로 실행 결과로 함수가 반환되어야 한다.
+    return (target, name, descriptor) => {
+
+        // descriptor 에서 현재 value 를 꺼낸다
+        const value = descriptor.value;
+
+        // action 이나 value 가 함수가 아니면 의미가 없다.
+        if (!isFunction(action) || !isFunction(value)) return;
+
+        // 액션을 실행 전 수행하도록 재 정의한다.
+        Object.defineProperty(target, name, {
+            ...descriptor,
+            value() {
+
+                action(name, arguments, this); // 이부분!
+
+                // 실행 컨텍스트를 보정해준다
+                return value.apply(this, arguments);
+            }
+        });
+    }
+}</code></pre>
+      </div>
 
   </section>
 
   <footer>
-      <h2></h2>
+      <section class="contributor">
+
+          <div class="gravata">
+              <a href="http://ko.gravatar.com/javarouka" target="_blank">
+                  <img src="http://2.gravatar.com/avatar/ea49d570a6a8654adf6c0b8d90e51290?size=160" alt="javarouka profile image">
+              </a>
+          </div>
+
+          <ul>
+              <li>
+                  <span>Other Blog: </span>
+                  <a href="http://blog.javarouka.me/">http://blog.javarouka.me</a>
+              </li>
+              <li>
+                  <span>Mail: </span>
+                  <a href="mailto:javarouka@gmail.com">javarouka@gmail.com</a>
+              </li>
+              <li>
+                  <span>Github: </span>
+                  <a href="https://github.com/javarouka" target="_blank">https://github.com/javarouka</a>
+              </li>
+              <li>
+                  <span>Facebook: </span>
+                  <a href="https://www.facebook.com/hanghui.i" target="_blank">https://www.facebook.com/hanghui.i</a>
+              </li>
+          </ul>
+      </section>
   </footer>
 
 <script type="text/javascript" src="../../r.js"></script></body>
