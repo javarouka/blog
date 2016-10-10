@@ -142,8 +142,6 @@ const checkAllowExecution = () => {
 const myLove = new wrapClass();
 myLove.firstLove(); // throw !! ㅠ.ㅠ</code></pre>
             <br/>
-            하지만 뭔가 요상한 Statement 다. 뭐 래핑을 한 클래스를 변수에 담에 사용하는게 그리 이상하진 않지만...
-            <br/>
             자 이제...
             <h3>답은 '@'</h3>
             이제 Decorator 표현식을 써보자.
@@ -167,11 +165,10 @@ class Something {
             효과는 위의 <a href="#wrapping">명시적 래핑</a> 과 동일하다.
       </div>
 
-      <h2>Class</h2>
-      <p></p>
-
-      <h2>Method</h2>
-      <p></p>
+      <h2>적용 대상에 따른 시그니처</h2>
+      <div>
+          위에서는 class 의 경우만 해당되었는데, 사실 적용 대상에 따라 decorator 의 시그니처가 달라진다.
+      </div>
 
       <h2>Examples</h2>
       <p></p>
