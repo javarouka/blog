@@ -8,7 +8,7 @@
 <body>
 
     <header>
-        <h1>JavaRouka Github Blog</h1>
+        <h1>Rouka GitNote</h1>
         <section class='contributor'>
 
             <div class='gravata'>
@@ -39,8 +39,9 @@
     </header>
 
     <section>
-        <h1>## ES7 Decorator 탐구생활</h1>
+        <h1>## ECMAScript Decorator 탐구생활</h1>
         <p class='header-summary'>ES7 Decorator 이모저모. 2016.09.30</p>
+        <blockquote>이 글은 ES2015+ 문법으로 쓰여졌습니다.</blockquote>
         <h2>Decorator?</h2>
         <div>
             <em>함수(function)</em> <em>표현식(expression)</em> 에 해당한다.
@@ -51,18 +52,27 @@
             함수 표현식이기에 무언가의 실행 결과가 함수가 된다면 그것도 허용된다
             <br/>
             <br/>
-            가령 이러한 표현식이 있다고 한다면
+            가령 이러한 함수가 있다고 한다면
             <pre><code class='language-javascript'>function nested(val1) {
     return function (val2) {
         return function (klass) {
-            // ... 구현
+            klass.nested = `${val1}/${val2}`;
+            return klass;
         }
     }
 }
 </code></pre>
+            <br/>
             아래는 유효한 decorator 가 된다
             <pre><code class='language-javascript'>@nested('1')('2')
 class Anon { /* ... */ }
+</code></pre>
+          <br/>
+            Arrow Function 도 상관없다
+            <pre><code class='language-javascript'>const arrow => a => b => c => klass => klass;
+
+@arrow('hello')('world')('decorator')
+class WHAT { /* ... */ }
 </code></pre>
             <br/>
             대상이 되는 것은
@@ -75,16 +85,15 @@ class Anon { /* ... */ }
             적용의 이점은 아래와 같은 게 있다.
             <ul>
                 <li>함수에 Interceptor 성의 기능 추가. 로깅 등이나 인자 유효성 검사 등</li>
-                <li>예외 처리나 로깅 등의 종단관심사 처리. AOP 라 부르는 것들</li>
+                <li>예외 처리나 로깅 등의 공통상황 처리</li>
                 <li>
-                    <span>믹스인 생성 및 적용</span>
+                    <span>Mixin 생성 및 적용</span>
                     <a href='//medium.com/google-developers/exploring-es7-decorators-76ecb65fb841#22de'>예제 #1</a>
                 </li>
                 <li>property descriptor 를 조작하여 get/set 조작 및 열거 등의 조작</li>
                 <li>인자에 따른 Proxy 처리</li>
                 <li>ETC... 생각하기에 따라 끝도 없을 듯.</li>
             </ul>
-            <!--<blockquote>ES2015 스펙에는 일단 없지만, 아마 다음 스펙엔 추가될 것 같다.</blockquote>-->
         </div>
 
         <h2>일단 타이핑</h2>
@@ -130,7 +139,7 @@ const isAllowed = () => {
             <br/>
             간단하다. 하지만 두번째 사랑에도 제약이 필요하다면...?
             <br/>
-            <h3>점점 코드에 전염병이 퍼진다</h3>
+            <h3>점점 코드에 좀비바이러스가 퍼진다</h3>
             보통 권한 체크같은 공통 관심사 로직에는 여러 작업에 적용되는게 일반적이다.
             <br/>
             <br/>
@@ -154,7 +163,9 @@ const isAllowed = () => {
     // ... 기타 등등 ...
 }</code></pre>
             <br/>
-            이런 안좋은 냄새가 나는 코드 결과물은 누구나 원하지 않는다.
+            ...
+            <br/>
+            뭔가 망한 듯 싶다.
             <br/>
             <br/>
             아래 코드가 모든 메서드에 추가되어야 하는데, 메서드 추가시마다 작업해주는건 물론이고 검증 로직이 바뀐다면 그동안 적용한 모든 메서드를 전부 수정해야 한다.
@@ -164,7 +175,7 @@ if(!isAllowed()) throw new NotAllowedError('수행 권한이 없습니다');</co
             <br/>
             어떻게 해야 할까...
             <br/>
-            <h3>좀비떼엔 실행전 예방 백신</h3>
+            <h3>좀비화전 예방 백신으로</h3>
             먼저 다음과 같은 권한 체크 함수를 만든다. 먼저 공통된 작업을 함수로 분리하는 것이다. 보통 이 작업을 <a href='http://m.zdnet.co.kr/news_view.asp?article_id=00000039154322#imadnews' target='_blank'>상황중심 프로그래밍 (Aspect Oriented Programing)</a> 에서는 <em>Advice</em> 라고 부른다.
             <pre><code class='language-javascript'>// 미리 예외 객체를 생성해두고 재활용한다
 const notAllowedErr = new NotAllowedError('수행 권한이 없습니다');
@@ -267,6 +278,20 @@ class Car {
     drive(){}
     stop(){}
 }</code></pre>
+          <br/>
+          ES5 문법으로만 작성한다면 다음과 같은 코드가 나올것이다.
+          <pre><code class='language-javascript'>// decorator support
+@Pants({ color: 'red' })
+class SuperMan {}
+
+// ES5
+var SuperMan = (function() {
+    function SuperMan() {}
+
+    // 실제 decorate
+    return RedPants({ color: 'red' })(SuperMan);
+})();
+</code></pre>
           </div>
           <h3 id='class-method'>Class Method 일 경우</h3>
           <div>
@@ -297,6 +322,37 @@ class Car {
     drive(){}
     stop(){}
 }</code></pre>
+            <br/>
+            이 부분도 ES5 문법으로만 작성한다면 다음과 같은 코드가 나올것이다.
+            <pre><code class='language-javascript'>// decorator support
+class SuperMan {
+    @speed('1000km')
+    fly(){}
+}
+
+// ES5
+var SuperMan = (function() {
+
+    function SuperMan() {}
+    SuperMan.prototype.fly = function(){};
+
+    // decorator 를 계산
+    var speedDeco = speed('1000km');
+
+    // 타겟의 descriptor 를 얻는다
+    var descriptor = Object.getOwnPropertyDescriptor(SuperMan.prototype, 'fly');
+
+    // decorate
+    var decorated = speedDeco(SuperMan.prototype, 'fly', descriptor);
+
+    // decorate 결과로 반환된 값이 있다면 descriptor 로 판단하고 타겟 속성을 재정의한다.
+    if(decorated) {
+        Object.defineProperty(SuperMan.prototype, 'fly', decorated);
+    }
+
+    return SuperMan;
+})();
+</code></pre>
               <br/>
               물론 이 속성들을 활용해서 여러 처리가 가능하다.
               <br/>
