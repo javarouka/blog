@@ -37,6 +37,15 @@ body {
   Header
   -------------- */
 .header {
+
+  &-image {
+    text-align: center;
+    img {
+      display: inline;
+      margin: 0;
+    }
+  }
+
   padding: 2%;
 
   &-title {
