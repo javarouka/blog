@@ -1,11 +1,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta property="og:site_name" content="JavaRouka 기술 블로그"/>
+
+  {% seo %}
   <meta property="og:type" content="website"/>
-  <meta property="og:title" content="JavaRouka 기술 블로그"/>
   <meta property="og:description" content="JavaRouka 가 개발하면서 생각나면 쓰는 블로그"/>
-  <meta property="og:url" content="https://javarouka.github.io/blog"/>
   <meta property="og:image" content="https://javarouka.github.io/blog/assets/images/programing.jpg"/>
 
   <title>{% if page.title %}{{ page.title }}{% else %}{{ site.name }}{% endif %}</title>
@@ -20,8 +19,6 @@
 
 
   <link rel="alternate" type="application/rss+xml" title="RSS Feed for {{ site.name }}" href="{{ site.baseurl }}/feed.xml" />
-  {% seo %}
-
 
   {% include google-analytics.html %}
 
