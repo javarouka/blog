@@ -22,9 +22,9 @@ author:
 #google-analytics:
 #  id:               ""
 
-# Disqus
-#disqus:
-#  id:               "your-id"
+ Disqus
+disqus:
+  id:               "javarouka"
 
 # URL
 url:                "https://javarouka.github.io/"
