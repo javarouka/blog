@@ -79,6 +79,11 @@ defaults:
       layout:       "post"
 
 # jekyll-seo-tag, see: http://www.rubydoc.info/gems/jekyll-seo-tag/1.2.0
+
+type: "website"
+description: "JavaRouka 가 개발하면서 생각나면 쓰는 블로그"
+image: "/assets/images/programing.jpg"
+
 gems:
   - jekyll-seo-tag
   - jekyll-paginate
