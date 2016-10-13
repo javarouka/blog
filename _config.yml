@@ -44,7 +44,7 @@ paginate_path:      /page:num/
 # Markdown
 markdown:           kramdown
 kramdown:
-  imput:            GFM
+#  imput:            GFM
   syntax_highlighter_opts:
     disable : true
 

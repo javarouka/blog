@@ -89,8 +89,7 @@ dd {
 }
 
 ul {
-  list-style: inside circle;
-  padding-left: 0;
+  list-style: inside;
 
   li {
     margin-bottom: .25rem;
@@ -98,8 +97,6 @@ ul {
 
   ul,
   ol {
-    list-style: inside;
-    margin-left: 2rem;
     margin-top: .25rem;
     margin-bottom: .5rem;
   }
