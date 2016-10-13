@@ -39,7 +39,7 @@ class Anon { /* ... */ }
 
 Arrow Function 도 상관없다
 
-```js
+```javascript
 const arrow => a => b => c => klass => klass;
 @arrow('hello')('world')('decorator')
 class WHAT { /* ... */ }
