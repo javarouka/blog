@@ -53,7 +53,7 @@ class WHAT { /* ... */ }
 
 적용의 이점은 아래와 같은 게 있다.
 
-- 함수에 Interceptor 성의 기능 추가. 로깅 등이나 인자 유효성 검사 등</li>
+- 함수에 Interceptor 성의 기능 추가. 로깅 등이나 인자 유효성 검사 등
 - 예외 처리나 로깅 등의 공통상황 처리
 - Mixin 생성 및 적용 <a href='//medium.com/google-developers/exploring-es7-decorators-76ecb65fb841#22de'>예제 #1</a>
 - property descriptor 를 조작하여 get/set 조작 및 열거 등의 조작
@@ -340,19 +340,19 @@ class SuperMan {
 var SuperMan = (function() {
 
     function SuperMan() {}
-        SuperMan.prototype.fly = function(){};
+    SuperMan.prototype.fly = function(){};
         
-        // decorator 를 계산
-        var speedDeco = speed('1000km');
+    // decorator 를 계산
+    var speedDeco = speed('1000km');
         
-        // 타겟의 descriptor 를 얻는다
-        var descriptor = Object.getOwnPropertyDescriptor(SuperMan.prototype, 'fly');
+    // 타겟의 descriptor 를 얻는다
+    var descriptor = Object.getOwnPropertyDescriptor(SuperMan.prototype, 'fly');
         
-        // decorate
-        var decorated = speedDeco(SuperMan.prototype, 'fly', descriptor);
+    // decorate
+    var decorated = speedDeco(SuperMan.prototype, 'fly', descriptor);
         
-        // decorate 결과로 반환된 값이 있다면 descriptor 로 판단하고 타겟 속성을 재정의한다.
-        if(decorated) {
+    // decorate 결과로 반환된 값이 있다면 descriptor 로 판단하고 타겟 속성을 재정의한다.
+    if(decorated) {
         Object.defineProperty(SuperMan.prototype, 'fly', decorated);
     }
     
