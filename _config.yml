@@ -22,14 +22,15 @@ author:
 #google-analytics:
 #  id:               ""
 
- Disqus
+# Disqus
 disqus:
   id:               "javarouka"
 
 # URL
-url:                "https://javarouka.github.io/"
-#url:               "localhost:4000"
-baseurl:            "/blog"
+#url:                "https://javarouka.github.io/"
+#baseurl:            "/blog"
+url:               "localhost:4000"
+baseurl:            ""
 
 
 # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones

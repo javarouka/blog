@@ -10,7 +10,7 @@ share: true
 
 > 이 글은 ES2015+ 문법으로 쓰여졌습니다.
 
-### Decorator?
+## Decorator?
 *함수(function) 표현식(expression)* 에 해당한다.
 
 *@* 와 같이 써서 표현식 뒤에 오는 대상에 더욱 기능적으로 추가하거나(decorating) 하는 일들을 할 수 있다.
@@ -58,9 +58,9 @@ class WHAT { /* ... */ }
 - 인자에 따른 Proxy 처리
 - ETC... 생각하기에 따라 끝도 없을 듯.
 
-### 일단 타이핑
+## 일단 타이핑
 
-#### 메서드에 실행 권한 추가하기
+### 메서드에 실행 권한 추가하기
 
 일단 다음과 같은 class 를 정의해보자
 
@@ -109,7 +109,7 @@ class Something {
 
 간단하다. 하지만 두번째 사랑에도 제약이 필요하다면...?
 
-#### 점점 코드에 좀비바이러스가 퍼진다
+### 점점 코드에 좀비바이러스가 퍼진다
 
 보통 권한 체크같은 공통 관심사 로직에는 여러 작업에 적용되는게 일반적이다.
 
@@ -149,7 +149,7 @@ class Something {
 
 어떻게 해야 할까...
 
-#### 좀비화전 예방 백신으로
+### 좀비화전 예방 백신으로
 
 먼저 다음과 같은 권한 체크 함수를 만든다. 먼저 공통된 작업을 함수로 분리하는 것이다. 보통 이 작업을 <a href='http://m.zdnet.co.kr/news_view.asp?article_id=00000039154322#imadnews' target='_blank'>상황중심 프로그래밍 (Aspect Oriented Programing)</a> 에서는 <em>Advice</em> 라고 부른다.
 
@@ -213,7 +213,7 @@ const wrapClass = allowedExecution(Something);
 
 자 이제...
 
-#### @function expression
+### @function expression
 
 이제 Decorator 표현식을 써보자.
 
@@ -245,11 +245,11 @@ class Something {
 
 decorator 라는건 이런 모양이다. 인터프리터 레벨에서 해주는 단축 문법 (보통 Sugaring 이라고 부른다..) 이라고 봐도 무방하다.
 
-### 적용 대상에 따른 시그니처
+## 적용 대상에 따른 시그니처
 
 위에서는 class 의 경우만 해당되었는데, 사실 적용 대상에 따라 decorator 의 시그니처가 달라진다.
 
-#### Class 일 경우
+### Class 일 경우
 
 ```javascript
 function decorator(target) { /* ... */ }
@@ -289,7 +289,7 @@ var SuperMan = (function() {
 })();
 ```
 
-#### Class Method 일 경우
+### Class Method 일 경우
 
 ```javascript
 function decorator(target, name, descriptor) { /* ... */ }
@@ -358,13 +358,13 @@ var SuperMan = (function() {
 })();
 ```
 
-#### Plain Object 의 Method 일 경우
+### Plain Object 의 Method 일 경우
 
 Plain Object 의 Method 라는 건 객체 속성에 할당된 함수를 말한다. 이 경우는 위의 <a href='#class-method'>Class Method 의 경우</a> 와 같다
 
-### 몇가지 Examples
+## 몇가지 Examples
 
-#### 읽기 전용 속성
+### 읽기 전용 속성
 
 함수의 특정 속성을 읽기 전용으로 만들어보자
 
@@ -401,7 +401,7 @@ const final = (obj, name, descriptor) => {
 };
 ```
 
-#### 자동 바인딩
+### 자동 바인딩
 
 함수를 자동으로 소유자에 bind 시키는 decorator 를 만들어보자
 
@@ -479,7 +479,7 @@ function before(action) {
 }
 ```
 
-### 결론
+## 결론
 
 코드상으로 상당히 간결해지는 효과가 있으며 여러 상황중심의 코딩이 가능하지만 문제는 ES2015 의 스펙이 아니라서 실제 사용하기까지는 아주 먼 미래의 이야기일 수 있다.
 
