@@ -46,11 +46,13 @@ class WHAT { /* ... */ }
 ```
 
 대상이 되는 것은
+
 - class
 - method (get/set 등의 accessor 를 포함한다)
 - property (class, plain object 의 property 를 포함한다)
 
 적용의 이점은 아래와 같은 게 있다.
+
 - 함수에 Interceptor 성의 기능 추가. 로깅 등이나 인자 유효성 검사 등</li>
 - 예외 처리나 로깅 등의 공통상황 처리
 - Mixin 생성 및 적용 <a href='//medium.com/google-developers/exploring-es7-decorators-76ecb65fb841#22de'>예제 #1</a>
