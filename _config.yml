@@ -27,9 +27,9 @@ author:
 #  id:               "your-id"
 
 # URL
-url:                "https://javarouka.github.io"
+url:                "https://javarouka.github.io/"
 #url:               "localhost:4000"
-baseurl:            "/"
+baseurl:            "/blog"
 
 
 # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
