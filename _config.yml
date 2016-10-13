@@ -18,8 +18,8 @@ author:
   email:            javarouka@gmail.com
 
 # Google-analytics
-#google-analytics:
-#  id:               ""
+google-analytics:
+  id:               "UA-85661914-1"
 
 # Disqus
 disqus:
