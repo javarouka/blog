@@ -487,4 +487,37 @@ function bind(action) {
 
 하지만 당장 써보고 싶고 <a href="https://babeljs.io/" target="_blank">Babel</a> 을 사용하고 있다면,
 
-<a href="https://babeljs.io/docs/plugins/transform-decorators/" target="_blank">https://babeljs.io/docs/plugins/transform-decorators/</a> 를 참고해서 자신의 프로젝트에 설정하면 사용해볼 수 있다.
+<a href="https://github.com/loganfsmyth/babel-plugin-transform-decorators-legacy" target="_blank">https://github.com/loganfsmyth/babel-plugin-transform-decorators-legacy</a> 를 참고해서 자신의 프로젝트에 설정하면 사용해볼 수 있다.
+
+### 보너스. Babel 적용에 대해
+
+일단 의존성을 다운로드
+
+```sh
+$ npm install babel-plugin-transform-decorators-legacy --save-dev
+```
+
+자신의 bebelrc 파일에 플러그인을 추가한다
+
+```sh
+// @file .babelrc
+{
+    "preset": [ "es2015" ],
+    "plugins": ["transform-decorators-legacy"]
+}
+```
+
+만일 Class Property 플러그인을 사용하고 있다면 순서에 유의.
+
+```sh
+{
+    "preset": [ "es2015" ],
+    "plugins": [
+        "transform-decorators-legacy",
+        "transform-class-properties"
+    ]
+}
+ 
+```
+
+자세한 건 <a href="https://github.com/loganfsmyth/babel-plugin-transform-decorators-legacy">링크</a>로
