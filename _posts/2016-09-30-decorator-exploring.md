@@ -174,11 +174,11 @@ const wrapBefore = (obj, name, descriptor, advice) => {
 
     // 속성 재정의
     Object.defineProperty(obj, methodName, {
-    value() {
-        // 실제 메서드 실행 전 수행한다.
-        // 여기서는 권한 체크 checkAllowExecution 함수다.
-        advice();
-        return origMethod.apply(this, arguments);
+        value() {
+            // 실제 메서드 실행 전 수행한다.
+            // 여기서는 권한 체크 checkAllowExecution 함수다.
+            advice();
+            return origMethod.apply(this, arguments);
         }
     }
 };
@@ -209,8 +209,8 @@ const allowedExecution = klass => {
 
 ```javascript
 const wrapClass = allowedExecution(Something);
-              const myLove = new wrapClass();
-              myLove.firstLove(); // throw !! ㅠ.ㅠ 슬프구나
+const myLove = new wrapClass();
+myLove.firstLove(); // throw !! ㅠ.ㅠ 슬프구나
 ```
 
 자 이제...
@@ -287,7 +287,7 @@ var SuperMan = (function() {
     function SuperMan() {}
     
     // 실제 decorate
-    return RedPants({ color: 'red' })(SuperMan);
+    return Pants({ color: 'red' })(SuperMan);
 })();
 ```
 
@@ -447,7 +447,7 @@ storedMakeIncident();
 const isFunction = v => (typeof v === 'function');
 
 // 인자로 작업 전 수행할 액션을 받는다.
-function before(action) {
+function bind(action) {
     
     // 데코레이터는 함수이므로 실행 결과로 함수가 반환되어야 한다.
     return (target, name, descriptor) => {
