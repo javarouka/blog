@@ -120,6 +120,13 @@ body {
   -------------- */
 .post {
 
+  .draft {
+    color: #d2382a;
+    font-weight: bold;
+    font-size: 1rem;
+    padding: 10px;
+  }
+
   &-title {
     margin-bottom: 0rem;
   }

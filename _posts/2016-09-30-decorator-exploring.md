@@ -146,7 +146,7 @@ class Something {
 
 ```javascript
 // 이 코드가 권한을 부여할, 미래에 부여될 모든 메서드 바디안에 중복된다!
-              if(!isAllowed()) throw new NotAllowedError('수행 권한이 없습니다');
+if(!isAllowed()) throw new NotAllowedError('수행 권한이 없습니다');
 ```
 
 어떻게 해야 할까...
