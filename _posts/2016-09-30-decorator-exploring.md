@@ -507,7 +507,7 @@ $ npm install babel-plugin-transform-decorators-legacy --save-dev
 }
 ```
 
-만일 Class Property 플러그인을 사용하고 있다면 순서에 유의.
+만일 <a href="https://www.npmjs.com/package/babel-plugin-transform-class-properties" target="_blank">Class Property</a> 플러그인을 사용하고 있다면 순서에 유의.
 
 ```
 // @file .babelrc
@@ -521,4 +521,4 @@ $ npm install babel-plugin-transform-decorators-legacy --save-dev
  
 ```
 
-자세한 건 <a href="https://github.com/loganfsmyth/babel-plugin-transform-decorators-legacy">링크</a>로
+자세한 건 <a href="https://github.com/loganfsmyth/babel-plugin-transform-decorators-legacy" target="_blank">링크</a>로
