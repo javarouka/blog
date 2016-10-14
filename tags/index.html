@@ -17,7 +17,7 @@ permalink: /tags/
   {% unless forloop.last %}
     {% capture this_tag %}{{ tags_list[item] | strip_newlines }}{% endcapture %}
   	<li class="tag-index">
-      <a href="{{ site.baseurl }}#{{ this_tag }}">
+      <a href="#{{ this_tag }}">
         <span>{{ this_tag }}</span>
         <span class="count">{{ site.tags[this_tag].size }}</span>
       </a>
