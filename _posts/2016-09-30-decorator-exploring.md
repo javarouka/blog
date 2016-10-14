@@ -308,6 +308,11 @@ function decorator(target, name, descriptor) { /* ... */ }
     <dd>- 메서드의 프로퍼티 디스크립터. 디스크립터에 대한 내용은 여기서 다루긴 많으므로 <a href='https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty#Description' target='_blank'>여기</a>를 참조한다</dd>
 </dl>
 
+> 여기서 잠깐...
+decorator 가 여러 개발 커뮤니티 등에서 사용이 꺼려지거나, babel 의 표준 Transfile 에서 빠진 이유가 이 method decorator 때문이다.
+정확히는 decorator 는 아직 새로운 제안일 뿐이며 표준은 아니다. 만일 decorator 가 표준이 된다고 할때 이 method 부분의 인자는 변경될 확율이 높다.
+decorator 를 그냥 순수한 함수로 쓰고 싶다는 요구와 이 method 의 decorator 는 첫번째 인자로 method 를 받지 않고 소유주를 받고 두번째와 세번째 인자로 기타 정보를 받는 식인데, 이건 순수한 decorating 함수라고 보긴 어렵다.
+
 ```javascript
 function decorator(target, name, descriptor) {
     // Car
