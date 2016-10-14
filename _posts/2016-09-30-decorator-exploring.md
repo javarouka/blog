@@ -493,13 +493,13 @@ function bind(action) {
 
 일단 의존성을 다운로드
 
-```sh
+```
 $ npm install babel-plugin-transform-decorators-legacy --save-dev
 ```
 
 자신의 bebelrc 파일에 플러그인을 추가한다
 
-```sh
+```
 // @file .babelrc
 {
     "preset": [ "es2015" ],
@@ -509,7 +509,8 @@ $ npm install babel-plugin-transform-decorators-legacy --save-dev
 
 만일 Class Property 플러그인을 사용하고 있다면 순서에 유의.
 
-```sh
+```
+// @file .babelrc
 {
     "preset": [ "es2015" ],
     "plugins": [
