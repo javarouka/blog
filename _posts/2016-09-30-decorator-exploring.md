@@ -249,7 +249,7 @@ decorator 라는건 이런 모양이다. 인터프리터 레벨에서 해주는 
 
 ## 적용 대상에 따른 시그니처
 
-위에서는 class 의 경우만 해당되었는데, 사실 적용 대상에 따라 decorator 의 시그니처가 달라진다.
+위에서는 class 의 경우만 해당되었는데, 사실 적용 대상에 따라 decorator 의 파라미터 가 달라진다.
 
 ### Class 일 경우
 
@@ -364,10 +364,14 @@ var SuperMan = (function() {
 })();
 ```
 
+<br/>
+
+<div id="decorator-propasal"></div>
+
 > 여기서 잠깐...<br/>
 decorator 가 여러 개발 커뮤니티 등에서 사용이 꺼려지거나, babel 의 표준 Transfile 에서 빠진 이유가 이 method decorator 때문이다.<br/>
 정확히는 decorator 는 아직 새로운 제안일 뿐이며 표준은 아니다. 만일 decorator 가 표준이 된다고 할때 이 method 부분의 인자는 변경될 확율이 높다.<br/>
-decorator 를 그냥 순수한 decorating 기능만을 가지는 일반 함수취급을 해야 한다는 관점과, 현재의 method 의 decorator 는 첫번째 인자로 method 를 받지 않고 소유주(target) 를 받고 두번째와 세번째 인자로 기타 정보를 받는 식의 제안이다.<br/>
+decorator 를 그냥 순수한 decorating 기능만을 가지는 일반 함수취급을 해야 한다는 제안과, method 의 decorator 는 첫번째 인자로 method 를 받지 않고 소유주(target) 를 받고 두번째와 세번째 인자로 기타 정보를 받는 식의 제안이 있다.<br/>
 이 두 관점은 지향점이 조금 다르다.<br/><br/>앞으로 표준 제안이 어떻게 바뀔 지 예측이 되지 않는다.
 
 ### Plain Object 의 Method 일 경우
