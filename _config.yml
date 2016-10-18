@@ -1,91 +1,73 @@
-# # # # # # # # # # # # #
-#   K i k o - p l u s   #
-# # # # # # # # # # # # #
+# Hexo Configuration
+## Docs: https://hexo.io/docs/configuration.html
+## Source: https://github.com/hexojs/hexo/
 
-# Basic
-name:               "Rouka Note"
-
-highlighter: none
-
-author:
-  name:             javarouka
-  facebook:         hanghui.i
-#  twitter:          your-id
-  github:           javarouka
-#  linkedin:         your-id
-#  medium:           your-id
-#  tumblr:           your-id
-  email:            javarouka@gmail.com
-
-# Google-analytics
-google-analytics:
-  id:               "UA-85661914-1"
-
-# Disqus
-disqus:
-  id:               "javarouka"
+# Site
+title: JavaRouka's Note
+subtitle:
+description:
+author: JavaRouka
+language:
+timezone:
 
 # URL
-url:                "https://javarouka.github.io/"
-baseurl:            "/blog"
-#url:               "localhost:4000"
-#baseurl:            ""
+## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
+url: http://javarouka.github.io
+root: /blog/
+permalink: :year/:month/:day/:title/
+permalink_defaults:
 
-# http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
-timezone:           Asia/Seoul
-permalink:          /:year/:month/:day/:title/
+# Directory
+source_dir: source
+public_dir: public
+tag_dir: tags
+archive_dir: archives
+category_dir: categories
+code_dir: downloads/code
+i18n_dir: :lang
+skip_render:
+
+# Writing
+new_post_name: :year-:month-:day-:title.md # File name of new posts
+default_layout: post
+titlecase: false # Transform title into titlecase
+external_link: true # Open external links in new tab
+filename_case: 1
+render_drafts: false
+post_asset_folder: false
+relative_link: false
+future: true
+
+highlight:
+  enable: true
+  line_number: true
+
+# Category & Tag
+default_category: uncategorized
+category_map:
+tag_map:
+
+# Date / Time format
+## Hexo uses Moment.js to parse and display date
+## You can customize the date format as defined in
+## http://momentjs.com/docs/#/displaying/format/
+date_format: YYYY-MM-DD
+time_format: HH:mm:ss
 
 # Pagination
-paginate:           5
-paginate_path:      /page:num/
+## Set per_page to 0 to disable pagination
+per_page: 10
+pagination_dir: page
 
-# Markdown
-markdown:           kramdown
-highlighter:        null
-kramdown:
-  imput:            GFM
-#  syntax_highlighter_opts:
-#    disable : true
+# Extensions
+## Plugins: https://hexo.io/plugins/
+## Themes: https://hexo.io/themes/
+theme: again-refact
 
-# Navigation
-nav:
-  - name:           "About"
-    url:            "/about"
-  - name:           "Archive"
-    url:            "/archive"
-  - name:           "Tags"
-    url:            "/tags"
-  - name:           "Github"
-    url:            "https://github.com/javarouka"
-
-# Sass
-sass:
-  sass_dir:         _sass
-  style:            :compressed
-
-# Scopes
-defaults:
-  -
-    scope:
-      path:         ""
-      type:         "pages"
-    values:
-      layout:       "page"
-  -
-    scope:
-      path:         ""
-      type:         "posts"
-    values:
-      layout:       "post"
-
-# jekyll-seo-tag, see: http://www.rubydoc.info/gems/jekyll-seo-tag/1.2.0
-
-type: "website"
-description: "JavaRouka 가 개발하면서 생각나면 쓰는 블로그"
-image: "/assets/images/programing.jpg"
-
-gems:
-  - jekyll-seo-tag
-  - jekyll-paginate
-
-exclude:            [vendor]
+# Deployment
+## Docs: https://hexo.io/docs/deployment.html
+deploy:
+  type: git
+  repo: https://github.com/javarouka/blog.git
+  branch: gh-pages
+  message: .

@@ -1,0 +1,17 @@
+<article>
+  <h1 class="article-title">
+    <!--<small style="font-size: 0.6em"><a href="<%- url_for(config.site) %>"><%- config.title %></a></small>-->
+    <!--<br/>-->
+    <a href="<%- url_for(post.path) %>"><%- post.title %></a>
+  </h1>
+
+  <section class="article-meta">
+    <p class="article-description"><%- post.description %></p>
+    <p class="article-date"><%- date(post.date, 'YYYY년 MM월 DD일') %></p>
+  </section>
+
+  <section class="article-entry">
+    <%- post.content %>
+  </section>
+
+</article>

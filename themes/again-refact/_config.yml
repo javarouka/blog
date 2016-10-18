@@ -1,0 +1,28 @@
+# basic
+title: JavaRouka's Note
+subtitle:
+favicon: favicon.ico
+
+# avatar: images/avatar.png
+avatar: http://2.gravatar.com/avatar/ea49d570a6a8654adf6c0b8d90e51290?size=120
+
+# disqus
+disqus_shortname: javarouka
+
+# social
+social:
+  github: https://github.com/javarouka
+  facebook: https://www.facebook.com/hanghui.i
+
+# nav #
+nav:
+  home: .
+  archive: archives
+#  about: about
+  rss: atom.xml
+
+# heox-renderre-sass
+node_sass:
+  outputStyle: nested
+  precision: 5
+  sourceComments: false

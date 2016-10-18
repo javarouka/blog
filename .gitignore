@@ -1,6 +1,8 @@
 .idea
-_site
-.sass-cache
-Gemfile.lock
-_drafts
-.jsbeautifyrc
+.DS_Store
+Thumbs.db
+db.json
+*.log
+node_modules/
+public/
+.deploy*/

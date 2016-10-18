@@ -1,0 +1,16 @@
+<header class="app-header">
+  <section class="banner">
+    <div class="placeholder"></div>
+  </section>
+
+  <section class="description">
+    <img class="avatar" src="<%- url_for(theme.avatar) %>" alt="avatar" />
+    <h1 class="title"><a href="<%- url_for(config.site) %>"><%- theme.title %></a></h1>
+    <h3 class="subtitle"> <%- theme.subtitle %> </h3>
+  </section>
+
+  <ul class="social-list">
+    <% if (theme.social.github){ %><a href="<%- theme.social.github %>">GitHub</a><% } %>
+    <% if (theme.social.facebook){ %><a href="<%- theme.social.facebook %>">Facebook</a><% } %>
+  </ul>
+</header>
