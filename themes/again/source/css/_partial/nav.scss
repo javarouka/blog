@@ -1,14 +1,22 @@
 .app-nav {
   position: absolute;
+  width: 100%;
+  text-align: right;
   top: 0;
-  right: 0;
 
   margin: $gutter;
 
   a {
     color: $anchor-color;
-    text-transform: capitalize;
     padding: 6px 10px;
+
+    i {
+      font-size: 1.4em;
+    }
+
+    &:hover {
+      color: black;
+    }
   }
 
   .active {

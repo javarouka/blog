@@ -1,12 +1,10 @@
 <article>
   <h1 class="article-title">
-    <!--<small style="font-size: 0.6em"><a href="<%- url_for(config.site) %>"><%- config.title %></a></small>-->
-    <!--<br/>-->
     <a href="<%- url_for(post.path) %>"><%- post.title %></a>
   </h1>
   <section class="tags">
     <i class="fa fa-tags fa-fw"></i>
-    <%- tagcloud(post.tags, { order: -1 }) %>
+    <%- tagcloud(post.tags, { order: -1, min_font: 15 }) %>
   </section>
 
   <section class="article-meta">

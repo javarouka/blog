@@ -35,8 +35,13 @@
     list-style: none;
 
     a {
-      color: $anchor-deep-color;
+      color: #999;
       padding: 4px 6px;
+      font-size: 1.2em;
+
+      &:hover {
+        color: $anchor-color;
+      }
     }
   }
 }
