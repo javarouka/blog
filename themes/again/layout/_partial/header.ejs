@@ -9,8 +9,6 @@
     <h3 class="subtitle"> <%- theme.subtitle %> </h3>
   </section>
 
-  <ul class="social-list">
-    <% if (theme.social.github){ %><a href="<%- theme.social.github %>">GitHub</a><% } %>
-    <% if (theme.social.facebook){ %><a href="<%- theme.social.facebook %>">Facebook</a><% } %>
-  </ul>
+  <%- partial('./social') %>
+
 </header>

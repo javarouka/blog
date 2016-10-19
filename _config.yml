@@ -4,11 +4,20 @@
 
 # Site
 title: JavaRouka's Note
-subtitle:
-description:
+subtitle: JavaRouka 가 개발하면서 생각나면 쓰는 블로그
+description: JavaRouka 가 개발하면서 생각나면 쓰는 블로그
 author: JavaRouka
-language:
+language: Asia/Seoul
 timezone:
+type: blog
+image: blog/images/learncomputer-programing.jpg
+
+# SEO
+nofollow:
+  enable: true
+
+sitemap:
+  path: sitemap.xml
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
@@ -43,7 +52,7 @@ highlight:
   line_number: true
 
 # Category & Tag
-default_category: uncategorized
+default_category: programing
 category_map:
 tag_map:
 
@@ -62,7 +71,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: again-refact
+theme: again
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html

@@ -2,7 +2,7 @@
 // base
 //
 $bg-color: #eee;
-$main-content-width: 55rem;
+$main-content-width: 60rem;
 $gutter: 6px;
 
 $root-font-size: 1rem;
@@ -12,13 +12,12 @@ $body-font-size: 1rem;
 //
 // header
 //
-$banner-height: 450px;
 $avatar-size: 100px;
 $app-title-font-size: 1.875rem;
 
 $avatar-border-color: #fff;
 $app-title-color: #666;
-$app-subtitle-color: #EB298C;
+$app-subtitle-color: #666;
 
 
 //
@@ -32,10 +31,11 @@ $page-nav-font-size: 1.25rem;
 // article
 //
 $article-line-height: 1.3;
-$article-text-color: #555;
+$article-text-color: #222;
 $article-date-color: #aaa;
 $article-gutter: 3 * $gutter;
 $anchor-color: #5badf0;
+$anchor-deep-color: #1d52f0;
 
 //
 // sharing
@@ -51,16 +51,11 @@ $sharing-statement-color: #EB298C;
 $app-footer-height: 80px;
 $app-footer-color: #777;
 $app-footer-bg: #abcdef;
-/*
-font-family: Helvetica,Arial,sans-serif;
-    font-size: 18px;
-    font-weight: 300;
-    line-height: 1.6;
-*/
+
 //font
-$font-sans: sans-serif;
-$font-serif: serif;
-$font-mono: "Source Code Pro", Consolas, Monaco, Menlo, monospace;
+$font-sans: NanumGothic, Nanum Gothic,Helvetica,Arial,sans-serif;
+$font-serif: Helvetica,Arial,sans-serif;
+$font-mono: Consolas, monospace;
 
 //
 // markdown highlight

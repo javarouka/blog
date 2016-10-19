@@ -4,6 +4,10 @@
     <!--<br/>-->
     <a href="<%- url_for(post.path) %>"><%- post.title %></a>
   </h1>
+  <section class="tags">
+    <i class="fa fa-tags fa-fw"></i>
+    <%- tagcloud(post.tags, { order: -1 }) %>
+  </section>
 
   <section class="article-meta">
     <p class="article-description"><%- post.description %></p>
@@ -11,6 +15,7 @@
   </section>
 
   <section class="article-entry">
+    <!--<%- toc(post.content) %>-->
     <%- post.content %>
   </section>
 
