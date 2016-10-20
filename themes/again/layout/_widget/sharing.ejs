@@ -6,12 +6,12 @@
       <p class="subtitle"> <%- theme.subtitle %> </p>
     <div>
   </section>
-  <a href="https://www.facebook.com/sharer/sharer.php?u=<%- config.url + '/' + path %>" onclick="window.open(this.href, 'javarouka',
+  <a href="https://www.facebook.com/sharer/sharer.php?u=<%- (config.url + '/' + page.path).replace('index.html', '') %>" onclick="window.open(this.href, 'javarouka',
 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="ssk ssk-icon ssk-facebook"></a>
-  <a href="https://twitter.com/intent/tweet?text=<%- page.title %>: <%- page.description %>&url=<%- config.url + '/' + path %>" onclick="window.open(this.href, 'javarouka',
+  <a href="https://twitter.com/intent/tweet?text=<%- page.title %>: <%- page.description %>&url=<%- (config.url + '/' + page.path).replace('index.html', '') %>" onclick="window.open(this.href, 'javarouka',
 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="ssk ssk-icon ssk-twitter"></a>
-  <a href="https://plus.google.com/share?url=<%- config.url + '/' + path %>" onclick="window.open(this.href, 'javarouka',
+  <a href="https://plus.google.com/share?url=<%- (config.url + '/' + page.path).replace('index.html', '') %>" onclick="window.open(this.href, 'javarouka',
 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="ssk ssk-icon ssk-google-plus"></a>
-  <a href="https://www.tumblr.com/share?url=<%- config.url + '/' + path %>" onclick="window.open(this.href, 'javarouka',
+  <a href="https://www.tumblr.com/share?url=<%- (config.url + '/' + page.path).replace('index.html', '') %>" onclick="window.open(this.href, 'javarouka',
 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="ssk ssk-icon ssk-tumblr"></a>
 </div>
