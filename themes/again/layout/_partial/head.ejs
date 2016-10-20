@@ -6,12 +6,12 @@
 <%- open_graph({
   title: config.title,
   type: config.type,
-  url: config.url + url_for(path),
+  url: config.url + '/' + path,
   image: config.image,
   site_name: config.site_name,
   description: config.description
 }) %>
 <%- autoCanonical(config, page) %>
-<%- feed_tag(config.url + url_for("atom.xml")) %>
+<%- feed_tag(config.url + "/atom.xml") %>
 <%- css('css/app') %>
 </head>
