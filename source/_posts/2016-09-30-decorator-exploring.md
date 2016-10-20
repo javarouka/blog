@@ -6,6 +6,7 @@ date: 2016-09-30
 tags: [ecmascript, javascript, decorator, babel]
 comments: true
 share: true
+image: 'images/deco.jpg'
 ---
 
 > 이 글은 ES2015+ 문법으로 쓰여졌습니다.

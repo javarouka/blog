@@ -4,12 +4,12 @@
 <link rel="shortcut icon" href="<%- url_for(theme.favicon) %>">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <%- open_graph({
-  title: config.title,
+  title: page.title,
   type: config.type,
-  url: config.url + '/' + path,
-  image: config.image,
+  url: (config.url + '/' + page.path).replace('index.html', ''),
+  image: page.image || config.image,
   site_name: config.site_name,
-  description: config.description
+  description: page.description
 }) %>
 <%- autoCanonical(config, page) %>
 <%- feed_tag(config.url + "/atom.xml") %>
