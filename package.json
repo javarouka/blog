@@ -5,6 +5,12 @@
   "hexo": {
     "version": "3.2.2"
   },
+  "scripts": {
+    "server": "hexo server",
+    "clean": "hexo clean",
+    "generate": "hexo generate",
+    "deploy": "npm run clean && hexo deploy"
+  },
   "dependencies": {
     "hexo": "^3.2.2",
     "hexo-auto-canonical": "^0.1.0",
