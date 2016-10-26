@@ -5,6 +5,7 @@ tags: [ Handlebars, React, 개고생 ]
 image: '/images/react.png'
 thumbnail: '/images/react.png'
 categories: ['Tech']
+draft: true
 meta:
 ---
 

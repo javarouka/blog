@@ -13,11 +13,8 @@ customize:
     thumbnail: true # enable posts thumbnail, options: true, false
     favicon: # path to favicon
     social_links: # for more icons, please see http://fontawesome.io/icons/#brand
-        # twitter: /
         facebook: https://www.facebook.com/hanghui.i
-        # google-plus: /
-        github: https://github.com/ppoffice/hexo-theme-hueman
-        # weibo: /
+        github: https://github.com/javarouka
         rss: /atom.xml
 
 # Widgets

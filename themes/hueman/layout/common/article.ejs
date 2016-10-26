@@ -6,6 +6,7 @@
             </header>
         <% } %>
         <% if (post.layout != 'page') { %>
+            <div><%- partial('post/draft', { post: post }) %></div>
             <div class="article-subtitle">
                 <%- partial('post/date', { class_name: 'article-date', date_format: null }) %>
                 <%- partial('post/tag') %>
