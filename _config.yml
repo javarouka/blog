@@ -11,6 +11,7 @@ language: en
 timezone: Asia/Seoul
 type: blog
 image: images/learncomputer-programing.jpg
+avatar: https://2.gravatar.com/avatar/ea49d570a6a8654adf6c0b8d90e51290?size=120
 
 # SEO
 nofollow:
@@ -22,7 +23,7 @@ sitemap:
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: https://javarouka.github.io/blog
-root: /blog
+root: /blog/
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 

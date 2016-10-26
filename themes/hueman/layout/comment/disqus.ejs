@@ -5,7 +5,7 @@
     var disqus_identifier = '<%= page.disqusId || page.slug %>';
     <% } %>
     <% if (page.permalink) { %>
-    var disqus_url = '<%= page.permalink %>';
+    var disqus_url = '<%= config.url + '/' + page.path %>';
     <% } %>
     (function() {
     var dsq = document.createElement('script');

@@ -4,7 +4,7 @@
 * @example
 *     <%- thumbnail(post) %>
 */
-hexo.extend.helper.register('thumbnail', function (post) {
+hexo.extend.helper.register('thumbnail', function (post, config) {
     var url = post.thumbnail || '';
     if (!url) {
         var imgPattern = /\<img\s.*?\s?src\s*=\s*['|"]?([^\s'"]+).*?\>/ig;
@@ -13,5 +13,5 @@ hexo.extend.helper.register('thumbnail', function (post) {
             url = result[1];
         }
     }
-    return url;
+    return config ? config.root + url : url;
 });

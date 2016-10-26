@@ -7,6 +7,8 @@ tags: [ecmascript, javascript, decorator, babel]
 comments: true
 share: true
 image: 'images/deco.jpg'
+thumbnail: '/images/deco.jpg'
+categories: ['Tech']
 ---
 
 > 이 글은 ES2015+ 문법으로 쓰여졌습니다.
@@ -72,7 +74,7 @@ class Something {
     firstLove() {
         console.log('첫번째 사랑');
     }
-    
+
     secondLove() {
         console.log('두번째 사랑');
     }
@@ -103,7 +105,7 @@ class Something {
         if(!isAllowed()) throw new NotAllowedError('권한이 없습니다');
         console.log('첫번째 사랑');
     }
-    
+
     secondLove() {
         console.log('두번째 사랑');
     }
@@ -124,17 +126,17 @@ class Something {
         if(!isAllowed()) throw new NotAllowedError('권한이 없습니다');
         console.log('첫번째 사랑');
     }
-    
+
     secondLove() {
         if(!isAllowed()) throw new NotAllowedError('권한이 없습니다');
         console.log('두번째 사랑');
     }
-    
+
     marry() {
         if(!isAllowed()) throw new NotAllowedError('권한이 없습니다');
         console.log('결혼');
     }
-    
+
     // ... 기타 등등 ...
 }
 ```
@@ -188,17 +190,17 @@ const allowedExecution = klass => {
 
     // 사용 될 prototype 을 변수로 선언해둬 변수 탐색을 줄인다
     const proto = klass.prototype;
-    
+
     // 메서드만 전부 뽑는다
     const declaredMethodNames = Object.getOwnPropertyNames(proto)
         .filter(method => (typeof proto[props] === 'function'));
-    
+
     // 이제 루프를 돌며 메서드를 래핑한다.
     declaredMethodNames.forEach(methodName => {
-    
+
         // 속성 디스크립터를 얻는다
         const descriptor = Object.getOwnPropertyDescriptor(proto, methodName);
-        
+
         // 얻은 디스크립터로 해당 메서드를 래핑
         // checkAllowExecution 은 위에서 정의한 권한 체크 함수다.
         wrapBefore(proto, methodName, descriptor, checkAllowExecution);
@@ -231,11 +233,11 @@ class Something {
     firstLove() {
         console.log('첫번째 사랑');
     }
-    
+
     secondLove() {
         console.log('두번째 사랑');
     }
-    
+
     marry() {
         console.log('결혼');
     }
@@ -288,7 +290,7 @@ class SuperMan {}
 // ES5
 var SuperMan = (function() {
     function SuperMan() {}
-    
+
     // 실제 decorate
     return Pants({ color: 'red' })(SuperMan);
 })();
@@ -314,10 +316,10 @@ function decorator(target, name, descriptor) { /* ... */ }
 function decorator(target, name, descriptor) {
     // Car
     console.log(target.name);
-    
+
     // drive
     console.log(name);
-    
+
     // { value: function(){}, writable: true, enumerable: false, configurable: true }
     console.log(descriptor);
 }
@@ -343,21 +345,21 @@ var SuperMan = (function() {
 
     function SuperMan() {}
     SuperMan.prototype.fly = function(){};
-        
+
     // decorator 를 계산
     var speedDeco = speed('1000km');
-        
+
     // 타겟의 descriptor 를 얻는다
     var descriptor = Object.getOwnPropertyDescriptor(SuperMan.prototype, 'fly');
-        
+
     // decorate
     var decorated = speedDeco(SuperMan.prototype, 'fly', descriptor);
-        
+
     // decorate 결과로 반환된 값이 있다면 descriptor 로 판단하고 타겟 속성을 재정의한다.
     if(decorated) {
         Object.defineProperty(SuperMan.prototype, 'fly', decorated);
     }
-    
+
     return SuperMan;
 })();
 ```
@@ -422,12 +424,12 @@ class Programer {
     constructor(name) {
         this.name = name;
     }
-    
+
     @bind
     makeCode() {
         console.log(`${this.name} 은(는) 코드를 만듭니다.`);
     }
-    
+
     makeIncident() {
         console.log(`${this.name} 은(는) 장애를 내버렸습니다.`);
     }
@@ -456,32 +458,32 @@ const isFunction = v => (typeof v === 'function');
 
 // 인자로 작업 전 수행할 액션을 받는다.
 function bind(action) {
-    
+
     // 데코레이터는 함수이므로 실행 결과로 함수가 반환되어야 한다.
     return (target, name, descriptor) => {
-    
+
         // descriptor 에서 현재 value 를 꺼낸다
         const value = descriptor.value;
-        
+
         // action 이나 value 가 함수가 아니면 의미가 없다.
         if (!isFunction(action) || !isFunction(value)) return;
-        
+
         let defined = false;
         return {
             ...descriptor,
             get() {
-            
+
                 // 다시 바인딩할 필요는 없다.
                 if(defined) return value;
-                
+
                 const bound = value.bind(this);
-                
+
                 Object.defineProperty(this, name, {
                     value: bound
                 });
-                
+
                 defined = true;
-                
+
                 return bound;
             }
         };
@@ -526,7 +528,7 @@ $ npm install babel-plugin-transform-decorators-legacy --save-dev
         "transform-class-properties"
     ]
 }
- 
+
 ```
 
 자세한 건 <a href="https://github.com/loganfsmyth/babel-plugin-transform-decorators-legacy" target="_blank">링크</a>로
