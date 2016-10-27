@@ -1,7 +1,20 @@
 #header
-    background: color-header-background
+    //background: color-header-background
     padding-bottom: nav-height
     position: relative
+    //background: url('images/beautu-bug.jpg')
+#header:after {
+    content : "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: url('images/beautu-bug.jpg')
+    width: 100%;
+    height: 100%;
+    opacity : 0.3;
+    z-index: -1;
+}
 
 #header-outer
     height: 100%
@@ -18,10 +31,10 @@
         font-size: 300%
         a
           text-decoration: none
-          color: #FFF
+          color: #000
     .subtitle
         font-size: 16px
         font-style: italic
         line-height: logo-height + 10
-        color: color-nav-foreground
+        color: #000
         text-shadow: 0 1px rgba(0, 0, 0, 0.2)
