@@ -7,7 +7,7 @@ menu:
 
 # Customize
 customize:
-    theme_color: '#d35'
+    theme_color: '#0c0c0c'
     highlight: androidstudio
     sidebar: left # sidebar position, options: left, right
     thumbnail: true # enable posts thumbnail, options: true, false
