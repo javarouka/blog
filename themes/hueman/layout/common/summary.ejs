@@ -13,7 +13,7 @@
                 separator: '<i class="icon fa fa-angle-right"></i>',
             }) %>
             </p>
-            <p class="date"><time datetime="<%= date_xml(post.date) %>" itemprop="datePublished"><%= date(post.date) %></time></p>
+            <p class="date"><time datetime="<%= date_xml(post.date) %>" itemprop="datePublished"><%= date(post.date, 'YYYY년 MM월 DD일') %></time></p>
         </div>
         <%- partial('post/title', { class_name: 'article-title', linkable: true }) %>
         <p class="article-excerpt">
