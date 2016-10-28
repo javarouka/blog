@@ -36,9 +36,7 @@
     }) %>
     <%- meta(page) %>
 
-    <% if (theme.customize && theme.customize.social_links && theme.customize.social_links.rss) { %>
-        <link rel="alternate" href="<%- theme.customize.social_links.rss %>" title="<%= config.title %>" type="application/atom+xml" />
-    <% } %>
+    <%- feed_tag(config.url + "/atom.xml") %>
 
     <% if (theme.customize.favicon) { %>
         <link rel="icon" href="<%- url_for(theme.customize.favicon) %>" />
