@@ -13,6 +13,7 @@
             </div>
         <% } %>
         <%- partial('post/gallery') %>
+        <%- partial('post/repImage', { post: post }) %>
         <div class="article-entry" itemprop="articleBody">
             <%- post.content %>
         </div>
