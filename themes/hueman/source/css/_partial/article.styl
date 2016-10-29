@@ -19,6 +19,16 @@
 .article-inner
     overflow: hidden
 
+    .toggle-article
+        text-align: center
+        margin-bottom: 10px
+        a
+            color: blue
+            font-size: 18px
+            &:hover
+                cursor: pointer
+                text-decoration: underline
+
 .article-meta
     clearfix()
     height: line-height
@@ -154,6 +164,9 @@
     text-decoration: none
     &:before
         content: '#'
+
+.draft
+    display: none
 
 .article-entry
     @extend $base-style

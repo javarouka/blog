@@ -8,7 +8,7 @@ comments: true
 share: true
 image: 'images/deco.jpg'
 thumbnail: '/images/deco.jpg'
-categories: ['Tech']
+categories: ['Tech', 'JavaScript', 'ES6']
 ---
 
 > 이 글은 ES2015+ 문법으로 쓰여졌습니다.

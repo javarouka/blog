@@ -52,6 +52,10 @@
         }
     });
 
+    $('.article-inner .toggle-article').on('click', function(e) {
+        $('.article-entry').toggle();
+    });
+
     // Auto hide main nav menus
     function autoHideMenus(){
         var max_width = $('.nav-container-inner').width() - 10;
