@@ -14,7 +14,13 @@
         <% } %>
         <%- partial('post/gallery') %>
         <%- partial('post/repImage', { post: post }) %>
-        <div class="article-entry" itemprop="articleBody">
+        <% if(post.draft) { %>
+        <div class="toggle-article">
+            <p>작성중입니다!</p>
+            <a>작성중인 글이라도 보기</button>
+        </div>
+        <% } %>
+        <div class="article-entry <%- (post.draft ? 'draft' : '') %>" itemprop="articleBody">
             <%- post.content %>
         </div>
         <footer class="article-footer">
