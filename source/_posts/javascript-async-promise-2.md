@@ -2,7 +2,7 @@
 layout: post
 title: "비동기와 Promise"
 description: "JavaScript 의 비동기와 Promise 에 대해 알아보자"
-date: 2016-10-29
+date: 2016-11-09
 tags: [ecmascript, javascript, promise, async]
 comments: true
 share: true
@@ -145,68 +145,6 @@ asyncRunner(goodsOnDeliveryAsync)
 
 코드가 읽기 간결해지는건 덤이다.
 
-## JavaScript 의 미래에 대한 작업 처리
-
-다음 `Java Code` 가 있다.
-
-```java
-/**
- * Avengers Assemble!
- */
-public class FirstAttack {
-    private List<Hero> avengers = new List<>;
-    // ... some implements ...
-    public void hereComesNewAvengersAssemble() {
-        int prevAvengersCount = heros.length;
-        Hero newHero = createAvenger('Dr Strange');
-        avengers.add(newHero);
-        if((prevAvengersCount + 1) != avengers.size()) {
-            throw new IllegalStateException("don't avengers assemble!");
-        }
-        // implements attack ...
-    }
-      // ... some implements ...
-}
-// ... blah ...
-```
-
-얼핏 보면 어벤저스는 다행히 집합에 성공할 것이다. 기존 Avengers 의 숫자에서 새로운 Avenger 가 등장했고, 숫자가 1 늘어났다.
-그리고 기존 Avengers 에 1을 더한 숫자는 현재의 Avengers 의 숫자와 같을것이다.
-
-하지만 Java 에서는 위 코드에서 현재 Class 에 선언된 멤버변수 avengers 를 다른 스레드가 수정할 수 있으며, 혹시라도 새로운 Avenger 를 추가하던 도중 다른 스레드에서 avengers 조작했다면 예외가 던져질지도 모른다.
-
-그래서 위의 코드는 운이 좋다면 잘 실행되고, 운이 나쁘다면 예외가 던져지는 불쌍한 코드이다.
-
-하지만 JavaScript 에선 이런 일이 일어나지 않는다.
-
-JavaScript 의 코드는 항상 `실행-완료 (Run-to-completion)` 을 보장하는데, 이 뜻은 JavaScript 는 코드가 해석되고 수행될 때는 다른 코드의 실행이 되지 않는다는 것이다.
-
-일반적인 방법으로는 수행되는 코드 사이에 다른 작업이 개입할 수 없다. 실행할 코드가 있다면 어떤 일이 있든 전부 실행부터 실행 완료까지 되는 것이다.
-
-### JavaScript 는 싱글 스레드다
-
-JavaScript 는 하나의 스레드만 사용한다.
-
-그런데 싱글 스레드라면 자바스크립트가 한번 동작하기 시작하면 다른 작업은 멈춰야 한다. 하지만 실제 구동 환경에서는 그렇지 않다.
-
-우리는 아무렇지도 않게 이벤트를 등록하여 특정 타이밍에 이벤트를 실행시키고, Ajax 로 비동기 처리를 하며, setTimeout이나 setInterval, requestAnimationFrame 등을 사용한다.
-
-애니메이션 처리가 될때 폼에 글자를 입력할수 없는것도 아니고, 스크롤이 정지되지도 않는다.
-
-그럼 어떻게 저런 일이 발생하는 걸까.
-
-#### Call Stack
-
-JavaScript 도 타 언어와 비슷한 Call Stack 이라는 게 존재하고, 메서드 수행 시마다 Stack 에 입력한 뒤 순차적으로 스택을 비워가며 실행한다.
-스택이 다 비워질 경우 종료된다.
-
-다음 코드를 보자
-
-```javascript
-
-```
-
-
 ## 그래서 Promise 는 뭔데?
 
 사설이 길었다. 이제부터 제목에 맞는 내용이다.
@@ -278,7 +216,7 @@ new Promise(function(resolve, reject) {
  * 지연 함수
  *
  * @param action 실행 작업 함수
- * @param ms 작업 지연 밀리초 
+ * @param ms 작업 지연 밀리초
  * @return promise 객체
  */
 function delay(action, ms) {
@@ -291,9 +229,9 @@ function delay(action, ms) {
 }
 /**
  * 로깅 Thunk 함수.
- * Thunk 는 일단 [아직 평가되지 않은 값(value that is yet to be evaluated)] 을 말한다 
+ * Thunk 는 일단 [아직 평가되지 않은 값(value that is yet to be evaluated)] 을 말한다
  * js 에서는 보통 함수로 호출될 코드 조각을 말한다.
- * 
+ *
  * logThunk 함수는 메시지를 받으면 그 메시지를 호출하는 함수를 반환하는 Thunk.
  *
  * @param message 로깅할 함수
