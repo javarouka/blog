@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "비동기와 Promise"
+title: "비동기와 Promise #1"
 description: "JavaScript 의 비동기와 Promise 에 대해 알아보자"
-date: 2016-11-09
+date: 2016-11-08
 tags: [ecmascript, javascript, promise, async]
 comments: true
 share: true
