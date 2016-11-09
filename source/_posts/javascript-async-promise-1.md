@@ -11,8 +11,6 @@ thumbnail: 'images/brain.png'
 categories: ['Tech', 'JavaScript', 'Async']
 ---
 
-> Promise 에 대해 공부하면서 자연히 비동기까지 공부하게 되었는데 간단히 정리해본다
-
 ## JavaScript 의 미래에 대한 작업 처리
 
 다음 `Java Code` 가 있다.
