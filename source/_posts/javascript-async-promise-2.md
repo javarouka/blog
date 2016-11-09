@@ -6,6 +6,7 @@ date: 2016-11-09
 tags: [ecmascript, javascript, promise, async]
 comments: true
 share: true
+draft: true
 categories: ['Tech', 'JavaScript', 'Async']
 ---
 
