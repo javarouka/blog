@@ -243,7 +243,14 @@ javascript 실행기는 코드가 실행되면 Call Stack 을 조사한뒤 없�
 
 ### Event Loop, Job Queue
 
-이것은 `Event Loop` 와 엔진이 실행되는 한 무한정 도는 루프와 `Job Queue` 라는 것으로 처리된다.
+- DOM 처리 (화면 갱신을 포함한다)
+- 애니메이션
+- Ajax
+- Timer
+- Object Observer Callback
+- Promise
+
+일련의 비동기 작업들은 `Event Loop` 와 엔진이 실행되는 한 무한정 도는 루프와 `Job Queue` 라는 것으로 처리된다.
 
 코드로 표현하면 다음과 같다.
 
