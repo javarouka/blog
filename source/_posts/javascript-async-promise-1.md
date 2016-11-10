@@ -11,7 +11,7 @@ thumbnail: 'images/brain.png'
 categories: ['Tech', 'JavaScript', 'Async']
 ---
 
-## JavaScript 의 미래에 대한 작업 처리
+## Run to Completion
 
 다음 `Java Code` 가 있다.
 
@@ -78,7 +78,7 @@ JavaScript 의 코드는 항상 `실행-완료 (Run-to-completion)` 을 보장�
 
 `실행-완료 (Run-to-completion)` 를 보장하기 때문이다. 좀 더 자세히 알아보자.
 
-### JavaScript 는 싱글 스레드다
+### 단일 스레드
 
 JavaScript 는 하나의 스레드만 사용한다.
 
@@ -164,14 +164,14 @@ complete!
 
 이다.
 
-이 시점에 콘솔에 다음 내용이 찍힐 것이다.
+그리고 stacktrace 함수가 종료되면서 stacktrace 는 제거되고 다시 `console.log` 가 실행된다. 그 시점의 스택은 이렇다.
+
+콘솔에는 다음과 같이 찍힐 것이다.
 
 ```
 at stacktrace (<anonymous>:3:15)
 at <anonymous>:12:23
 ```
-
-그리고 stacktrace 함수가 종료되면서 stacktrace 는 제거되고 다시 `console.log` 가 실행된다. 그 시점의 스택은 이렇다.
 
 | index  |     name     |
 |:------:|:-------------:|
