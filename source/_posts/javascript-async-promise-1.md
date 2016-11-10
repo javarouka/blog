@@ -98,7 +98,7 @@ function work() {
 }
 ```
 
-setTimeout 으로 1 밀리세컨드 정도만 대기한 뒤에 `workShortTime` 를 수행하게 하고 다음 `workLongTime` 을 수행한다. 하지만 1 밀리세컨드가 지나면 `workLongTime` 을 중단하고 `workShortTime` 가 먼저 실행되진 않는다.
+setTimeout 으로 1 밀리세컨드 정도만 대기한 뒤에 `workShortTime` 를 수행하게 하고 다음 `workLongTime` 을 수행한다. 하지만 1 밀리세컨드가 지났다고 해도 `workLongTime` 이 끝나지 않는 한 `workLongTime` 을 중단하고 `workShortTime` 가 먼저 실행되진 않는다.
 
 언제나 `workLongTime` 가 전부 수행된 다음에야 `workShortTime` 이 수행될 것이다.
 (실제 느린 PC에서 이 코드를 브라우저가 화면을 그리고 있을때나, nodejs 서버가 요청을 처리하는 도중 수행시키면 이 코드가 끝날 때까지 화면을 더이상 그리지 않고, nodejs 서버라면 아무런 동작을 하지 않을 것이다.)
