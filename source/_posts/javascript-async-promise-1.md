@@ -80,9 +80,9 @@ JavaScript 의 코드는 항상 `실행-완료 (Run-to-completion)` 을 보장�
 
 ### 단일 스레드
 
-JavaScript 는 하나의 스레드만 사용한다.
+JavaScript 는 하나의 스레드만 사용한다. 코드 실행중에는 다른 코드가 실행될 수 없다는 거다.
 
-그런데 싱글 스레드라면 자바스크립트가 한번 동작하기 시작하면 다른 작업은 멈춰야 한다. 하지만 실제 구동 환경에서는 그렇지 않다.
+그런데 단일 스레드라면 자바스크립트가 한번 동작하기 시작하면 다른 작업은 멈춰야 한다. 하지만 실제 구동 환경에서는 그렇지 않다.
 
 우리는 아무렇지도 않게 이벤트를 등록하여 특정 타이밍에 이벤트를 실행시키고, Ajax 로 비동기 처리를 하며, [setTimeout](https://developer.mozilla.org/ko/docs/Web/API/WindowTimers/setTimeout)이나 [setInterval](https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setInterval), [requestAnimationFrame](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) 등을 사용한다.
 
@@ -213,7 +213,8 @@ stepC 에서 stackreace, console.log 까지 실행한 뒤에 다시 stepB 로 �
 
 javascript 실행기는 코드가 실행되면 Call Stack 을 조사한뒤 없어질 때까지 코드를 실행하고 스택이 전부 비워질 경우 실행을 종료하는 것이다.
 
-이 스택은 하나만 존재하며, 단지 스택에 쌓인 일을 처리하는 것 뿐이다.
+이 스택은 하나만 존재하며, 단지 스택에 쌓인 일을 처리하는 것 뿐이다. 이 중간에 새로운 함수 호출등으로 스택에 추가되어도 순차적으로 처리될 뿐, 작업 순서의 변동은 없다.
+순차적으로 `Call Stack` 을 비워가며 실행한다. 
 
 그렇다면 이벤트 핸들링 함수나 타이머 등의 작업, Ajax 등의 작업은 어떻게 일어날까.
 
@@ -233,7 +234,41 @@ while(jobQueue.hasNext()) {
 
 javascript 는 `Call Stack` 에 작업이 추가되었으므로 그것을 실행하여 Call Stack 단락에서 본 같은 작업을 진행하게 된다.
 
-재미있는 것은 이 `Event Loop` 는 ECMAScript에 포함되는 스펙은 아니며 JavaScript 엔진을 구동하는 환경에서 제공한다는 점이다.
+```javascript
+function stepA() {
+    timerA(); // 2
+}
+
+function timerA() {
+    setTimeout(stepB, 100) // 3
+}
+
+function stepB() {} // 7
+
+function stepC() {} // 5
+
+stepA(); // 1
+stepC(); // 4
+
+console.log("complete!"); // 6 
+```
+
+위 코드는 주석에 쓰인 숫자 순서대로 실행된다.
+
+3 부분이 실행되는 시점의 Call Stack 은
+
+| index  |     name     |
+|:------:|:-------------:|
+| 3       |   setTimeout  |
+| 2       |   timerA  |
+| 1      |   stepA   |
+| 0      |   runScript   |
+
+이 되고 setTimeout 은 100 밀리세컨드 뒤의 타이머 작업을 준비한다.
+
+그 뒤
+
+재미있는 것은 이 `Event Loop` 는 ECMAScript 에 포함되는 스펙은 아니며 JavaScript 엔진을 구동하는 환경에서 제공한다는 점이다.
 브라우저라면 브라우저에서 따로 구현된 모듈에서, NodeJS 의 경우에는 [libuv](http://libuv.org/) 라는 라이브러리로 동작한다.
 
 이 이벤트 루프는 다중 스레드로 구현되어 있기에, 엄밀히 말하면 ECMAScript 는 단일 스레드이고 javascript 환경은 멀티 스레드라고 볼 수 있다.
@@ -246,7 +281,7 @@ setTimeout, setInterval 로 몇초뒤의 작업을 예약하면 `Job Queue` 에 
 
 추가만 한다는게 중요한데, Job Queue 에 이미 적재된 Job 이 많거나 javascript 실행에서 상당한 지연이 발생할 경우 그 작업은 예정된 시간보다 늦게 실행될 수 있다.
 
-setTimeout 과 setInterval의 차이는 스케쥴링을 하느냐 안하느냐의 차이인데, [실제로는 미묘한 차이도 존재](http://www.bsidesoft.com/?p=399#highlighter_961258)하는 듯 하다.
+setTimeout 과 setInterval의 차이는 스케쥴링을 하느냐 안하느냐의 차이인데, [실제로는 미묘한 차이도 존재](http://www.bsidesoft.com/?p=399#%25ec%258b%25a4%25ed%2596%2589%25ed%2594%2584%25eb%25a0%2588%25ec%259e%2584)하는 듯 하다.
 
 ## 그렇다면 비동기 처리는
 
