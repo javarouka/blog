@@ -51,15 +51,13 @@ public class UserStore {
 
 JavaScript 의 코드는 항상 `실행-완료 (Run-to-completion)` 을 보장하는데, 이 뜻은 JavaScript 는 코드가 해석되고 수행될 때는 다른 코드의 실행이 되지 않는다는 실행 방식을 말한다.
 
-일반적인 방법으로는 한번에 수행되는 함수 코드 사이에 다른 작업이 개입할 수 없다. 실행할 코드가 있다면 어떤 일이 있든 전부 실행부터 실행 완료까지 되는 것이다.
-
 위 코드를 javascript 로 쓰면 이렇다
 
 ```Javascript
-(function(exports) {
+(function(someModuleSystem) {
 
     var count = 0;
-    var userProvider = require('userProvider');
+    var userProvider = someModuleSystem.require('userProvider');
 
     function findUser(id) {
         var found = userProvider.findUser(id);
@@ -67,26 +65,26 @@ JavaScript 의 코드는 항상 `실행-완료 (Run-to-completion)` 을 보장�
         return found;
     }
 
-    exports.userStore = {
+    someModuleSystem.export('userStore', {
         findUser: findUser
-    };
+    });
 
 })(someModuleSystem);
 ```
 
 위 코드에서는 여러 타이머나 이벤트 등의 비동기성을 띈 코드에서 이 모듈의 `findUser` 를 호출해도 완벽하게 이 모듈의 콜 카운트를 보장할 것이다.
 
-`Run-to-completion` 을 보장하려면 어떤 코드를 한번 동작하기 시작하면 다른 작업은 멈춰야 한다. 실제로, javascript 는 그렇게 동작한다.
-
-다음 코드를 보자
+더 이해를 높이기 위해 다음 코드를 보자
 
 ```javascript
+// 0.1초간 실행되는 함수
 function workShortTime() {
-    var i = 10
-    while(i--) {}
+    var elapsed = (+new Date) + 100;
+    while((+new Date) < elapsed) {}
     console.log('workShortTime complete')
 }
 
+// 2초간 실행되는 함수
 function workLongTime() {
     var elapsed = (+new Date) + (1000 * 2);
     while((+new Date) < elapsed) {}
@@ -104,12 +102,11 @@ setTimeout 으로 1 밀리세컨드 정도만 대기한 뒤에 `workShortTime` �
 2초 뒤 `workLongTime` 가 끝난 다음에야 `workShortTime` 이 수행될 것이다.
 (실제 느린 PC 에서 이 코드를 브라우저가 화면을 그리고 있을때나, NodeJS 서버가 요청을 처리하는 도중 수행시키면 이 코드가 끝날 때까지 화면을 더이상 그리지 않고, NodeJS 서버라면 아무런 동작을 하지 않을 것이다.)
 
-
-## javascript 의 동작 도구들
+## javascript 의 친구들 몇명 소개
 
 ### Call Stack
 
-보통 프로그래밍 언어에서는 함수가 호출될 경우 함수들은 *자신을 호출한 곳으로 되돌아갈 곳* 을 알아야 한다. 이 정보는 대부분 stack 으로 관리된다.
+보통 프로그래밍 언어에서는 함수가 호출될 경우 함수들은 <strong>자신을 호출한 곳으로 되돌아갈 곳</strong> 을 알아야 한다. 이 정보는 대부분 stack 으로 관리된다.
 
 > Java 프로그래머라면 이 정보를 보기 위한 Exception::printStacktrace 에 익숙할 것이다
 
@@ -209,7 +206,7 @@ stack = [ runScript, stepA ]
 stack = [ runScript, stepA, stepB, stepC, stacktrace ]
 ```
 
-stepC 에서 stackreace, console.log 까지 실행한 뒤에 다시 stepB 로 돌아가는 시점의 stack 은 다음과 같을 것이다.
+stepC 에서 stacktrace, console.log 까지 실행한 뒤에 다시 stepB 로 돌아가는 시점의 stack 은 다음과 같을 것이다.
 
 ```javascript
 stack = [ runScript, stepA, stepB ]
@@ -217,9 +214,7 @@ stack = [ runScript, stepA, stepB ]
 
 그리고 순차적으로 함수가 종료되며, 스택이 모두 비워지고 더이상 수행할 코드도 없다면 `runScript` 까지 지워지며 프로그램은 끝난다!
 
-javascript 실행기는 코드가 실행되면 `Call Stack` 을 조사한뒤 없어질 때까지 코드를 실행하고 스택이 전부 비워질 경우 실행을 종료하는 것이다.
-
-이 스택은 하나만 존재하며, 단지 스택에 쌓인 일을 처리하는 것 뿐이다. 이 중간에 새로운 함수 호출등으로 스택에 추가되어도 순차적으로 처리될 뿐, 작업 순서의 변동은 없다.
+javascript 실행기는 코드가 실행되면 `Call Stack` 을 조사한뒤 없어질 때까지 코드를 실행하고 스택이 전부 비워질 경우 실행을 종료하는 것이다. 중간에 새로운 함수 호출등으로 스택에 추가되어도 순차적으로 처리될 뿐, 작업 순서의 변동은 없다.
 
 javascript 는 묵묵하게 순차적으로 `Call Stack` 을 비워가며 실행한다.
 
@@ -227,12 +222,14 @@ javascript 는 묵묵하게 순차적으로 `Call Stack` 을 비워가며 실행
 
 ### Event Loop, Job Queue
 
-- DOM 처리 (화면 갱신을 포함한다)
-- 애니메이션
-- Ajax
-- Timer
-- Object Observer Callback
-- Promise
+javascript 에는 여러 비동기성 작업들이 있다. 대충 목록을 나열하면 다음과 같은 것들이 있다
+
+- [DOM 처리 (화면 갱신을 포함한다)](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Examples)
+- [애니메이션](https://developer.mozilla.org/ko/docs/Web/CSS/animation)
+- [Ajax](https://developer.mozilla.org/ko/docs/AJAX)
+- [Timer](https://developer.mozilla.org/en-US/Add-ons/Code_snippets/Timers)
+- [Object Observer Callback](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Object/observe)
+- [Promise](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Promise)
 
 일련의 비동기 작업들은 `Event Loop` 와 엔진이 실행되는 한 무한정 도는 루프와 `Job Queue` 라는 것으로 처리된다.
 
@@ -243,6 +240,7 @@ while(queue.waitForMessage()) {
     queue.processNextMessage();
 }
 ```
+*[MDN 참고](https://developer.mozilla.org/en/docs/Web/JavaScript/EventLoop)*
 
 `Job Queue` 를 감시하다가, 작업이 있으면 꺼내서 javascript 의 `Call Stack` 에 추가한다.
 
@@ -297,7 +295,7 @@ stack = [ runScript ]
 stack = [ runScript, stepB ]
 ```
 
-최종적으로 stepB 도 종료되고 수행이 끝나면 더이상 수행할 게 없으므로 다시 javascript 실행을 중단하고 `Event Loop` 는 다시 `Job Queue` 에 새로운 Job 이 들어오는지 루프를 돌기 시작할 것이다.
+최종적으로 `stepB` 도 종료되고 수행이 끝나면 더이상 수행할 게 없으므로 다시 javascript 실행을 중단하고 `Event Loop` 는 다시 `Job Queue` 에 새로운 Job 이 들어오는지 루프를 돌기 시작할 것이다.
 
 이게 자바스크립트가 비동기를 실행하는 방법이다.
 
