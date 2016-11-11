@@ -285,9 +285,13 @@ stack = [ runScript ]
 
 그리고 `console.log` 가 실행되고, 콘솔에 complete 를 출력한 뒤 종료되면 `Call Stack` 은 비워지고 일단 첫 코드 실행은 종료된다.
 
-`Event Loop` 는 `Call Stack` 이 비워졌으므로 `Job Queue` 를 뒤져보지만 비어있는 상태이기에 루프를 돈다.(대기한다고 표현하는게 더 나을수도 있겠다)
+`Event Loop` 는 `Call Stack` 이 비워졌으므로 `Job Queue` 를 뒤져보지만 비어있는 상태이기에 다음 루프를 진행한다.(대기한다고 표현하는게 더 나을수도)
 
-100 밀리세컨드가 지난 뒤 (`Event Loop`는 그 동안에도 여러번의 루프가 진행되고 있었을 것이다) `Job Queue` 에 `stepB` 함수가 추가되고 `Call Stack` 도 비어있는 상태이고 `Job Queue` 에도 작업이 있는 상태기에 `Event Loop` 는 `Job Queue` 에서 Job 을 하나 꺼내 실행시킨다. 실행된 함수는 `Call Stack` 에 추가되고 실행된다.
+100 밀리세컨드가 지난 뒤 (`Event Loop`는 그 동안에도 여러번의 루프가 진행되고 있었을 것이다) `Job Queue` 에 `stepB` 함수가 추가된다.
+
+`Call Stack` 도 비어있는 상태이고 `Job Queue` 에도 작업이 있는 상태기에 `Event Loop` 는 `Job Queue` 에서 Job 을 하나 꺼내 실행시킨다. 
+
+실행된 함수는 `Call Stack` 에 추가되고 실행된다.
 
 ```javascript
 stack = [ runScript, stepB ]
