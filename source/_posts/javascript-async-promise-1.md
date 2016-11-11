@@ -145,7 +145,7 @@ function stepC() {
     console.log("complete!")
 }
 
-console.log('시작합니다.')
+console.log('시작합니다.', stacktrace())
 
 stepA();
 ```
