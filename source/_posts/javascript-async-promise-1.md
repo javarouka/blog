@@ -86,9 +86,10 @@ function workShortTime() {
     while(i--) {}
     console.log('workShortTime complete')
 }
+
 function workLongTime() {
-    var i = 1000000000;
-    while(i--) {}
+    var elapsed = (+new Date) + (1000 * 2);
+    while((+new Date) < elapsed) {}
     console.log('workLongTime complete')
 }
 
@@ -100,18 +101,9 @@ function work() {
 
 setTimeout 으로 1 밀리세컨드 정도만 대기한 뒤에 `workShortTime` 를 수행하게 하고 다음 `workLongTime` 을 수행한다. 하지만 1 밀리세컨드가 지났다고 해도 `workLongTime` 이 끝나지 않는 한 `workLongTime` 을 중단하고 `workShortTime` 가 먼저 실행되진 않는다.
 
-언제나 `workLongTime` 가 전부 수행된 다음에야 `workShortTime` 이 수행될 것이다.
-(실제 느린 PC에서 이 코드를 브라우저가 화면을 그리고 있을때나, nodejs 서버가 요청을 처리하는 도중 수행시키면 이 코드가 끝날 때까지 화면을 더이상 그리지 않고, nodejs 서버라면 아무런 동작을 하지 않을 것이다.)
+2초 뒤 `workLongTime` 가 끝난 다음에야 `workShortTime` 이 수행될 것이다.
+(실제 느린 PC 에서 이 코드를 브라우저가 화면을 그리고 있을때나, NodeJS 서버가 요청을 처리하는 도중 수행시키면 이 코드가 끝날 때까지 화면을 더이상 그리지 않고, NodeJS 서버라면 아무런 동작을 하지 않을 것이다.)
 
-<!-- 이제 비동기 처리에 대해 한번 생각해보자.
-
-우리는 아무렇지도 않게 이벤트를 등록하여 특정 타이밍에 이벤트를 실행시키고, [Ajax](https://developer.mozilla.org/docs/AJAX) 로 비동기 처리를 하며, [setTimeout](https://developer.mozilla.org/ko/docs/Web/API/WindowTimers/setTimeout)이나 [setInterval](https://developer.mozilla.org/ko/docs/Web/API/WindowTimers/setInterval), [requestAnimationFrame](https://developer.mozilla.org/ko/docs/Web/API/window/requestAnimationFrame) 등을 사용한다.
-
-비동기 함수 등을 실행한 뒤 폼에 글자를 입력할수 없는것도 아니고, 스크롤이 정지되지도 않는다. 그리고 비동기 작업이 끝나면 콜백 등의 비동기 알림이 수행된다.
-
-그럼 어떻게 저런 일이 발생하는 걸까.
-
-이걸 이해하려면 `Call Stack` 과 `Job Queue`, 그리고 `Event Loop` 의 이해가 필요하다. -->
 
 ## javascript 의 동작 도구들
 
@@ -174,16 +166,15 @@ complete!
 
 제일 처음에는 호출 스택에는 아무것도 없다. 코드가 실행되면 그때 call stack 에 실행중인 함수(첫 코드 실행시에는 `runScript` 라고 하자) 가 삽입된다.
 
-| index  |     name     |
-|:------:|:-------------:|
-| 0      |   runScript   |
+```javascript
+stack = [ runScript ]
+```
 
 첫 코드 실행후 만나는 함수(메서드)는 `stacktrace` 다. 이 함수가 실행되는 시점의 스택은
 
-| index  |     name     |
-|:------:|:-------------:|
-| 1      |   stacktrace   |
-| 0      |   runScript   |
+```javascript
+stack = [ runScript, stacktrace ]
+```
 
 이다.
 
@@ -196,49 +187,41 @@ at stacktrace (<anonymous>:3:15)
 at <anonymous>:12:23
 ```
 
-| index  |     name     |
-|:------:|:-------------:|
-| 1      |   console.log   |
-| 0      |   runScript   |
+```javascript
+stack = [ runScript, console.log ]
+```
 
 그 다음 `console.log` 실행이 끝나고 콘솔에는 `시작합니다 undefined` 가 찍힌다. 그리고 스택은 다시 비워져 `runScript` 만 남는다.
 
-| index  |     name     |
-|:------:|:-------------:|
-| 0      |   runScript   |
+```javascript
+stack = [ runScript ]
+```
 
 그 다음에는  `stepA` 함수가 실행되며 스택은 다음과 같다.
 
-| index  |     name     |
-|:------:|:-------------:|
-| 1      |   stepA   |
-| 0      |   runScript   |
+```javascript
+stack = [ runScript, stepA ]
+```
 
 그 후 `stepB`, `stepC` 가 순차 실행되고 stepC 내부에서 `stacktrace` 를 실행하여 다음과 같이 된다
 
-| index  |     name     |
-|:------:|:-------------:|
-| 4      |   stacktrace   |
-| 3      |   stepC   |
-| 2       |   stepB  |
-| 1      |   stepA   |
-| 0      |   runScript   |
+```javascript
+stack = [ runScript, stepA, stepB, stepC, stacktrace ]
+```
 
 stepC 에서 stackreace, console.log 까지 실행한 뒤에 다시 stepB 로 돌아가는 시점의 stack 은 다음과 같을 것이다.
 
-| index  |     name     |
-|:------:|:-------------:|
-| 2       |   stepB  |
-| 1      |   stepA   |
-| 0      |   runScript   |
+```javascript
+stack = [ runScript, stepA, stepB ]
+```
 
 그리고 순차적으로 함수가 종료되며, 스택이 모두 비워지고 더이상 수행할 코드도 없다면 `runScript` 까지 지워지며 프로그램은 끝난다!
 
-javascript 실행기는 코드가 실행되면 Call Stack 을 조사한뒤 없어질 때까지 코드를 실행하고 스택이 전부 비워질 경우 실행을 종료하는 것이다.
+javascript 실행기는 코드가 실행되면 `Call Stack` 을 조사한뒤 없어질 때까지 코드를 실행하고 스택이 전부 비워질 경우 실행을 종료하는 것이다.
 
 이 스택은 하나만 존재하며, 단지 스택에 쌓인 일을 처리하는 것 뿐이다. 이 중간에 새로운 함수 호출등으로 스택에 추가되어도 순차적으로 처리될 뿐, 작업 순서의 변동은 없다.
 
-javascript는 묵묵하게 순차적으로 `Call Stack` 을 비워가며 실행한다.
+javascript 는 묵묵하게 순차적으로 `Call Stack` 을 비워가며 실행한다.
 
 그렇다면 이벤트 핸들링 함수나 타이머 등의 작업, Ajax 등의 작업은 어떻게 일어날까.
 
@@ -256,14 +239,14 @@ javascript는 묵묵하게 순차적으로 `Call Stack` 을 비워가며 실행�
 코드로 표현하면 다음과 같다.
 
 ```javascript
-while(jobQueue.hasNext()) {
-    jobQueue.next().process();
+while(queue.waitForMessage()) {
+    queue.processNextMessage();
 }
 ```
 
 `Job Queue` 를 감시하다가, 작업이 있으면 꺼내서 javascript 의 `Call Stack` 에 추가한다.
 
-javascript 는 `Call Stack` 에 작업이 추가되었으므로 그것을 실행하여 Call Stack 단락에서 본 같은 작업을 진행하게 된다.
+javascript 는 `Call Stack` 에 작업이 추가되었으므로 그것을 실행하여 `Call Stack` 단락에서 본 같은 작업을 진행하게 된다.
 
 ```javascript
 function stepA() {
@@ -286,43 +269,41 @@ console.log("complete!"); // 6
 
 위 코드는 주석에 쓰인 숫자 순서대로 실행된다.
 
-3 부분이 실행되는 시점의 Call Stack 은 다음과 같다.
+3 부분이 실행되는 시점의 `Call Stack` 은 다음과 같다.
 
-| index  |     name     |
-|:------:|:-------------:|
-| 3       |   setTimeout  |
-| 2       |   timerA  |
-| 1      |   stepA   |
-| 0      |   runScript   |
+```javascript
+stack = [ runScript, stepA, timerA, setTimeout ]
+```
 
 이 되고 setTimeout 은 100 밀리세컨드 뒤의 타이머 작업 (`stepB` 함수를 Job Queue 에 넣는 작업) 을 준비한다.
 
-그 뒤 6번째 주석의 코드가 수행 전 시점의 Call Stack 은 다음과 같다.
+그 뒤 6번째 주석의 코드가 수행 전 시점의 `Call Stack` 은 다음과 같다.
 
-| index  |     name     |
-|:------:|:-------------:|
-| 0      |   runScript   |
+```javascript
+stack = [ runScript ]
+```
 
-그리고 `console.log` 가 실행되고, 콘솔에 complete 를 출력한 뒤 종료되면 Call Stack 은 비워지고 일단 첫 코드 실행은 종료된다.
-`Event Loop` 는 Call Stack 이 비워졌으므로 `Job Queue` 를 뒤져보지만 비어있는 상태이기에 다름 루프를 돈다.
+그리고 `console.log` 가 실행되고, 콘솔에 complete 를 출력한 뒤 종료되면 `Call Stack` 은 비워지고 일단 첫 코드 실행은 종료된다.
 
-100 밀리세컨드가 지난 뒤 Job Queue 에 `stepB` 함수가 추가되고 Call Stack 도 비어있는 상태이고 Job Queue 에도 작업이 있는 상태기에 `Event Loop` 는 `Job Queue` 에서 Job 을 하나 꺼내 실행시킨다. 실행된 함수는 Call Stack 에 추가되고 실행된다.
+`Event Loop` 는 `Call Stack` 이 비워졌으므로 `Job Queue` 를 뒤져보지만 비어있는 상태이기에 루프를 돈다.(대기한다고 표현하는게 더 나을수도 있겠다)
 
-| index  |     name     |
-|:------:|:-------------:|
-| 1      |   stepB   |
-| 0      |   runScript   |
+100 밀리세컨드가 지난 뒤 (`Event Loop`는 그 동안에도 여러번의 루프가 진행되고 있었을 것이다) `Job Queue` 에 `stepB` 함수가 추가되고 `Call Stack` 도 비어있는 상태이고 `Job Queue` 에도 작업이 있는 상태기에 `Event Loop` 는 `Job Queue` 에서 Job 을 하나 꺼내 실행시킨다. 실행된 함수는 `Call Stack` 에 추가되고 실행된다.
+
+```javascript
+stack = [ runScript, stepB ]
+```
 
 최종적으로 stepB 도 종료되고 수행이 끝나면 더이상 수행할 게 없으므로 다시 javascript 실행을 중단하고 `Event Loop` 는 다시 `Job Queue` 에 새로운 Job 이 들어오는지 루프를 돌기 시작할 것이다.
 
 이게 자바스크립트가 비동기를 실행하는 방법이다.
 
-만일 Job Queue 에서 꺼내온 작업이 장시간 걸리는 작업이라면 `Call Stack` 의 소비는 그만큼 늦어지고 `Event Loop` 는 대기하는 `Job Queue` 의 작업이 있어도 javascript 에게 함수의 실행을 시키지 않는다.
+만일 `Job Queue` 에서 꺼내온 작업이 장시간 걸리는 작업이라면 `Call Stack` 의 소비는 그만큼 늦어지고 `Event Loop` 는 대기하는 `Job Queue` 의 작업이 있어도 javascript 에게 함수의 실행을 시키지 않는다.
 
-재미있는 것은 이 `Event Loop` 는 ECMAScript 에 포함되는 스펙은 아니며 JavaScript 엔진을 구동하는 환경에서 제공한다는 점이다.
+재미있는 것은 이 `Event Loop` 는 ECMAScript 에 포함되는 스펙은 아니며 javascript 엔진을 구동하는 환경에서 제공한다는 점이다.
+
 브라우저라면 브라우저에서 따로 구현된 모듈에서, NodeJS 의 경우에는 [libuv](http://libuv.org/) 라는 라이브러리로 동작한다.
 
-이 이벤트 루프는 다중 스레드로 구현되어 있기에, 엄밀히 말하면 ECMAScript 는 단일 스레드이고 javascript 환경은 멀티 스레드라고 볼 수 있다.
+이 이벤트 루프는 [libuv](http://libuv.org/) 의 경우 다중 스레드로 구현되어 있기에, ECMAScript 는 단일 스레드이고 javascript 환경은 멀티 스레드라고 볼 수도 있다.
 
 ### Timer
 
@@ -330,7 +311,7 @@ console.log("complete!"); // 6
 
 추가만 한다는게 중요한데, `Job Queue` 에 이미 적재된 Job 이 많거나 javascript 실행에서 상당한 지연이 발생할 경우 그 작업은 예정된 시간보다 늦게 실행될 수 있다.
 
-setTimeout 과 setInterval의 차이는 스케쥴링을 하느냐 안하느냐의 차이인데, [실제로는 미묘한 차이도 존재](http://www.bsidesoft.com/?p=399#%25ec%258b%25a4%25ed%2596%2589%25ed%2594%2584%25eb%25a0%2588%25ec%259e%2584)하는 듯 하다.
+setTimeout 과 setInterval 의 차이는 스케쥴링을 하느냐 안하느냐의 차이인데, [실제로는 미묘한 차이도 존재](http://www.bsidesoft.com/?p=399#%25ec%258b%25a4%25ed%2596%2589%25ed%2594%2584%25eb%25a0%2588%25ec%259e%2584)하는 듯 하다.
 
 ## 그렇다면 비동기 처리는
 
@@ -338,11 +319,58 @@ setTimeout 과 setInterval의 차이는 스케쥴링을 하느냐 안하느냐�
 
 실제 javascript 의 `Call Stack` 에 추가되는 시점이 `Event Loop` 에 의해 여러 시점이 된다면 비동기 처리가 되는 것이다.
 
-단순하다.
+## 장시간 수행 로직에 대한 비동기 처리 예제
+
+가령 서버에서 100만개의 유저리스트를 가져왔고 이 User 리스트에 대해 색인이 필요한 상황이라고 해보자.(물론 클라이언트에서 이걸 처리하고 있는게 이상하긴 하다)
+
+이걸 정직하게 처리하면 분명 사용자는 처리되기 전 까지 버튼을 클릭하거나 페이지를 이동하는 등의 작업을 하지 못하고 정지된 화면을 감상하게 될 것이다.
+
+이럴 경우 비동기 처리를 활용하여 분산처리하는게 좋다.
+
+```javascript
+var userList = [ ... 백만개 ... ];
+var indexed = {};
+
+// 인덱싱 함수. 구현은 비워두었다.
+function indexing(user) {    
+    // ... 어떤 인덱스 로직 구현 ...
+}
+
+// 실제 작업 진행 함수
+// 유저리스트가 비어있다면 false 를 반환하고 있다면 인덱싱을 진행한다
+function process() {
+    if(!userList.length) return false;
+    var user = userList.pop();
+    indexing(user);
+    return true;
+}  
+
+// 작업자를 구동시키는 함수.
+// 타이머를 0 밀리세컨드로 허용하는 최소 단위의 스케줄로 매번 주어진 인자를 수행한다.
+function work(fn, name) {
+    return function go() {
+        setTimeout(function() {
+            var ret = fn();         
+            console.log(ret ? '[' + name + '] processed' : '[' + name + '] stop')
+            if(ret) go();
+        }, 0);    
+    }();
+}
+
+// work 함수로 분산 처리한다.
+// 몇개를 더 수행해도 상관 없지만 지연 시간이 0초로 주어진 이상 그리 효율은 없을것 같다.
+work(process, 'process-1');
+// work(process, 'process-2');
+```
+
+만일 인덱싱의 종료 조건을 알고 싶다면 `work` 함수의 종료 조건절 `if(ret) go()` 에 완료 콜백으로 처리하는 방법이 있다.
+
+다음 포스트에서 알아볼 Promise.all 과 같이 쓰면 코드가 더욱 간결해질 것이다.
 
 ## 참고
 - [BsideSoft 공식 블로그 # 동기화 vs 비동기화 1](http://www.bsidesoft.com/?p=399)
 - [BsideSoft 공식 블로그 # 동기화 vs 비동기화 2](http://www.bsidesoft.com/?p=414)
 - [BsideSoft 공식 블로그 # 동기화 vs 비동기화 3](http://www.bsidesoft.com/?p=423)
 - [NHN Enter # 자바스크립트와 이벤트 루프](https://github.com/nhnent/fe.javascript/wiki/June-13-June-17,-2016)
+- [2ality # ECMAScript 6 promises - foundations](http://www.2ality.com/2014/09/es6-promises-foundations.html)
 - [jakearchibald's blog # Tasks, microtasks, queues and schedules](https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules)
