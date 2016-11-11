@@ -301,8 +301,6 @@ stack = [ runScript, stepB ]
 
 이게 자바스크립트가 비동기를 실행하는 방법이다.
 
-만일 `Job Queue` 에서 꺼내온 작업이 장시간 걸리는 작업이라면 `Call Stack` 의 소비는 그만큼 늦어지고 `Event Loop` 는 대기하는 `Job Queue` 의 작업이 있어도 javascript 에게 함수의 실행을 시키지 않는다.
-
 재미있는 것은 이 `Event Loop` 는 ECMAScript 에 포함되는 스펙은 아니며 javascript 엔진을 구동하는 환경에서 제공한다는 점이다.
 
 브라우저라면 브라우저에서 따로 구현된 모듈에서, NodeJS 의 경우에는 [libuv](http://libuv.org/) 라는 라이브러리로 동작한다.
