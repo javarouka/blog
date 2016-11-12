@@ -277,7 +277,7 @@ promise.then(console.log); // 수행된다
 promise.catch(console.log); // 수행되지 않는다
 ```
 
-이 reject 를 먼저 호출하는 반대로 마찬가지다. 아주 중요한 개념이니 잘 알아두자.
+이 reject 를 먼저 호출하고 resolve 를 호출해도 마찬가지다. 아주 중요한 개념이니 잘 알아두자.
 
 ### 여유로운 비동기 실행
 
