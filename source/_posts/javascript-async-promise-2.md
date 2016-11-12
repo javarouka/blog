@@ -493,15 +493,15 @@ catch(ex) {
 
 이 코드의 catch 블럭안의 stack 은 찍히지 않는다. [다음 포스트](/blog/2016/11/12/javascript-async-promise-3/) 의 Task 와 MicroTask 에서 다루겠지만, Promise 는 이런식의 예외 처리는 불가능하다.
 
-Promise 는 Timer 와 비슷하지만 많이 다른 비동기 처리를 하며 Promise 의 콜백들은 그룹화된 Task Queue 로 관리된다. (MicroTask 라고 한다)
+Promise 는 Timer 와 비슷하면서도 다른 비동기 처리를 하며 Promise 의 콜백들은 그룹화된 **Task Queue** 로 관리된다. (MicroTask 라고 한다)
 
-실행되는 Context 가 달라 실제 Promise 콜백이 실행되는 시점은 try/catch 구문이 끝난 뒤다.
+실제 Promise 콜백이 실행되는 시점은 try/catch 구문이 끝난 뒤다.
 
-그럼 예외가 날 경우 어떻게 활까?!?!
+그럼 예외가 날 경우 어떻게 하지?! 
 
-간단하게 처리된다.
+걱정하지 않아도 괜찮다. 간단하게 처리할 수 있게 Promise 가 만들어져 있다.
 
-Promise 가 친절하게도 로직 중의 예외가 발생할 경우는 내부적으로 상태가 **rejected** 상태로 변경되고 reject 콜백으로 전달된다.
+Promise 는 흐름 중에 예외가 발생할 시 내부적으로 상태가 **rejected** 상태로 변경되고 reject 콜백으로 전달된다.
  
 ```
 delay(1000, function() {
@@ -515,7 +515,7 @@ delay(1000, function() {
 });
 ```
 
-일관되게 에러를 핸들링이 가능하다.
+catch 를 사용하여 일관되게 에러를 핸들링이 가능하다.
 
 catch 콜백도 체이닝되므로 catch 뒤에 then 을 붙이면 안전하게 Promise 체이닝을 이어가는것도 가능하다.
 
