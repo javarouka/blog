@@ -615,7 +615,7 @@ Promise.resolve(thenable)
 
 만일 어떤 값이 Promise 인지 아닌지 판단할 수 없을 경우, Promise.resolve 로 감싸면 안전하게 그 값을 Promise 취급할 수 있게 해주는 아주 고마운 함수이다.
 
-이 방법은 특히 Promise API 가 나오기 전의 비슷한 Promise 구현들 ([jQuery Deferred Object](https://api.jquery.com/category/deferred-object/), [q](https://github.com/kriskowal/q)) 을 Promise 표준에 맞춰 일관되게 사용할때 매우 유용하다.
+이 방법은 특히 Promise API 가 나오기 전의 비슷한 Promise 구현들 ([jQuery Deferred Object](https://api.jquery.com/category/deferred-object/), [q](https://github.com/kriskowal/q), [bluebird](https://github.com/petkaantonov/bluebird/)) 을 Promise 표준에 맞춰 일관되게 사용할때 매우 유용하다.
 
 전달받은 인자가 의심쩍을 경우 Promise 로 래핑해버리자. 그게 Promise 라면 그냥 반환하니까 좋고, 아닐 경우에도 Promise 로 바꿔준다. 
 
@@ -633,7 +633,7 @@ Promise 의 배열을 인자로 받고 Promise 가 전부 resolve 되면 `resolv
 
 then 의 콜백에 전달되는 인자는 Promise.all 에 전달된 promise 의 순서대로 상태값의 배열로 전달된다.
  
-```
+```javascript
 var normalPm = new Promise(function(resolve) {
     resolve('ok-1')
 });
@@ -653,7 +653,7 @@ Promise.all 이 전부 resolved 혹은 하나라도 rejected 를 처리한다면
 
 Promise 중 하나라도 상태가 변할 경우 즉시 그 Promise 의 상태값을 처리한다. 이름 그대로 경합이라고 볼 수 있다.
 
-```
+```javascript
 var rabbit = delay(1000, function() { return '토끼' });
 var turtle = delay(2000, function() { return '거북이' });
 
