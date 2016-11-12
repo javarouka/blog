@@ -623,7 +623,9 @@ Promise.resolve(thenable)
 
 ### Promise.reject([statusValue]);
 
-Promise.resolve 에서 상태값만 rejected 로 바뀐 대칭적인 메서드다. Promise.resolve 가 인자를 내부적으로 정규화해봐야 resolved 인지 rejected 인지 알 수 있다면, 이 메서드는 값이 무엇이든 그냥 rejcted 상태로 바꿔버린다는것만 다르다.  
+Promise.resolve 에서 상태값만 rejected 로 바뀐 대칭적인 메서드다. 
+
+Promise.resolve 가 인자를 내부적으로 정규화해봐야 resolved 인지 rejected 인지 알 수 있다면, 이 메서드는 값이 무엇이든 그냥 rejcted 상태로 바꿔버린다는것만 다르다.  
 
 ### Promise.all([ ...promise ]);
 
