@@ -173,6 +173,10 @@ ES2015 에서는 언어 자체에 Promise 를 Native 로 지원하게 되어서 
 기본 사용법은 다음과 같다
 
 ```javascript
+new Promise([FactoryFunctionExpression])
+```
+
+```javascript
 var promise = new Promise(function(resolve, reject) {
     // implementation ...
 });
@@ -184,11 +188,27 @@ promise.catch(function() {
 });
 ```
 
-```javascript
-new Promise([FactoryFunctionExpression])
-```
-
 의 방식이다.
+
+예제는 이런 식이다
+
+```javascript
+var promise = new Promise(function(resolve, reject) {
+    resolve('약속해줘~');
+});
+
+promise.then(function(val) {
+    console.log(val); // 약속해줘~
+});
+
+var promise = new Promise(function(resolve, reject) {
+    reject('약속은 어기라고 있는 것');
+});
+
+promise.catch(function(val) {
+    console.log(val); // 약속은 어기라고 있는 것
+});
+```
 
 `FactoryFunctionExpression` 에는 두가지 인자가 오는데, 첫번째 인자는 Promise 의 상태를 resolved 로 바꾸는 함수, 두번째 인자는 상태를 rejected 로 바꾸는 함수가 온다.
 
