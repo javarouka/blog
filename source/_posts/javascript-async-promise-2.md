@@ -660,13 +660,10 @@ Promise 에 대해 글을 쓰려고 마음먹은건 몇달 전이다.
  
 결국 써놓고 보니 장문의 포스트가 되어버렸다. 읽는데 굉장한 불편함이 있을거라 생각된다. 읽을 사람이 있을지도 모르겠지만...
 
-##### 비동기와 Promise 카테고리 시리즈
-
-- [비동기와 Promise #1](/blog/2016/11/08/javascript-async-promise-1/) 
-- [비동기와 Promise #2](/blog/2016/11/09/javascript-async-promise-2/) 
-- [비동기와 Promise #3](/blog/2016/11/12/javascript-async-promise-3/) 
-
 ## 참고
+- [비동기와 Promise 1](/blog/2016/11/08/javascript-async-promise-1/) 
+- [비동기와 Promise 2](/blog/2016/11/09/javascript-async-promise-2/) 
+- [비동기와 Promise 3](/blog/2016/11/12/javascript-async-promise-3/) 
 - [BsideSoft 공식 블로그 # 동기화 vs 비동기화 1](http://www.bsidesoft.com/?p=399)
 - [BsideSoft 공식 블로그 # 동기화 vs 비동기화 2](http://www.bsidesoft.com/?p=414)
 - [BsideSoft 공식 블로그 # 동기화 vs 비동기화 3](http://www.bsidesoft.com/?p=423)
