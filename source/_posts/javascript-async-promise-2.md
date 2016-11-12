@@ -697,9 +697,3 @@ Promise 에 대해 글을 쓰려고 마음먹은건 몇달 전이다.
 - [NHN Enter # 자바스크립트와 이벤트 루프](https://github.com/nhnent/fe.javascript/wiki/June-13-June-17,-2016)
 - [2ality # ECMAScript 6 promises - foundations](http://www.2ality.com/2014/09/es6-promises-foundations.html)
 - [jakearchibald's blog # Tasks, microtasks, queues and schedules](https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules)
-
-<!--#### ES5 용 구현체들 (중 많이 쓰이는 것들)-->
-
-<!--- [jQuery Deferred](https://api.jquery.com/category/deferred-object/)-->
-<!--- [bluebird](https://github.com/petkaantonov/bluebird/)-->
-<!--- [q](https://github.com/kriskowal/q)-->
