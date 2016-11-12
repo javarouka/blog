@@ -140,6 +140,11 @@ function asyncRunner(job) {
       }
     }
 }
+```
+
+이제 사용해보자
+
+```javascript
 // 러너로 실행한다!
 asyncRunner(goodsOnDeliveryAsync)
     .delivered(enjoyLifeByGoods)
@@ -147,7 +152,7 @@ asyncRunner(goodsOnDeliveryAsync)
     .deliverError(crySadLife)
 ```
 
-이제 asyncRunner 함수의 신뢰성만 유지되는 한 타겟 함수와 콜백의 실행 로직은 서로 겹치지 않게 된다.
+`asyncRunner` 함수의 신뢰성만 유지되는 한 타겟 함수와 콜백의 실행 로직은 서로 겹치지 않게 된다.
 
 제어 역전 포인트를 아예 분리해버렸고, 한번 실행된 뒤 다시 콜백을 수행할일도 없이 방어로직을 넣어두었다.
 
