@@ -568,7 +568,7 @@ var thenable = {
     then(resolve, reject) {
         resolve('안녕? 난 thenable 이야.');
     }
-}
+};
 
 Promise.resolve(thenable).then(function(value) {
     console.log(value); // 안녕? 난 thenable 이야.
@@ -579,10 +579,10 @@ var nestedThenable = {
     then(resolve, reject) {
         return resolve(thenable);
     }
-}
+};
 
 Promise.resolve(nestedThenable).then(function(value) {
-    console.log(value); // 대단하다!
+    console.log(value); // 안녕? 난 thenable 이야.
 });
 ```
 
