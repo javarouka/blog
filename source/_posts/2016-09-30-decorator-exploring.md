@@ -11,6 +11,8 @@ thumbnail: '/images/deco.jpg'
 categories: ['Tech', 'JavaScript', 'ES6']
 ---
 
+<!-- toc -->
+
 > 이 글은 ES2015+ 문법으로 쓰여졌습니다.
 
 ## Decorator?

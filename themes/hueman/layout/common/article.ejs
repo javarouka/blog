@@ -21,7 +21,6 @@
         </div>
         <% } %>
         <div class="article-entry <%- (post.draft ? 'draft' : '') %>" itemprop="articleBody">
-            <%- partial('post/toc') %>
             <%- post.content %>
         </div>
         <footer class="article-footer">

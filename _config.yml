@@ -80,6 +80,15 @@ feed:
 ## Themes: https://hexo.io/themes/
 theme: hueman
 
+toc:
+  maxdepth: 7
+  class: toc-wrap
+  slugify: transliteration
+  anchor:
+    position: after
+    symbol: ''
+    style: header-anchor
+
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
