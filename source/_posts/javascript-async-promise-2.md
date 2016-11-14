@@ -64,7 +64,6 @@ asyncFunc(function(goods) {
     callback2(goods);
     callback3(goods);
 });
-enjoyLifeByExistsGoods();
 ```
 
 물론 콜백안에 함수 셋을 전달할 수도 있지만 가독성 면에서 그리 좋은 방법은 아니다. 게다가, callback1 에서 예외가 던져질 경우 나머지 콜백들은 수행조차 하지 못한다.
@@ -103,12 +102,15 @@ enjoyLifeByExistsGoods();
  * @return callback 등록 인터페이스
  */
 function asyncRunner(job) {
+
     var future = [];
     var errorHandler = function(err) {}
     var executed = false;
+    
     // 비동기 함수에서 콜백을 실행한다.
     // 유효성 검사를 할 필요가 없이 확실한 함수를 전달한다.
     job(function(data) {
+    
         // 이미 수행되었거나 실행할 작업이 없어도 중단한다.
         if(executed || !future.length) return;
         try {
@@ -125,15 +127,19 @@ function asyncRunner(job) {
             executed = true;
         }  
     });
+    
     return function(goods) {
+    
       return {
+      
           // 미래에 처리할 작업을 등록하는 메서드를 반환한다
-          delivered: function(job) {
+          ok: function(job) {
               if(job) future.push(job);
               return this;
           },
+          
           // 에러 핸들러를 등록한다.
-          deliverError: function(_errorHandler) {
+          error: function(_errorHandler) {
               errorHandler = errorHandler || _errorHandler;
               return this;
           }
@@ -147,9 +153,9 @@ function asyncRunner(job) {
 ```javascript
 // 러너로 실행한다!
 asyncRunner(goodsOnDeliveryAsync)
-    .delivered(enjoyLifeByGoods)
-    .delivered(presentGoods)
-    .deliverError(crySadLife)
+    .ok(enjoyLifeByGoods)
+    .ok(presentGoods)
+    .error(crySadLife)
 ```
 
 `asyncRunner` 함수의 신뢰성만 유지되는 한 타겟 함수와 콜백의 실행 로직은 서로 겹치지 않게 된다.
@@ -177,18 +183,22 @@ new Promise([FactoryFunctionExpression])
 ```
 
 ```javascript
+// FactoryFunctionExpression
 var promise = new Promise(function(resolve, reject) {
     // implementation ...
+    // call resolve([val]) or reject([val])
 });
-promise.then(function(data) {
+promise.then(function(fulfilledValue) {
     // ... fulfilled callback ...
 })
-promise.catch(function() {
+promise.catch(function(rejectedValue) {
     // ... reject callback ...
 });
 ```
 
 의 방식이다.
+
+#### example
 
 예제는 이런 식이다
 
@@ -236,6 +246,45 @@ somePromise.catch(function() {})
 ```
  
 단축 표현이라고 보면 정확하다. 
+
+#### 실전 예제
+
+일정량의 딜레이 뒤에 수행되는 미래를 나타내는 Promise 을 만들어보자
+
+```javascript
+/**
+ * ms 만큼 지연된 Promise 를 반환
+ *
+ * @param ms 딜레이 밀리초
+ * @return tid 타임아이디, ms 대기시간
+ */
+function throttle(ms) {
+
+    // Promise 를 생성한다
+    return new Promise(function(resolve) {
+    
+        // 주어진 ms로 Timer 를 예약한다
+        var tid = setTimeout(function() {
+        
+            // 대기가 끝나면 resolve 로 Promise 의 resolved 상태를 바꾸고 변화를 알림
+            resolve({
+                tid: tid, // Timer 아이디
+                ms: ms // 대기시간
+            });
+        }, ms);
+    });
+}
+```
+
+주석으로 설명은 대체한다.
+
+사용은 다음과 같다.
+
+```javascript
+throttle(1000 * 60).then(function() {
+    console.log('God is dead. - Friedrich Wilhelm Nietzsche')
+});
+```
 
 ### 변하지 않아!
 
@@ -308,6 +357,7 @@ console.log('종료되었습니다');
 
 ...
 
+...
 
 답은 아래와 같다.
  
@@ -503,7 +553,7 @@ Promise 는 Timer 와 비슷하면서도 다른 비동기 처리를 하며 Promi
 
 Promise 는 흐름 중에 예외가 발생할 시 내부적으로 상태가 **rejected** 상태로 변경되고 reject 콜백으로 전달된다.
  
-```
+```javascript
 delay(1000, function() {
     throw new Error('Oops');
 })
