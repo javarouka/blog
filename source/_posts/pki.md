@@ -8,7 +8,7 @@ comments: true
 share: true
 image: 'images/learncomputer-programing.jpg'
 thumbnail: 'images/learncomputer-programing.jpg'
-categories: ['Tech', 'Security', 'Async']
+categories: ['Tech', 'Security']
 ---
 
 <!-- toc -->
