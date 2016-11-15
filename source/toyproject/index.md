@@ -1,5 +1,5 @@
 ---
-layout: about
+layout: expage
 title: 개인 프로젝트
 comments: true
 share: true

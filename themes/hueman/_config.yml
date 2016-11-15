@@ -21,12 +21,12 @@ customize:
 
 # Widgets
 widgets:
-    - recent_posts
     - category
-    - archive
+    # - archive
+    - recent_posts
     - tag
-#    - tagcloud
-#    - links
+# - tagcloud
+    - links
 
 # Search
 search:

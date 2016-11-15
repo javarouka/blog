@@ -1,5 +1,5 @@
 ---
-layout: about
+layout: expage
 title: 기술 공유 자료들
 comments: true
 share: true

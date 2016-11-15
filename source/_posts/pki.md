@@ -11,6 +11,8 @@ thumbnail: 'images/learncomputer-programing.jpg'
 categories: ['Tech', 'Security', 'Async']
 ---
 
+<!-- toc -->
+
 ## PKI(Public Key Interface)
 
 - 암호화는 코드 및 암호를 통해 정보를 보호하는 기술이다.
@@ -76,6 +78,8 @@ A와 B가 동일한 키를 가지고 있기 때문이다. 심플하지만 이것
 그렇다. 공개키 암호화 방식으로 대칭키 자체를 암호화해 보내는 방법이다.
 
 키 자체만을 암호화하기 때문에 부하가 상대적으로 비용이 적다.
+
+## 결론
 
 여기까지 설명한 방법을 모두 합친 암호화 및 서명 플로우는 다음과 같다.
 
