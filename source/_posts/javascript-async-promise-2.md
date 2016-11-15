@@ -52,7 +52,7 @@ enjoyLifeByExistsGoods();
 
 `goodsOnDeliveryAsync` 는 자신이 맡은 배송 외에도, 추가적으로 자신과는 전혀 관계가 없는 콜백 함수를 처리할 임무를 맡고 있다.
 
-콜백으로 전달된 인자의 유효성 검증은 물론, 예외가 나든 오류가 나든 반드시 콜백을 호출해줘야 한다. 
+콜백으로 전달된 인자의 유효성 검증은 물론, 예외가 나든 오류가 나든 반드시 콜백을 호출해줘야 한다.
 
 또, 콜백을 다수 처리해야 할 경우에도 문제가 된다.
 
@@ -106,11 +106,11 @@ function asyncRunner(job) {
     var future = [];
     var errorHandler = function(err) {}
     var executed = false;
-    
+
     // 비동기 함수에서 콜백을 실행한다.
     // 유효성 검사를 할 필요가 없이 확실한 함수를 전달한다.
     job(function(data) {
-    
+
         // 이미 수행되었거나 실행할 작업이 없어도 중단한다.
         if(executed || !future.length) return;
         try {
@@ -127,17 +127,17 @@ function asyncRunner(job) {
             executed = true;
         }  
     });
-    
+
     return function(goods) {
-    
+
       return {
-      
+
           // 미래에 처리할 작업을 등록하는 메서드를 반환한다
           ok: function(job) {
               if(job) future.push(job);
               return this;
           },
-          
+
           // 에러 핸들러를 등록한다.
           error: function(_errorHandler) {
               errorHandler = errorHandler || _errorHandler;
@@ -223,7 +223,7 @@ promise.catch(function(val) {
 `FactoryFunctionExpression` 에는 두가지 인자가 오는데, 첫번째 인자는 Promise 의 상태를 resolved 로 바꾸는 함수, 두번째 인자는 상태를 rejected 로 바꾸는 함수가 온다.
 
 이 두 콜백에는 상태값을 인자로 줄 수 있으며 그 뒤의 then 이나 catch 등의 메서드의 처리 함수들이 그 값을 인자로 받는다.
- 
+
 인자는 하나만 허용되며, 두번째 인자는 무시되니, **다수의 인자를 주고 싶다면 Object 타입을 사용** 해야 한다.
 
 #### then, catch
@@ -240,12 +240,12 @@ Promise 의 프로토타입은 다음과 같다.
 
 `catch` 는 인자를 하나만 받는데, rejected 상태에 대한 상태값을 받아 처리하는 콜백 함수가 인자가 된다.
 
-```javascript 
+```javascript
 somePromise.then(null, function() {})
 somePromise.catch(function() {})
 ```
- 
-단축 표현이라고 보면 정확하다. 
+
+단축 표현이라고 보면 정확하다.
 
 #### 실전 예제
 
@@ -262,10 +262,10 @@ function throttle(ms) {
 
     // Promise 를 생성한다
     return new Promise(function(resolve) {
-    
+
         // 주어진 ms로 Timer 를 예약한다
         var tid = setTimeout(function() {
-        
+
             // 대기가 끝나면 resolve 로 Promise 의 resolved 상태를 바꾸고 변화를 알림
             resolve({
                 tid: tid, // Timer 아이디
@@ -293,7 +293,7 @@ Promise 는 한번 상태가 결정되면 절대 변하지 않는다.
 resolve 나 reject 함수를 호출하기 전을 `pending` 상태라고 한다. 이후 resolve 혹은 reject 가 수행되면 `resolved` 혹은 `rejected` 상태로 변한다.
 
 한번 상태가 정해지면 다른 상태로는 변하지 않는다. 다시 then 을 호출한다고 해서 전 `pending` 상태의 로직이 다시 실행되거나 하지도 않는다.
- 
+
 ```javascript
 var outer = 1;
 
@@ -305,7 +305,7 @@ promise.then(console.log); // 2
 promise.then(console.log); // 2
 ```
 
-몇번을 호출해도 결과는 같다. 
+몇번을 호출해도 결과는 같다.
 
 한번 정해진 상태는 그대로 유지된다. 이건 기존의 콜백 로직과는 확실히 구분되는 강력함이라고 볼 수 있다.
 
@@ -315,9 +315,9 @@ promise.then(console.log); // 2
 // 일부러 두 콜백을 모두 호출해본다.
 var promise = new Promise(function(resolve, reject) {
 
-    // resolved 로 상태가 변경됨. 
+    // resolved 로 상태가 변경됨.
     resolve('완료되었어!');
-    
+
     // resolved 된 상태에서 reject 를 호출한다.
     reject('이런! 벌써 완료되었나!');
 });
@@ -337,9 +337,9 @@ Promise 의 then 과 catch 등의 콜백은 기본적으로 **비동기로 실�
 ```javascript
 console.log('시작합니다');
 
-new Promise(function(resolve) { 
+new Promise(function(resolve) {
     console.log('Promise 시작합니다');
-    resolve('Promise 수행되었습니다') 
+    resolve('Promise 수행되었습니다')
 }).then(console.log);
 
 console.log('종료되었습니다');
@@ -360,7 +360,7 @@ console.log('종료되었습니다');
 ...
 
 답은 아래와 같다.
- 
+
 ```
 시작합니다
 Promise 시작합니다
@@ -378,9 +378,9 @@ setTimeout(function() {
     console.log('Timer 수행되었습니다');
 }, 0);
 
-new Promise(function(resolve) { 
+new Promise(function(resolve) {
     console.log('Promise 시작합니다');
-    resolve('Promise 수행되었습니다') 
+    resolve('Promise 수행되었습니다')
 }).then(console.log);
 
 console.log('종료되었습니다');
@@ -389,7 +389,7 @@ console.log('종료되었습니다');
 이 문제는 배경 지식이 없으면 예측이 어렵다.
 
 답은 다음과 같다.
- 
+
 ```
 시작합니다
 Timer 설정합니다
@@ -400,7 +400,7 @@ Timer 수행되었습니다
 ```
 
 같은 한번의 수행 프레임내에서 예약되는 Timer 와 Promise 는 언제나 Promise 의 실행이 우선되고, Timer 는 나중이 된다.
-  
+
 Timer 에 아주 짧은 시간을 설정해도 소용없다.
 
 이 건에 대해서는 [다음 포스트](/blog/2016/11/12/javascript-async-promise-3/) 에서 다룬다. 지금은 Timer 보다 Promise 의 콜백이 내부적으로 실행 우선권을 가지고 있다고만 생각하자.
@@ -445,7 +445,7 @@ then 을 호출한 순서 차례대로 실행되며 이전 then 의 결과를 �
 
 #### chaining VS forking
 
-메서드 체이닝 시 주의할 점이 있다. 
+메서드 체이닝 시 주의할 점이 있다.
 
 체이닝으로 사용할 때가 있고 사용하지 않아야 할 때가 있다. 아래 예제에서 위 코드와 아래의 코드는 전혀 다른 동작을 유발한다.
 
@@ -522,7 +522,7 @@ delay(1000, logThunk('첫번째'))
 
 대략 1초 간격으로 `첫번째 두번째 세번째` 가 콘솔에 출력될 것이다.
 
-Promise 를 반환하여 그 뒤의 then 메서드의 컨텍스트가 반환된 Promise 로 교체된 것이다. 
+Promise 를 반환하여 그 뒤의 then 메서드의 컨텍스트가 반환된 Promise 로 교체된 것이다.
 
 비동기 로직인데도, 순차 실행되는 것을 확인할 수 있다.
 
@@ -547,12 +547,12 @@ Promise 는 Timer 와 비슷하면서도 다른 비동기 처리를 하며 Promi
 
 실제 Promise 콜백이 실행되는 시점은 try/catch 구문이 끝난 뒤다.
 
-그럼 예외가 날 경우 어떻게 하지?! 
+그럼 예외가 날 경우 어떻게 하지?!
 
 걱정하지 않아도 괜찮다. 간단하게 처리할 수 있게 Promise 가 만들어져 있다.
 
 Promise 는 흐름 중에 예외가 발생할 시 내부적으로 상태가 **rejected** 상태로 변경되고 reject 콜백으로 전달된다.
- 
+
 ```javascript
 delay(1000, function() {
     throw new Error('Oops');
@@ -611,7 +611,7 @@ console.log(promise1 === promise4);
 
 하지만 resolve 에는 **Promise 정규화** 라는 아주 강력한 기능이 있다.
 
-Promise 가 아닌 then 함수를 가진 객체 (보통 ***thenable*** 이라고 부른다) 를 인자로 넘길 경우 Promise 로 정규화한 뒤 반환한다! 
+Promise 가 아닌 then 함수를 가진 객체 (보통 ***thenable*** 이라고 부른다) 를 인자로 넘길 경우 Promise 로 정규화한 뒤 반환한다!
 
 ```javascript
 var thenable = {
@@ -646,7 +646,7 @@ Promise.resolve 는 그것까지 정규화한다.
 // 일반적인 thenable 이다.
 var thenable = {
     then(resolve, reject) {
-        
+
         // 두 콜백을 전부 호출해버린다.
         resolve('안녕? 난 thenable 이야.');
         reject('핫핫핫! 거부한다');
@@ -667,13 +667,13 @@ Promise.resolve(thenable)
 
 이 방법은 특히 Promise API 가 나오기 전의 비슷한 Promise 구현들 ([jQuery Deferred Object](https://api.jquery.com/category/deferred-object/), [q](https://github.com/kriskowal/q), [bluebird](https://github.com/petkaantonov/bluebird/)) 을 Promise 표준에 맞춰 일관되게 사용할때 매우 유용하다.
 
-전달받은 인자가 의심쩍을 경우 Promise 로 래핑해버리자. 그게 Promise 라면 그냥 반환하니까 좋고, 아닐 경우에도 Promise 로 바꿔준다. 
+전달받은 인자가 의심쩍을 경우 Promise 로 래핑해버리자. 그게 Promise 라면 그냥 반환하니까 좋고, 아닐 경우에도 Promise 로 바꿔준다.
 
 정말 사랑스러운 메서드다.
 
 ### Promise.reject([statusValue]);
 
-Promise.resolve 에서 상태값만 rejected 로 바뀐 대칭적인 메서드다. 
+Promise.resolve 에서 상태값만 rejected 로 바뀐 대칭적인 메서드다.
 
 Promise.resolve 가 인자를 내부적으로 정규화해봐야 resolved 인지 rejected 인지 알 수 있다면, 이 메서드는 값이 무엇이든 그냥 rejcted 상태로 바꿔버린다는것만 다르다.  
 
@@ -682,7 +682,7 @@ Promise.resolve 가 인자를 내부적으로 정규화해봐야 resolved 인지
 Promise 의 배열을 인자로 받고 Promise 가 전부 resolve 되면 `resolved`, 혹은 promise 배열중 하나라도 rejected 되면 `rejected` 가 되는 Promise 를 반환한다.
 
 then 의 콜백에 전달되는 인자는 Promise.all 에 전달된 promise 의 순서대로 상태값의 배열로 전달된다.
- 
+
 ```javascript
 var normalPm = new Promise(function(resolve) {
     resolve('ok-1')
@@ -718,8 +718,8 @@ Promise.race([ rabbit, turtle ]).then(function(resolved) {
 
 ```javascript
 var userRequest = ajaxRequest('/api/user/list');
-var timeout = delay(3000, function() { 
-    return Promise.reject('서버 응답이 늦습니다'); 
+var timeout = delay(3000, function() {
+    return Promise.reject('서버 응답이 늦습니다');
 });
 
 Promise.race([ userRequest, timeout ])
@@ -738,13 +738,13 @@ Promise 를 한번 익혀둔다면 앞으로의 프로그래밍에 봄날이 오
 Promise 에 대해 글을 쓰려고 마음먹은건 몇달 전이다.
 
 지지부진했던 이유가 부분이 가볍게 설명하자니 너무 간단하고 성의없어지고, 조금만 살을 붙여도 너무 많아지는 거였다.
- 
+
 결국 써놓고 보니 장문의 포스트가 되어버렸다. 읽는데 굉장한 불편함이 있을거라 생각된다. :)
 
 ## 참고
-- [비동기와 Promise 1](/blog/2016/11/08/javascript-async-promise-1/) 
-- [비동기와 Promise 2](/blog/2016/11/09/javascript-async-promise-2/) 
-- [비동기와 Promise 3](/blog/2016/11/12/javascript-async-promise-3/) 
+- [비동기와 Promise 1](/blog/2016/11/08/javascript-async-promise-1/)
+- [비동기와 Promise 2](/blog/2016/11/09/javascript-async-promise-2/)
+- [비동기와 Promise 3](/blog/2016/11/12/javascript-async-promise-3/)
 - [BsideSoft 공식 블로그 # 동기화 vs 비동기화 1](http://www.bsidesoft.com/?p=399)
 - [BsideSoft 공식 블로그 # 동기화 vs 비동기화 2](http://www.bsidesoft.com/?p=414)
 - [BsideSoft 공식 블로그 # 동기화 vs 비동기화 3](http://www.bsidesoft.com/?p=423)

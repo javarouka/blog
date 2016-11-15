@@ -11,7 +11,7 @@ thumbnail: 'images/learncomputer-programing.jpg'
 categories: ['Tech', 'Security', 'Async']
 ---
 
-## PKI - Public Key Interface
+## PKI(Public Key Interface)
 
 - 암호화는 코드 및 암호를 통해 정보를 보호하는 기술이다.
 - 코드는 정보 변경 방법을 모르는 상태로 읽을 수 없도록 하기 위해 정보를 체계적으로 변경하는 프로세스이다.
