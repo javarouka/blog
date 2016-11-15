@@ -288,7 +288,7 @@ Event Loop 는 Call Stack 이 비워졌으므로 Job Queue 를 뒤져보지만 �
 
 0,1초가 지난 뒤 (Event Loop는 그 동안에도 여러번의 루프가 진행되고 있었을 것이다) Job Queue 에 `stepB` 함수가 추가된다.
 
-Call Stack 도 비어있는 상태이고 Job Queue 에도 작업이 있는 상태기에 Event Loop 는 Job Queue 에서 Job 을 하나 꺼내 실행시킨다. 
+Call Stack 도 비어있는 상태이고 Job Queue 에도 작업이 있는 상태기에 Event Loop 는 Job Queue 에서 Job 을 하나 꺼내 실행시킨다.
 
 실행된 함수는 Call Stack 에 추가되고 실행된다.
 
@@ -369,9 +369,9 @@ work(process, 'process-1');
 [다음 포스트](/blog/2016/11/09/javascript-async-promise-2/) 에서 알아볼 Promise.all 과 같이 쓰면 코드가 더욱 간결해질 것이다.
 
 ## 참고
-- [비동기와 Promise 1](/blog/2016/11/08/javascript-async-promise-1/) 
-- [비동기와 Promise 2](/blog/2016/11/09/javascript-async-promise-2/) 
-- [비동기와 Promise 3](/blog/2016/11/12/javascript-async-promise-3/) 
+- [비동기와 Promise 1](/blog/2016/11/08/javascript-async-promise-1/)
+- [비동기와 Promise 2](/blog/2016/11/09/javascript-async-promise-2/)
+- [비동기와 Promise 3](/blog/2016/11/12/javascript-async-promise-3/)
 - [BsideSoft 공식 블로그 # 동기화 vs 비동기화 1](http://www.bsidesoft.com/?p=399)
 - [BsideSoft 공식 블로그 # 동기화 vs 비동기화 2](http://www.bsidesoft.com/?p=414)
 - [BsideSoft 공식 블로그 # 동기화 vs 비동기화 3](http://www.bsidesoft.com/?p=423)

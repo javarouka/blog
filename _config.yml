@@ -80,6 +80,10 @@ feed:
 ## Themes: https://hexo.io/themes/
 theme: hueman
 
+markdown:
+  render:
+    html: true
+
 toc:
   maxdepth: 7
   class: toc-wrap
