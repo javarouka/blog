@@ -2,8 +2,10 @@
 menu:
     Home: /
     # Delete this row if you don't want categories in your header nav bar
-    Categories:
     About: /about/index.html
+    pt: /pt/index.html
+    toyproject: /toyproject/index.html
+    Categories:
 
 # Customize
 customize:
@@ -23,8 +25,8 @@ widgets:
     - category
     - archive
     - tag
-    - tagcloud
-    - links
+#    - tagcloud
+#    - links
 
 # Search
 search:

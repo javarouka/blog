@@ -1,6 +1,8 @@
 index:
     home: '대문'
     about: '나'
+    pt: '발표자료'
+    toyproject: '개인프로젝트'
     search: '검색'
     archive: '보관함'
     category: 'Category'

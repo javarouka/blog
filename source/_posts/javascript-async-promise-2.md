@@ -101,18 +101,20 @@ asyncFunc(function(goods) {
  * @param job 비동기 함수
  * @return callback 등록 인터페이스
  */
-function asyncRunner(job) {
+function AsyncRunner(job) {
 
+    var ms = 1000;
     var future = [];
     var errorHandler = function(err) {}
     var executed = false;
-    
+   
     // 비동기 함수에서 콜백을 실행한다.
     // 유효성 검사를 할 필요가 없이 확실한 함수를 전달한다.
     job(function(data) {
     
         // 이미 수행되었거나 실행할 작업이 없어도 중단한다.
         if(executed || !future.length) return;
+        
         try {
             // Go.
             future.forEach(function(job) {
@@ -120,6 +122,7 @@ function asyncRunner(job) {
             });
         }
         catch(error) {
+        
             // 에러가 나면 지정된 에러 핸들러를 실행하고 중단한다.
             return errorHandler(new Error(error));
         }
@@ -152,7 +155,7 @@ function asyncRunner(job) {
 
 ```javascript
 // 러너로 실행한다!
-asyncRunner(goodsOnDeliveryAsync)
+new AsyncRunner(goodsOnDeliveryAsync)
     .ok(enjoyLifeByGoods)
     .ok(presentGoods)
     .error(crySadLife)
@@ -163,6 +166,8 @@ asyncRunner(goodsOnDeliveryAsync)
 제어 역전 포인트를 아예 분리해버렸고, 한번 실행된 뒤 다시 콜백을 수행할일도 없이 방어로직을 넣어두었다.
 
 코드가 읽기 간결해지는건 덤이다.
+
+아, 위 코드에서는 **한번도 실행하지 않음** 에 대해서는 처리하지 않았는데, `ok`, `error` 이외에 `timeout` 같은 인터페이스를 공개해서 내부적으로 타이머를 돌려 executed 변수를 갱신하면서 오류 핸들러를 호출해주는 식으로 구현하면 될 것이다. 
 
 ## 그래서 Promise 는 뭔데?
 
