@@ -222,7 +222,7 @@ javascript 실행기는 코드가 실행되면 Call Stack 을 조사한뒤 없�
 
 그렇다면 이벤트 핸들링 함수나 타이머 등의 작업, Ajax 등의 작업은 어떻게 일어날까.
 
-### Event Loop, Job Queue
+### Event Loop, Task Queue
 
 javascript 에는 여러 비동기성 작업들이 있다. 대충 목록을 나열하면 다음과 같은 것들이 있다
 
@@ -233,7 +233,7 @@ javascript 에는 여러 비동기성 작업들이 있다. 대충 목록을 나�
 - [Object Observer Callback](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Object/observe)
 - [Promise](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Promise)
 
-일련의 비동기 작업들은 Event Loop 와 엔진이 실행되는 한 무한정 도는 루프와 Job Queue 라는 것으로 처리된다.
+일련의 비동기 작업들은 Event Loop 와 엔진이 실행되는 한 무한정 도는 루프와 Task Queue 라는 것으로 처리된다.
 
 코드로 표현하면 다음과 같다. (*[MDN 참고](https://developer.mozilla.org/en/docs/Web/JavaScript/EventLoop)*)
 
@@ -243,7 +243,7 @@ while(queue.waitForMessage()) {
 }
 ```
 
-Job Queue 를 감시하다가, 작업이 있으면 꺼내서 javascript 의 Call Stack 에 추가한다.
+Task Queue 를 감시하다가, Task가 있으면 꺼내서 javascript 의 Call Stack 에 추가한다.
 
 javascript 는 Call Stack 에 작업이 추가되었으므로 그것을 실행하여 Call Stack 단락에서 본 같은 작업을 진행하게 된다.
 
@@ -274,7 +274,7 @@ console.log("complete!"); // 6
 stack = [ runScript, stepA, timerA, setTimeout ]
 ```
 
-이 되고 setTimeout 은 100 밀리세컨드 뒤의 타이머 작업 (`stepB` 함수를 Job Queue 에 넣는 작업) 을 준비한다.
+이 되고 setTimeout 은 100 밀리세컨드 뒤의 타이머 작업 (`stepB` 함수를 Task Queue 에 넣는 작업) 을 준비한다.
 
 그 뒤 6번째 주석의 코드가 수행 전 시점의 Call Stack 은 다음과 같다.
 
@@ -284,11 +284,11 @@ stack = [ runScript ]
 
 그리고 `console.log` 가 실행되고, 콘솔에 complete 를 출력한 뒤 종료되면 Call Stack 은 비워지고 일단 첫 코드 실행은 종료된다.
 
-Event Loop 는 Call Stack 이 비워졌으므로 Job Queue 를 뒤져보지만 비어있는 상태이기에 다음 루프를 진행한다.(대기한다고 표현하는게 더 나을수도)
+Event Loop 는 Call Stack 이 비워졌으므로 Task Queue 를 뒤져보지만 비어있는 상태이기에 다음 루프를 진행한다.(대기한다고 표현하는게 더 나을수도)
 
-0,1초가 지난 뒤 (Event Loop는 그 동안에도 여러번의 루프가 진행되고 있었을 것이다) Job Queue 에 `stepB` 함수가 추가된다.
+0,1초가 지난 뒤 (Event Loop는 그 동안에도 여러번의 루프가 진행되고 있었을 것이다) Task Queue 에 `stepB` 함수가 추가된다.
 
-Call Stack 도 비어있는 상태이고 Job Queue 에도 작업이 있는 상태기에 Event Loop 는 Job Queue 에서 Job 을 하나 꺼내 실행시킨다.
+Call Stack 도 비어있는 상태이고 Job Queue 에도 작업이 있는 상태기에 Event Loop 는 Task Queue 에서 Task 을 하나 꺼내 실행시킨다.
 
 실행된 함수는 Call Stack 에 추가되고 실행된다.
 
@@ -296,7 +296,7 @@ Call Stack 도 비어있는 상태이고 Job Queue 에도 작업이 있는 상�
 stack = [ runScript, stepB ]
 ```
 
-최종적으로 `stepB` 도 종료되고 수행이 끝나면 더이상 수행할 게 없으므로 다시 javascript 실행을 중단하고 Event Loop 는 다시 Job Queue 에 새로운 Job 이 들어오는지 루프를 돌기 시작할 것이다.
+최종적으로 `stepB` 도 종료되고 수행이 끝나면 더이상 수행할 게 없으므로 다시 javascript 실행을 중단하고 Event Loop 는 다시 Task Queue 에 새로운 Task 이 들어오는지 루프를 돌기 시작할 것이다.
 
 이게 javascript가 비동기를 실행하는 방법이다.
 
@@ -310,13 +310,13 @@ stack = [ runScript, stepB ]
 
 타이머의 동작은 위에서 설명한 대로 지정된 밀리초 이후 작업을 수행하는 것이 아닌 Timer Api 에서 해당 시간만큼 지연된 뒤에 Job Queue 에 추가한다.
 
-추가만 한다는게 중요한데, Job Queue 에 이미 적재된 Job 이 많거나 javascript 실행에서 상당한 지연이 발생할 경우 그 작업은 예정된 시간보다 늦게 실행될 수 있다.
+추가만 한다는게 중요한데, Task Queue 에 이미 적재된 Task 이 많거나 javascript 실행에서 상당한 지연이 발생할 경우 그 작업은 예정된 시간보다 늦게 실행될 수 있다.
 
 setTimeout 과 setInterval 의 차이는 스케쥴링을 하느냐 안하느냐의 차이인데, [실제로는 미묘한 차이도 존재](http://www.bsidesoft.com/?p=399#%25ec%258b%25a4%25ed%2596%2589%25ed%2594%2584%25eb%25a0%2588%25ec%259e%2584)하는 듯 하다.
 
 ## 그렇다면 비동기 처리는
 
-따로 준비된 비동기 처리구문은 결국 Job Queue 에 작업을 추가하고 Event Loop 의 한번의 루프에 처리되는 일을 여러 타이밍에 나눠 담는 것이 avascript 의 비동기 처리라고 볼 수 있다.
+따로 준비된 비동기 처리구문은 결국 Task Queue 에 작업을 추가하고 Event Loop 의 한번의 루프에 처리되는 일을 여러 타이밍에 나눠 담는 것이 avascript 의 비동기 처리라고 볼 수 있다.
 
 실제 javascript 의 Call Stack 에 추가되는 시점이 Event Loop 에 의해 여러 시점이 된다면 비동기 처리가 되는 것이다.
 
