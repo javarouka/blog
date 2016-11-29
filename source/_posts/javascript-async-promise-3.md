@@ -65,7 +65,7 @@ HTML 스펙의 [Micro Task checkpoint - perform a microtask checkpoint](https://
 5. 실행 : 선택한 Task 를 실행.
 6. Event Loop 의 현재 실행중인 작업을 null 로 설정
 7. 위의 단계에서 실행 된 Micro Task 를 큐에서 제거하고 Micro Task 큐 처리 단계 (2번 단계) 로
-8. 완료 : `Micro Task checkpoint` 완료, Event Loop 재개.
+8. 완료 : `Micro Task checkpoint` 완료
 
 여기서 알 수 있는건 Micro Task 큐가 비어있지 않다면 Task 가 비어있을 때까지 무한히 핸들링 -> 실행 단계를 반복하도록 되어 있다는 점이다.
 
@@ -82,7 +82,7 @@ HTML 스펙의 [Micro Task checkpoint - perform a microtask checkpoint](https://
 ```javascript
 // Promise 를 받아 상태값에 1을 증가시키고,
 // resolved Promise 를 반환하는 함수
-const doChain = promise => {
+const doIncrementChain = promise => {
     return promise.then(val => {
         console.log('Promise value', val);
         return Promise.resolve(++val)
@@ -107,9 +107,9 @@ let promise = new Promise(resolve => {
     return resolve(1);
 });
 
-// 루프카운트만큼 순회하며 Promise 를 연결한다.
+// loopCount 만큼 순회하며 Promise 를 연결한다.
 let loopCount = 100000;
-while(loopCount--) promise = doChain(promise);
+while(loopCount--) promise = doIncrementChain(promise);
 
 // 완료되면 완료로깅을 출력하는 Promise를 연결한다.
 promise.then(_=> console.groupEnd('promise executed!'));
@@ -125,11 +125,9 @@ promise.then(_=> console.groupEnd('promise executed!'));
 
 실행 결과를 보았듯이 Timer 작업은 앞선 Micro Task 인 Promise 에 밀려 제일 나중에 실행된다.
 
-루프 카운트를 10000 으로 늘려도 결과는 같다.
+루프 카운트를 10000 으로 늘려도 결과는 같다. 다만 과하게 늘릴 경우 수행이 늦어지거나 엔진 다운이 있을 수 있다.
 
-## 결론
-
-블라블라앗살라무알레이꿈 작성중이라네...
+## 몇가지 실험
 
 ## 참고
 - [비동기와 Promise 1](/blog/2016/11/08/javascript-async-promise-1/) 
