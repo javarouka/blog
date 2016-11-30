@@ -15,11 +15,13 @@ categories: ['Tech', 'JavaScript', 'Async']
 
 [전 포스트](/blog/2016/11/09/javascript-async-promise-2/) 에 이은 글이다.
 
+> 이 포스트의 예제 코드는 ES6 으로 작성되었습니다.
+
 ## 복습
 
 전 포스트들에서 비동기의 대략적 흐름과 Promise 의 기본 동작에 대해 다루다가 잠깐 언급한 내용이 있다. Timer 와 Promise 를 비교하면서 Timer 함수보다 Promise 가 더 우선권이 있다고 했었다.
 
-실제로 Promise 다른 javascript 일반적인 비동기 수행보다 앞선 비동기적 우선권을 가진다. 이것에 대해 이해하려면 ES6 에 새로 추가된 Micro Task 에 대해 좀 더 알 필요가 있다.
+실제로 Promise 다른 javascript 일반적인 비동기 수행보다 앞선 비동기적 우선권을 가진다. 이것에 대해 이해하려면 HTML Living Standard 에 새로 추가된 Micro Task 에 대해 좀 더 알 필요가 있다.
 
 `Task` 와 `MicroTask` 에 대해 자세히 알아보자
 
@@ -48,7 +50,7 @@ javascript 가 코드 블럭을 수행하면 call stack 에 함수 호출을 쌓
 Micro Task 는 새로운 Task 로서 기존의 Task 에 영향을 받지 않고 Async 로 빠르게 수행되는 Task 들이다.
 
 - [process.nextTick](https://blog.outsider.ne.kr/739)
-- Promise
+- [Promise](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Promise)
 - [Object.observe](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Object/observe)
 - [MutationObserver](https://developer.mozilla.org/ko/docs/Web/API/MutationObserver)
 
@@ -67,6 +69,29 @@ HTML 스펙의 [Micro Task checkpoint - perform a microtask checkpoint](https://
 7. 위의 단계에서 실행 된 Micro Task 를 큐에서 제거하고 Micro Task 큐 처리 단계 (2번 단계) 로
 8. 완료 : `Micro Task checkpoint` 완료
 
+아래는 위의 흐름을 개념적 코드로 표현해보았다. (실제 구현이 이렇다는건 절대 아니다)
+
+```javascript
+function performMicroTaskCheckPoint(eventLoop, microTaskQueue) {
+
+    // 재진입성(reentrant invocation) 방지를 위한 플래그 프로퍼티
+    // http://sunyzero.tistory.com/97
+    while(eventLoop.microCheckPointFlag) {
+    
+        if(microTaskQueue.length < 1) { // 2
+            eventLoop.microCheckPointFlag = false;
+            break;
+        }
+        
+        const microTask = microTaskQueue.shift(); // 3
+        
+        eventLoop.setCurrentRunngingTask(microTask); // 4
+        eventLoop.executeCurrentTask(); // 5
+        eventLoop.setCurrentRunngingTask(null); // 6
+    }
+}
+```
+
 여기서 알 수 있는건 Micro Task 큐가 비어있지 않다면 Task 가 비어있을 때까지 무한히 핸들링 -> 실행 단계를 반복하도록 되어 있다는 점이다.
 
 만일 Micro Task 에서 다른 MicroTask 를 등록하는 작업을 반복하면 다음의 이벤트 루프는 수행되지 못할 수도 있다는 뜻이다.
@@ -74,8 +99,6 @@ HTML 스펙의 [Micro Task checkpoint - perform a microtask checkpoint](https://
 ### Micro Task 과다 중첩 예제
 
 테스트 코드로 알아보자. 사용할 Micro Task 는 이 시리즈에서 한창 다루는 Promise 를 사용한 예제이다.
-
-> 예제 코드는 ES6 으로 작성되었다.
 
 먼저 사용할 함수 두개를 만들자
 
@@ -125,14 +148,19 @@ promise.then(_=> console.groupEnd('promise executed!'));
 
 실행 결과를 보았듯이 Timer 작업은 앞선 Micro Task 인 Promise 에 밀려 제일 나중에 실행된다.
 
-루프 카운트를 10000 으로 늘려도 결과는 같다. 다만 과하게 늘릴 경우 수행이 늦어지거나 엔진 다운이 있을 수 있다.
+루프 카운트를 10000 으로 늘려도 결과는 같다.(다만 과하게 늘릴 경우 수행이 늦어지거나 엔진 다운이 있을 수 있다.)
 
-## 몇가지 실험
+## 결론
+
+비동기 및 Promise 포스팅이 이걸로 끝났다.
+
+비동기에 대해서는 여기 써놓은 내용 이상으로 다룰 내용이 너무 깊고 많다. 노오력이 부족한 관계로 새로운 사실을 알게 될 때마다 포스트를 수정해나갈 생각이다.
 
 ## 참고
 - [비동기와 Promise 1](/blog/2016/11/08/javascript-async-promise-1/) 
 - [비동기와 Promise 2](/blog/2016/11/09/javascript-async-promise-2/) 
 - [비동기와 Promise 3](/blog/2016/11/12/javascript-async-promise-3/) 
+- [C언어:reentrant (재진입성) 함수와 쓰레드안전(MultiThread-safe)](http://sunyzero.tistory.com/97)
 - [BsideSoft 공식 블로그 # 동기화 vs 비동기화 1](http://www.bsidesoft.com/?p=399)
 - [BsideSoft 공식 블로그 # 동기화 vs 비동기화 2](http://www.bsidesoft.com/?p=414)
 - [BsideSoft 공식 블로그 # 동기화 vs 비동기화 3](http://www.bsidesoft.com/?p=423)
