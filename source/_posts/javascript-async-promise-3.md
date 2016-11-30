@@ -29,7 +29,7 @@ categories: ['Tech', 'JavaScript', 'Async']
 
 Event Loop 는 하나 혹은 그 이상의 Task Queue 라는 부르는 Task 가 순서대로 정렬된 List 를 가진다. 
 
-Task? Task 는 다음과 같은 여러 작업들의 모음이다.
+Task 는 다음과 같은 여러 작업들의 모음이다.
 
 - 이벤트
 - HTML 파싱
