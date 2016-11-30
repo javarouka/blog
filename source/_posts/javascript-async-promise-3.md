@@ -17,7 +17,7 @@ categories: ['Tech', 'JavaScript', 'Async']
 
 > 이 포스트의 예제 코드는 ES6 으로 작성되었습니다.
 
-## 복습
+## 뒤돌아보기
 
 전 포스트들에서 비동기의 대략적 흐름과 Promise 의 기본 동작에 대해 다루다가 잠깐 언급한 내용이 있다. Timer 와 Promise 를 비교하면서 Timer 함수보다 Promise 가 더 우선권이 있다고 했었다.
 
