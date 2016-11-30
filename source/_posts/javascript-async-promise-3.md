@@ -54,7 +54,11 @@ Micro Task 는 새로운 Task 로서 기존의 Task 에 영향을 받지 않고 
 - [Object.observe](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Object/observe)
 - [MutationObserver](https://developer.mozilla.org/ko/docs/Web/API/MutationObserver)
 
-Micro Task 는 기존의 Task 보다 실행 우선권이 존재한다.
+Micro Task 는 현재 실행중인 Task 의 실행이 종료된 뒤 바로 다음에 일어날 일들이 쌓이는 곳이다.
+
+일반적인 구현으로는 각 Task 가 끝나거나, Event Loop 의 시작과 끝에서 체크된다. 이 작업을 표준 문서에서는 Micro Task checkpoint 라고 정의하고 있다.
+
+Task 의 종료와 루프의 시작과 끝에서 수행되기에 일반적인 Task 의 실행이 다음 루프에서 처리되는 것보다 우선권이 있다.
 
 HTML 스펙의 [Micro Task checkpoint - perform a microtask checkpoint](https://html.spec.whatwg.org/multipage/webappapis.html#perform-a-microtask-checkpoint) 의 설명을 대략 요약하면 다음과 같다.
 
