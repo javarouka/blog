@@ -78,18 +78,16 @@ HTML 스펙의 [Micro Task checkpoint - perform a microtask checkpoint](https://
 ```javascript
 function performMicroTaskCheckPoint(eventLoop) {
 
-    const microTaskQueue = eventLoop.getMicroTaskQueue();
-
     // 재진입성(reentrant invocation) 방지를 위한 플래그 프로퍼티
     // http://sunyzero.tistory.com/97    
     while(eventLoop.microCheckPointFlag) {
     
-        if(microTaskQueue.length < 1) { // 2
+        if(eventLoop.microTaskQueue.length < 1) { // 2
             eventLoop.microCheckPointFlag = false;
             break;
         }
         
-        const microTask = microTaskQueue.shift(); // 3
+        const microTask = eventLoop.microTaskQueue.shift(); // 3
         
         eventLoop.setCurrentRunngingTask(microTask); // 4
         eventLoop.executeCurrentTask(); // 5
