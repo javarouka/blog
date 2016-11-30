@@ -31,6 +31,7 @@ Event Loop 는 하나 혹은 그 이상의 Task Queue 라는 부르는 Task 가 
 
 Task 는 다음과 같은 여러 작업들의 모음이다.
 
+- 스크립트 실행
 - 이벤트
 - HTML 파싱
 - 콜백
@@ -67,7 +68,7 @@ HTML 스펙의 [Micro Task checkpoint - perform a microtask checkpoint](https://
 1. `Micro Task checkpoint` 수행
 2. 핸들링 : 이벤트 루프의 Micro Task 큐가 비어 있으면 완료 단계로
 3. Event Loop 의 Micro Task 큐 대기열에서 가장 오래된 Micro Task 를 선택
-4. Event Loop 의 현재 실행중인 작업 을 4번 단계에서 선택한 작업으로 설정
+4. Event Loop 의 현재 실행중인 작업 을 3번 단계에서 선택한 작업으로 설정
 5. 실행 : 선택한 Task 를 실행.
 6. Event Loop 의 현재 실행중인 작업을 null 로 설정
 7. 위의 단계에서 실행 된 Micro Task 를 큐에서 제거하고 Micro Task 큐 처리 단계 (2번 단계) 로
