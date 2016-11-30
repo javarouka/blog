@@ -72,10 +72,12 @@ HTML 스펙의 [Micro Task checkpoint - perform a microtask checkpoint](https://
 아래는 위의 흐름을 개념적 코드로 표현해보았다. (실제 구현이 이렇다는건 절대 아니다)
 
 ```javascript
-function performMicroTaskCheckPoint(eventLoop, microTaskQueue) {
+function performMicroTaskCheckPoint(eventLoop) {
+
+    const microTaskQueue = eventLoop.getMicroTaskQueue();
 
     // 재진입성(reentrant invocation) 방지를 위한 플래그 프로퍼티
-    // http://sunyzero.tistory.com/97
+    // http://sunyzero.tistory.com/97    
     while(eventLoop.microCheckPointFlag) {
     
         if(microTaskQueue.length < 1) { // 2
