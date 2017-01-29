@@ -17,7 +17,7 @@
         </div>
         <%- partial('post/title', { class_name: 'article-title', linkable: true }) %>
         <p class="article-excerpt">
-            <%- excerpt(post) %>
+            <%- post.description %>
         </p>
     </div>
 </article>
