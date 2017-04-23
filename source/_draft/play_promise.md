@@ -6,8 +6,8 @@ date: 2017-03-23
 tags: [ ecmascript, javascript, promise ]
 comments: true
 share: true
-image: 'images/redux/redux-logo.png'
-thumbnail: 'images/redux/redux-logo.png'
+image: 'images/brain.png'
+thumbnail: 'images/brain.png'
 categories: [ 'Tech', 'JavaScript', 'UI' ]
 ---
 

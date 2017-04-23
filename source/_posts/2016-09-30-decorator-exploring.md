@@ -270,9 +270,9 @@ decorating 할 대상의 의 생성자가 첫번째 인자로 오는 시그니�
 
 ```javascript
 function decorator(target) {
-    console.log(target.name); // drive
+    console.log(target.name); // Car
     console.log(target.prototype); // object
-    console.log(Object.getOwnPropertyNames(target.prototype)); // [ drive, stop ]
+    console.log(Object.getOwnPropertyNames(target.prototype)); // [ constructor, drive, stop ]
 }
 
 @decorator
@@ -327,8 +327,10 @@ function decorator(target, name, descriptor) {
 }
 
 class Car {
-@decorator
+    
+    @decorator
     drive(){}
+    
     stop(){}
 }
 ```
@@ -423,17 +425,22 @@ const final = (obj, name, descriptor) => {
 
 ```javascript
 class Programer {
+    
     constructor(name) {
         this.name = name;
     }
 
     @bind
     makeCode() {
-        console.log(`${this.name} 은(는) 코드를 만듭니다.`);
+        console.log(`${this} 은(는) 코드를 만듭니다.`);
     }
 
     makeIncident() {
-        console.log(`${this.name} 은(는) 장애를 내버렸습니다.`);
+        console.log(`${this} 은(는) 장애를 내버렸습니다.`);
+    }
+    
+    toString() {
+        return this.name;
     }
 }
 
@@ -458,38 +465,32 @@ storedMakeIncident();
 // 함수 구별 유틸 함수
 const isFunction = v => (typeof v === 'function');
 
-// 인자로 작업 전 수행할 액션을 받는다.
-function bind(action) {
+function bind(target, name, descriptor) {
 
-    // 데코레이터는 함수이므로 실행 결과로 함수가 반환되어야 한다.
-    return (target, name, descriptor) => {
+    // descriptor 에서 현재 value 를 꺼낸다
+    const value = descriptor.value;
 
-        // descriptor 에서 현재 value 를 꺼낸다
-        const value = descriptor.value;
+    // action 이나 value 가 함수가 아니면 의미가 없다.
+    if (!isFunction(value)) return;
 
-        // action 이나 value 가 함수가 아니면 의미가 없다.
-        if (!isFunction(action) || !isFunction(value)) return;
+    let defined = false;
+    return {
+        get() {
 
-        let defined = false;
-        return {
-            ...descriptor,
-            get() {
+            // 다시 바인딩할 필요는 없다.
+            if(defined) return value;
 
-                // 다시 바인딩할 필요는 없다.
-                if(defined) return value;
+            const bound = value.bind(this);
 
-                const bound = value.bind(this);
+            Object.defineProperty(this, name, {
+                value: bound
+            });
 
-                Object.defineProperty(this, name, {
-                    value: bound
-                });
+            defined = true;
 
-                defined = true;
-
-                return bound;
-            }
-        };
-    }
+            return bound;
+        }
+    };
 }
 ```
 
