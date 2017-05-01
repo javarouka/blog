@@ -158,7 +158,7 @@ if(!isAllowed()) throw new NotAllowedError('수행 권한이 없습니다');
 
 ### 좀비화전 예방 백신으로
 
-먼저 다음과 같은 권한 체크 함수를 만든다. 먼저 공통된 작업을 함수로 분리하는 것이다. 보통 이 작업을 <a href='http://m.zdnet.co.kr/news_view.asp?article_id=00000039154322#imadnews' target='_blank'>상황중심 프로그래밍 (Aspect Oriented Programing)</a> 에서는 <em>Advice</em> 라고 부른다.
+먼저 다음과 같은 권한 체크 함수를 만든다. 먼저 공통된 작업을 함수로 분리하는 것이다. 보통 이 작업을 [상황중심 프로그래밍 (Aspect Oriented Programing)](http://m.zdnet.co.kr/news_view.asp?article_id=00000039154322#imadnews) 에서는 <em>Advice</em> 라고 부른다.
 
 ```javascript
 // 미리 예외 객체를 생성해두고 재활용한다
@@ -327,10 +327,10 @@ function decorator(target, name, descriptor) {
 }
 
 class Car {
-    
+
     @decorator
     drive(){}
-    
+
     stop(){}
 }
 ```
@@ -425,7 +425,7 @@ const final = (obj, name, descriptor) => {
 
 ```javascript
 class Programer {
-    
+
     constructor(name) {
         this.name = name;
     }
@@ -438,7 +438,7 @@ class Programer {
     makeIncident() {
         console.log(`${this} 은(는) 장애를 내버렸습니다.`);
     }
-    
+
     toString() {
         return this.name;
     }
