@@ -12,7 +12,7 @@ meta:
 
 <!-- toc -->
 
-> 2016년 5월부터 2016년 6월까지 진행된 저의 to ES6 삽질을 기록해본다. 100% Real 은 아니고... 95% 정도? 
+> 2016년 5월부터 2016년 6월까지 진행된 나의 to ES6 삽질을 기록해본다. 100% Real 은 아니고... 95% 정도?
 
 ## 프로젝트의 안정화 마무리 즈음의 위험한 만남
 
@@ -20,23 +20,26 @@ meta:
 
 [MSA](http://microservices.io/) 로의 이전을 위해 한창 전사가 달리던 때다.
 
-이때 새로 프로젝트를 구성하며 나에게 익숙한 구조로 UI 구성을 진행했고 개발은 그럭저럭 마무리가 코 앞으로 다가왔다.
+내가 속해있던 팀은 기존의 Spring + MyBatis 에서 Spring + JPA 를 적용하여 새로 프로젝트를 구성하였고 개발은 그럭저럭 마무리가 코 앞으로 다가왔다.
 
-하지만 그 때 쯤 신기술이 뜨기 시작한다.
+하지만 이때 쯤 신기술이 유행하고 있었다.
 
 > ECMAScript, React
 
-나에게 있어 React 라는 녀석과 함께 ES6 의 유혹은 매우 강렬했다.
+React 라는 녀석과 함께 ES6 의 유혹은 매우 강렬했다.
 
-그전까지는 JavaScript 의 Source to Source Compile 에 대한 거부감이 상당했고 그동안 별 불편함을 느끼지 못하던터라, 관심조차 두지 않았었다.
+코드가 상당히 간결해지는데다 많은 면에서 코드를 구조화할 수 있는 장치가 많았다.
 
-하지만 다시 관련 스터디와 예제 코드를 몇번 직접 작성해 본 결과, 이건 바로 적용하고 싶다는 고집이 고개를 훅 들었다.
+사실 난 이 전까지는 JavaScript 의 Source to Source Compile 에 대한 거부감이 상당했고 그동안 별 불편함을 느끼지 못해 그냥 무시해왔지만, 한본 맛을 들이고 나니 이놈들은 끊을 수 없는 콜라같은 마력을 뿜어냈다
+
+이곳저곳 선행 학습을 하거, 관련 스터디와 예제 코드를 몇번 직접 작성해 본 결과, 이건 바로 적용하고 싶다는 고집이 고개를 훅 들기 시작했고, 실 프로젝트에 적용해 보기로 마음먹었다.
 
 ## 기존 구조는 AMD + Handlebars
 
 하지만 기존에 완성되어 가던 프로젝트는 프로젝트 초기에 열심히 나름대로 세팅한 AMD 기반으로 동적으로 서버에서 Handlebars 컴파일 된 HTML 을 로드하고 그것을 화면에 innerHTML 등으로 붙여넣어 처리하는 구조였다.
 
 동적으로 컨텐트와 그에 맞는 스크립트를 로딩하는 간단한 프레임워크였는데, 간간히 발생하는 모듈 Timeout 만 아니면 나름 잘 동작했다.
+(Rouka Framework 0.0.1 정도 되려나)
 
 간단히 소개하면 이런 구조다.
 
@@ -44,7 +47,7 @@ meta:
 1. 컨텐츠가 요청되면 서버에서는 server side의 handlebars 를 사용하여 완성된 html을 응답한다.
 1. 그 응답 html 의 루트 엘리먼트에는 data-controller 라는 속성이 optional 로 있다.
 1. 그 속성은 실제 js 파일의 경로이며 require(경로) 를 통해 실제 그 컨텐츠가 사용할 Controller.js 를 동적 로딩한다
-1. 그 컨트롤러 파일은 로딩된 컨텐츠의 엘리먼트 레퍼런스를 가지고 UI의 이벤트 및 초기화를 수행한다. 
+1. 그 컨트롤러 파일은 로딩된 컨텐츠의 엘리먼트 레퍼런스를 가지고 UI의 이벤트 및 초기화를 수행한다.
 
 ```javascript
 function getViewEL() {
@@ -62,6 +65,7 @@ function createContentWrapper(html) {
 }
 
 /**
+ * 이 부분이 핵심.
  * 컨트롤러 속성을 가져와서 해당 컨트롤러 모듈을 로딩한다.
  */
 function loadController(wrap) {
@@ -92,7 +96,7 @@ function ajax(path) {
 
 function loadContents(path) {
     ajax(path)
-        .then(createContentWrapper)
+        .then(wrapContent)
         .then(loadController)
         .catch(reportError)
 }
@@ -149,14 +153,14 @@ loadContents('/where/are/you');
 
 소스를 고칠때마다 매번 수동으로 컴파일하기는 너무 번거로웠다.
 
-기본적인 Source to Source Compile 이 동작하고, 번들링 기능에, 가급적 소스를 고칠 때 자동으로 백그라운드에서 시스템이 자동으로 최신 내역을 Compile 하는 Watch 기능은 없어서는 안됐다. 
+기본적인 Source to Source Compile 이 동작하고, 번들링 기능에, 가급적 소스를 고칠 때 자동으로 백그라운드에서 시스템이 자동으로 최신 내역을 Compile 하는 Watch 기능은 없어서는 안됐다.
 
 찾아보니 두개가 있었다.
 
 - Webpack
 - Browserify
 
-좋은 글 하나 링크한다.
+>이 둘 관련으로 좋은 글 하나 링크한다.
 [Browserify VS Webpack - JS Drama](http://blog.namangoel.com/browserify-vs-webpack-js-drama)
 
 ##### Browserify
@@ -175,11 +179,11 @@ loadContents('/where/are/you');
 
 commonjs 를 사용하려면 babel-loader 를 설치하고 설정해야 하며, React 를 사용하려면 babel-loader 의 설정에 react 관련 플러그인의 추가 및 설정이 필요하다.
 
-다만 webpack 은 정적 자산까지도 다룰 수 있는 loader 를 제공하며, hot-loading 등의 강력한 기능까지 붙여볼 수 있다.
+다만 webpack 은 정적 리소스까지도 다룰 수 있는 loader 를 제공하며, hot-loading 등의 강력한 기능까지 붙여볼 수 있다.
 
 별도 Task Runner (gulp 등) 없이 혼자서도 전부 할 수 있는 것도 장점이다.
 
-## webpack 학습...
+## 인생은 실전
 
 선택에는 고민자체가 필요없었다.
 
@@ -188,13 +192,19 @@ NodeJS 모듈을 만들것도 아니고, 정적 파일 관리까지 지원하며
 먼저 간단한 Webpack 을 학습하기 위해 bolierplate 코드를 받아서 이리저리 변경해보았다.
 
 [boilerplate](https://github.com/geniuscarrier/webpack-boilerplate)
- 
+
 역시나 모든 툴들이나 신기술이 그렇듯 hello world 수준의 사용법은 너무나 간단하고 쉬웠다.
 
 대충 학습을 끝내고 바로 프로젝트에 적용해보기 시작했다.
 
-예상대로 실제 프로젝트, 그리고 이제 어느정도 커져버려서 꽤나 규모가 있는 프로젝트에는 문서대로의 친절함따윈 없었고, 야생의 아마존에 버려진 만나는 모든게 두려운 고양이가 된 느낌을 받기 시작했다.
+예상대로 실제 프로젝트,
+그리고 이제 어느정도 커져버려서 꽤나 규모가 있는 프로젝트에는 문서대로의 친절함따윈 없었다/
 
+나는 야생의 아마존에 버려진 만나는 모든게 두려운 고양이가 된 느낌을 받기 시작했다.
+
+기존에 사용하던 AMD 툴인 requirejs 를 너무 헤비하게 쓰고 있었던 것이다.
+
+path의 정리나 controller 의 로딩이 순식간에 전부 작업분으로 남아버렸고, 몇몇 기능이나 모듈은 새빨간 컴파일 오류를 내기 바빴다.
 
 ## 여기서 일단 1편 끝.
 
