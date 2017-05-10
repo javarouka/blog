@@ -112,7 +112,7 @@ export default function(conrollerPath) {
 컨트롤러 수가 작업 당시에는 그렇게 많지 않았고 동적 로딩 시 종종 Timeout 등의 네트워크 오류도 났기에 그냥 전체를 한번에 번들링해버리는 선택을 했다.
 (그리고 나중에 엄청 후회했다...)
 
-#### 번외
+##### 번외 - Webpack2 에서의 Async Module Loading
 
 Webpack 2 에서는 `import` 와 `async/await` 를 사용해서 동적 로딩을 할 수 있다.
 
