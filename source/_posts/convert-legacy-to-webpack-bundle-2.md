@@ -1,7 +1,7 @@
 ---
 title: 운영되던 서비스, ES5 에서 ES6 으로 옮긴 이야기 #2 (feat Webpack)
 description: "개고생과 노가다, 그리고 고독"
-date: 2017-05-12 23:30:17
+date: 2017-05-14 23:30:17
 tags: [ Handlebars, React, 개고생 ]
 image: '/asset/E.N.D.jpg'
 thumbnail: '/asset/E.N.D.jpg'
@@ -113,7 +113,7 @@ export default function(conrollerPath) {
 컨트롤러 수가 작업 당시에는 그렇게 많지 않았고 동적 로딩 시 종종 Timeout 등의 네트워크 오류도 났기에 그냥 전체를 한번에 번들링해버리는 선택을 했다.
 (그리고 나중에 엄청 후회했다...)
 
-<div style="padding: 5px 5px 5px 15px; background-color: #ECECEC; border-top: solid 1px #333; font-size: 80%;">
+<div style="padding: 0 5px; background-color: #ECECEC; border-top: solid 1px #333; font-size: 80%;">
 <h4>👩🏽‍💻 번외 - Webpack2 에서의 Async Module Loading</h4>
 Webpack 2 에서는 `import` 와 `async/await` 를 사용해서 동적 로딩을 할 수 있다.
 이런식의 코딩이 가능. 표준을 준수한다는 것 외엔 특별한 외형 차이는 없다.
@@ -168,7 +168,9 @@ commonjs 의 모듈은 다음과 같은 형식이다
 ```javascript
 const $ = require('jquery'); 
 const moment = require('moment'); 
-    
+
+const YMD_FORMAT_STR = 'YYYYMMDD';
+
 exports.getEl = function(selector, context) {
     return $(selector, context || document);
 };
@@ -182,7 +184,9 @@ ES6 모듈은 다음과 같은 형식이다.
 ```javascript
 import $ from 'jquery'; 
 import moment from 'moment';
-    
+
+const YMD_FORMAT_STR = 'YYYYMMDD';
+
 export function getEl(selector, context) {
     return $(selector, context || document);
 }
@@ -300,12 +304,12 @@ webpack 에서 뱉어내는 빨간색 천지의 오류 메시지와 함께 내 �
 
 ![아...그냥 그만두고 여길 나갈까](/blog/asset/doc-heatal.jpg)
 
-<div style="padding: 5px 5px 5px 15px; background-color: #ECECEC; border-top: solid 1px #333; font-size: 80%;">
+<div style="padding: 0 5px; background-color: #ECECEC; border-top: solid 1px #333; font-size: 80%;">
 위의 ES6 및 commonjs 모듈의 다른 점을 알고 싶다면 엑셀박사님의 블로그를 한번 읽어보자.<br/>
 <a href="http://2ality.com/2015/12/babel-commonjs.html" target="_blank">[Babel and CommonJS modules]</a>
 </div>
 
-### 결국, 모든 파일을 ES6 으로 변환하기로...
+### 결국, 개발된 모든 파일을 ES6 으로 변환~!
 
 여러 꼼수를 써보다가, 결국 선택한건 모든 파일에 대해 ES6 스타일로 코드를 변환하는 것으로 선택했다.
 
@@ -319,7 +323,7 @@ Tree Shaking 은 요약하면 모듈 import 최적화로 실제 컴파일 시 �
 
 당연히 용량이 작아지고 연산이 줄어든다.
 
-암튼 나는 당시 700~800 개가 넘는 js 코드들을 하나하나 열어서 ES6 스타일의 모듈 코드로 변환하기 시작했다.
+암튼 나는 당시 900 개가 넘는(...) js 코드들을 하나하나 열어서 ES6 스타일의 모듈 코드로 변환하기 시작했다.
 
 정말 즐거운 일이었다.
 
@@ -333,10 +337,92 @@ Tree Shaking 은 요약하면 모듈 import 최적화로 실제 컴파일 시 �
 
 하지만 이 것이 watch 등으로 코드 수정시마다 일어난다고 할 경우에는 문제가 심각해진다.
 
-물론 webapack 은 `webpack dev server` 를 제공했고, 이것을 사용할 경우 파일을 실제 Disk 에 생성하는게 아닌 메모리에 생성하고 그것만을 갱신하기에 속도가 상당히 빠르다.
+webapack 은 `webpack dev server` 를 제공했고, 이것을 사용할 경우 파일을 실제 Disk 에 생성하는게 아닌 메모리에 생성하고 그것만을 갱신하기에 속도가 상당히 빠르다.
+
+설정은 예제 사이트들이 아주 잘 되어있어서 그것을 가져다가 쓰면 되었다.
+
+여기에 express 를 사용해서 Data Server 를 Proxy 로 감싸서 쓰게 되면 로컬에 별도의 java 를 구동하지 않고도 사용할 수 있어서 클라이언트 개발에는 순수하게 webpack-dev-server 만으로도 충분하도록 설정했다.
+(뭐 결국 서버까지 손대는 일이 부지기수지만...갑작스러운 오류 등으로 클라이언트에 대해 디버깅하기에는 엄청나게 유용했다.)
+
+[express-http-proxy](https://www.npmjs.com/package/express-http-proxy) 를 사용해서 정적 리소스 외에는 프록시로 이미 구동중인 서버로 요청을 하게 했다.
+
+프록시-번들서버 코드는 매우 간단하다.
+
+```javascript
+import proxy from 'express-http-proxy' // 이놈이 효자
+import Express from 'express'
+
+export default function startProxyServer() {
+    
+    const delegateServer = new Express();
+    
+    // 프록시 서버 정보
+    const proxyServer = 'localhost';
+    const proxyPort = 11980;
+    
+    // 번들서버 정보
+    const bundleServerHost = 'localhost:11980';
+    
+    // API 서버 정보
+    const targetServer = 'myproject.companydev.com';
+    
+    // 번들서버 요청
+    delegateServer.use('/resources/*/bundles/:name', proxy(bundleServerHost, {
+        forwardPath(req) {
+          return '/bundles/' + req.params.name;
+        }
+    }));
+    
+    // 이 외의 요청은 Proxy 를 통해 설정된 서버로.
+    delegateServer.use('/', proxy(targetServer));
+    
+    // 시작~
+    delegateServer.listen(proxyPort, err => {
+        if (err) {
+            console.error(err);
+            reject(err);
+        } 
+        else {
+            console.info('Webpack development proxy server progress... %s', `http://${proxyServer}:${proxyPort} to ${targetServer}`);
+            resolve();
+        }
+    });
+}
+
+```
+
+`webpack-dev-server` 를 구동할때 프록시 개발서버까지 같이 돌려주면 완벽.
+ 
+이제 남은건 실제 배포 환경이었다.
 
 ## 실제 배포환경
 
-## 팀내 서포트
+실제 운영 환경에서는 번들서버같은걸 띄울수도 없고 띄워서도 안된다.
 
-## 결론
+운영시에는 메모리에 존재하는 스크립트가 아니라 실제 파일을 만들어야 해서 별도로 webpack 설정을 production 용으로 하나 만들고 이 설정에서는 별다른 번들서버나 프록시, 기타 개발 서포트 플러그인을 제외하고 구성했다.
+
+개발에는 없던 [UglifyPlugin](https://webpack.github.io/docs/list-of-plugins.html#uglifyjsplugin) 옵션을 추가해서 소스를 압축했다.
+
+사내에서는 빌드에 `gradle` 을 사용하고 있었기에 다음과 같은 구문을 넣어서 `gradle` 의 `war task` 수행 전 `npm` 을 사용해서 소스를 컴파일하고 파일을 지정된 위치에 생성되게 했다.
+
+```groovy
+apply 'war'
+
+task packageClient (type : Exec) {
+	executable "${project.projectDir}/packageClient.sh" // npm 빌드 스크립트
+}
+
+// 여기~
+war.dependsOn packageClient
+```
+
+## 끝났나
+
+검색 -  삽질 - 노가다 - 삽질 - 검색의 무한루프를 돌며 변환이 끝났다. 
+
+이 작업은 기존의 잘 돌아가던 시스템을 다시 엎은거라서, 잘 되어야 본전인 일이라 사실 티는 그다지 나지 않았다.
+중간에 몇가지의 문제로 압박받은것만 많았고...
+
+게다가 모든 코드를 한번에 로딩하는 방법을 선택해서, 스크립트 용량이 상당히 거대해져버린 문제는 과제로 남았다.
+
+최근 webpack 2가 나오면서 webpack 1 이 deprecated 되었다. 다시 설정을 만질 때가 온 듯 하니 같이 작업하면 될 듯 하다.

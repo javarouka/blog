@@ -208,4 +208,4 @@ NodeJS 모듈을 만들것도 아니고, 정적 파일 관리까지 지원하며
 
 path의 정리나 controller 의 로딩이 순식간에 전부 작업분으로 남아버렸고, 몇몇 기능이나 모듈은 새빨간 컴파일 오류를 내기 바빴다.
 
-내용이 길어저 [2부](/blog/2017/05/11/convert-legacy-to-webpack-bundle-2/)로 나눈다.
+내용이 길어저 [2부](/blog/2017/05/14/convert-legacy-to-webpack-bundle-2/)로 나눈다.
