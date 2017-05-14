@@ -2,10 +2,10 @@
 title: 운영되던 서비스, ES5 에서 ES6 으로 옮긴 이야기 1
 description: "개고생과 노가다, 그리고 고독"
 date: 2017-05-03 23:30:17
-tags: [ Handlebars, React, 개고생 ]
+tags: [ Handlebars, javascript, webpack, 개고생 ]
 image: '/images/react.png'
 thumbnail: '/images/react.png'
-categories: ['Tech']
+categories: [ 'Tech', 'JavaScript' ]
 draft: false
 meta:
 ---
