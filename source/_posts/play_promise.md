@@ -2,7 +2,7 @@
 layout: post
 title: "Promise 활용"
 description: "이런저런 사용법"
-date: 2017-05-15
+date: 2017-05-25
 tags: [ ecmascript, javascript, promise, async ]
 comments: true
 share: true
@@ -15,7 +15,7 @@ categories: [ 'Tech', 'JavaScript', 'UI' ]
 
 # Promise 의 여러 사용법
 
-개인적으로 유용하게 쓰고 있는 몇가지 방법을 소개한다.
+개인적으로 쓰고 있는 몇가지 방법을 소개한다.
 
 ## Timer 관련
 
@@ -63,13 +63,29 @@ executeBeforeTimeout(requestAsync('/hello'), 2000)
 
 ### select 형 resolve
 
-일회성의 이벤트를 비동기 Thenable 스타일로 작성할 수 있게 한다
+일회성의 이벤트를 비동기 Thenable 스타일로 작성할 수 있게 한다.
+
+한번 수행된 이벤트는 다시는 수행되지 않는다
 
 다음과 같은 코드 스타일이다.
 
+<script src="https://gist.github.com/javarouka/dde2524edaa30a63276c29d889e990b8.js"></script>
+
+실행 예제.
+
 ```javascript
-somedayHappenAction()
-    .then(result => console.log(`완료! ${result}`));
+// 이벤트 트리거링 심볼
+const MAY_BE_ONE_SECOND = Symbol('MAY_BE_ONE_SECOND');
+
+const eventer = deferredEventer();
+const myEvent = eventer.defer(MAY_BE_ONE_SECOND);
+
+myEvent.then(args => console.log("1", args));
+myEvent.then(args => console.log("2", args));
+
+eventer.fulfill(MAY_BE_ONE_SECOND, 1,2,3,4);
+// "1" [1,2,3,4]
+// "2" [1,2,3,4]
 ```
 
 ## Collection 관련
