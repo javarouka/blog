@@ -87,15 +87,3 @@ eventer.fulfill(MAY_BE_ONE_SECOND, 1,2,3,4);
 // "1" [1,2,3,4]
 // "2" [1,2,3,4]
 ```
-
-## Collection 관련
-
-### Promise.map
-
-thenable 들의 결과들을 map 하여 반환하게 한다
-
-### Promise.always
-
-thenable 이 reject 되도 항상 then 으로 연결되게 한다
-
-## 계속 업데이트 된다.
