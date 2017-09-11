@@ -1,0 +1,37 @@
+# Menus
+menu:
+    Home: /
+    Post: /
+    # Delete this row if you don't want categories in your header nav bar
+    About: /about/index.html
+    pt: /pt/index.html
+    toyproject: /toyproject/index.html
+
+# Category
+categories:
+
+# Customize
+customize:
+    social_links: # for more icons, please see http://fontawesome.io/icons/#brand
+        facebook: https://www.facebook.com/hanghui.i
+        github: https://github.com/javarouka
+        rss: /atom.xml
+
+# Comment
+comment:
+    disqus: https-javarouka-github-io # enter disqus shortname here
+
+# Plugins
+plugins:
+    google_analytics: UA-85661914-1 # enter the tracking ID for your Google Analytics
+
+# Miscellaneous
+miscellaneous:
+    open_graph: # see http://ogp.me
+        fb_app_id:
+        fb_admins:
+        twitter_id:
+        google_plus:
+    links:
+        "NonBlock": http://blog.javarouka.me/
+        "CS Tech Blog": https://css-org.github.io/

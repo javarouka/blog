@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <%- partial('./common/head') %>
+    <body>
+        <div class="container">
+            <div class="row">
+                <%- partial('./common/header') %>
+            </div>
+            <div class="row">
+                <div class="col-12 col-md-2"><%- partial('./common/nav') %></div>
+                <div class="col-12 col-md-9">
+                    <%- partial('./common/post-nav') %>
+                    <%- body %>
+                </div>
+            </div>
+            <div class="row">
+                <%- partial('./common/footer') %>
+            </div>
+        </div>
+    </body>
+</html>

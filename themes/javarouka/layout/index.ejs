@@ -1,0 +1,17 @@
+<% var last, postCount = 0; %>
+<% page.posts.each(function(post, i) { %>
+    <article class="article-summary">
+        <h1>
+            <a href="<%- url_for(post.path) %>"><%= post.title %></a>
+        </h1>
+        <p class="article-excerpt">
+            <%- post.description %>
+        </p>
+    </article>
+<% }) %>
+<% if (page.total > 1) { %>
+    <nav id="page-nav">
+        <span class="pages"><%= _p('nav.current_page', page.current) %><%= _p('nav.total_page', page.total) %></span>
+        <%- paginator({prev_text: '&laquo;', next_text: '&raquo;'}) %>
+    </nav>
+<% } %>

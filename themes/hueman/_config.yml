@@ -1,7 +1,7 @@
 # Menus
 menu:
     Home: /
-    # Delete this row if you don't want categories in your header nav bar
+    Post: /
     About: /about/index.html
     pt: /pt/index.html
     toyproject: /toyproject/index.html

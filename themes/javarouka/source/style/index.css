@@ -1,0 +1,24 @@
+.article-summary {
+    padding: 15px 10px;
+    border: solid 1px #eee;
+    border-radius: 8px;
+    margin: 8px;
+}
+.post-content h1 {
+    font-size: 1.6em;
+    padding: 5px 0;
+    margin: 5px 0;
+    border-bottom: solid 1px #ccc;
+}
+.post-content h2 {
+    font-size: 1.4em;
+    padding: 5px 0;
+    margin: 5px 0;
+    border-bottom: solid 1px #ccc;
+}
+.post-content h3 {
+    font-size: 1.2em;
+    padding: 5px 0;
+    margin: 5px 0;
+    border-bottom: solid 1px #ccc;
+}

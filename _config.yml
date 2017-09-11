@@ -4,8 +4,8 @@
 
 # Site
 title: JavaRouka's Note
-subtitle: JavaRouka 가 개발하면서 생각나면 쓰는 블로그
-description: JavaRouka 가 개발하면서 생각나면 쓰는 블로그
+subtitle:
+description:
 author: JavaRouka
 language: ko
 timezone: Asia/Seoul
@@ -78,7 +78,7 @@ feed:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: hueman
+theme: javarouka
 
 markdown:
   render:

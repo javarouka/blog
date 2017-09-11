@@ -1,0 +1,17 @@
+<nav class="">
+    <ul class="nav flex-column">
+        <% for (var i in theme.menu) { %>
+            <li class="nav-item">
+                <a class="nav-link" href="<%- url_for(theme.menu[i]) %>">
+                    <%= __('index.' + i.toLowerCase()) %>
+                </a>
+            </li>
+        <% } %>
+    </ul>
+    <!-- <%- list_categories({
+        depth: 1,
+        style: 'cloud',
+        class: 'nav flex-column',
+        show_count: false,
+    }) %> -->
+</nav>
