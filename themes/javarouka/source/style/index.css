@@ -1,24 +1,96 @@
+.blog-title {
+    font-size: 2em;
+}
+
 .article-summary {
-    padding: 15px 10px;
+    /* padding: 15px 10px;
     border: solid 1px #eee;
-    border-radius: 8px;
+    border-radius: 8px; */
     margin: 8px;
+}
+
+.article-summary h1 {
+    font-size: 1.3em;
+}
+
+.article-summary .read-more {
+    text-align: right;
+    margin-top: 5px;
+}
+
+.article-description {
+    margin-bottom: 0;
 }
 .post-content h1 {
     font-size: 1.6em;
     padding: 5px 0;
     margin: 5px 0;
-    border-bottom: solid 1px #ccc;
 }
 .post-content h2 {
     font-size: 1.4em;
     padding: 5px 0;
     margin: 5px 0;
-    border-bottom: solid 1px #ccc;
 }
 .post-content h3 {
     font-size: 1.2em;
     padding: 5px 0;
     margin: 5px 0;
-    border-bottom: solid 1px #ccc;
 }
+
+#page-nav {
+    text-align: center;
+    padding: 5px 0;
+}
+
+#page-nav .pages {
+    display: block;
+    font-size: .8em;
+    letter-spacing: 1.5px;
+}
+
+#page-nav .page-number,
+#page-nav .extend.prev,
+#page-nav .extend.next {
+    margin: 0 5px;
+}
+
+#page-nav .page-number.current {
+    font-weight: bold;
+}
+
+/* .card-columns {
+    column-count: 2;
+}
+
+@media (max-width: 575px) {
+    .card-columns {
+        column-count: 1;
+    }
+} */
+
+p > img {
+    display: block;
+    margin: 0 auto;
+}
+
+.highlight {
+    background: #eee;
+    padding: 15px;
+    border-radius: 5px;
+    display: block;
+    overflow-x: auto;
+    padding: 15px 20px;
+    font-size: 1.1em;
+    font-family: "Source Code Pro", Consolas, Monaco, Menlo, Consolas, monospace;
+    line-height: 22.400000000000002px;
+}
+.highlight .gutter {
+    display: none;
+}
+
+.highlight .keyword { color: brown; font-weight: 600; }
+.highlight .function .keyword { color: teal }
+.highlight .title { color: navy }
+.highlight .string { color: darkorange }
+.highlight .built_in { color: seagreen }
+.highlight .comment { color: green }

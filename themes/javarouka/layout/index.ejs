@@ -1,17 +1,23 @@
 <% var last, postCount = 0; %>
-<% page.posts.each(function(post, i) { %>
-    <article class="article-summary">
-        <h1>
-            <a href="<%- url_for(post.path) %>"><%= post.title %></a>
-        </h1>
-        <p class="article-excerpt">
-            <%- post.description %>
-        </p>
-    </article>
-<% }) %>
+<div class="article-wrapper">
+    <% page.posts.each(function(post, i) { %>
+        <div class="card article-summary">
+            <div class="card-body">
+                <h4 class="card-title mb-10"><%= post.title %></h4>
+                <cite class="card-subtitle text-muted"><%- post.description %></cite>
+                <div class="read-more">
+                    <a href="<%- url_for(post.path) %>" class="card-link btn btn-light w-100">Read More</a>
+                </div>
+            </div>
+        </div>
+    <% }) %>
+</div>
 <% if (page.total > 1) { %>
     <nav id="page-nav">
         <span class="pages"><%= _p('nav.current_page', page.current) %><%= _p('nav.total_page', page.total) %></span>
-        <%- paginator({prev_text: '&laquo;', next_text: '&raquo;'}) %>
+        <%- paginator({
+            prev_text: 'Prev', 
+            next_text: 'Next'
+        }) %>
     </nav>
 <% } %>
