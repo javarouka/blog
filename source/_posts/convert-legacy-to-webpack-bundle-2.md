@@ -1,5 +1,5 @@
 ---
-title: 운영되던 서비스, ES5 에서 ES6 으로 옮긴 이야기 #2 (feat Webpack)
+title: 운영되던 서비스, ES5 에서 ES6 으로 옮긴 이야기 2 (feat Webpack)
 description: "개고생과 노가다, 그리고 고독"
 date: 2017-05-14 23:30:17
 tags: [ Handlebars, javascript, webpack, 개고생 ]

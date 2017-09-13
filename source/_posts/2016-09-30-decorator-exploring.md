@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "ECMAScript Decorator 탐구생활"
-description: "ES7 의 Decorator 의 이모저모에 대해 알아보자"
+title: ECMAScript Decorator 탐구생활
+description: ES7 의 Decorator 의 이모저모에 대해 알아보자
 date: 2016-09-30
 tags: [ecmascript, javascript, decorator, babel]
 comments: true

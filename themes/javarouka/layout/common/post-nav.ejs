@@ -1,4 +1,5 @@
 <% if (!is_home() && (page.prev || page.next)) { %>
+<div class="alert alert-light" role="alert">
     <% if (page.prev) { %>
         <div>
             <span>이전</span>
@@ -11,4 +12,5 @@
             <a href="<%- url_for(page.next.path) %>"><%= page.next.title %></a>
         </div>
     <% } %>
+</div>
 <% } %>
