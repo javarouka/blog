@@ -1,4 +1,12 @@
-<header>
-    <h1 class="blog-title p-3"><%-config.title%></h1>
-    <% if(config.subtitle) { %><h2> <%-config.subtitle%></h2> <% } %>
-</header>
+<nav class="navbar navbar-light bg-light">
+    <header>
+        <a class="navbar-brand" href="/blog">
+            <img src="https://avatars2.githubusercontent.com/u/1438503?v=4&s=50" 
+                width="30" height="30" 
+                style="border-radius: 50%"
+                class="d-inline-block align-top" alt="javarouka">
+            <%-config.title%>
+        </a>
+        <% if(config.subtitle) { %><small> <%-config.subtitle%></small> <% } %>
+    </header>
+</nav>

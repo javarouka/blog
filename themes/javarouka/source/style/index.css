@@ -1,5 +1,5 @@
 .blog-title {
-    font-size: 2em;
+    font-size: 1.7em;
 }
 
 .article-summary {
@@ -35,6 +35,10 @@
     font-size: 1.2em;
     padding: 5px 0;
     margin: 5px 0;
+}
+
+.main-nav {
+    padding: 5px 0;
 }
 
 #page-nav {

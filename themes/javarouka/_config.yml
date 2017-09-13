@@ -1,11 +1,12 @@
 # Menus
 menu:
-    Home: /
-    Post: /
-    # Delete this row if you don't want categories in your header nav bar
+    devnote: /
     About: /about/index.html
     pt: /pt/index.html
     toyproject: /toyproject/index.html
+    RSS: /atom.xml
+    github: https://github.com/javarouka
+    facebook: https://www.facebook.com/hanghui.i
 
 # Category
 categories:
@@ -19,15 +20,15 @@ customize:
 
 # Comment
 comment:
-    disqus: https-javarouka-github-io # enter disqus shortname here
+    disqus: https-javarouka-github-io
 
 # Plugins
 plugins:
-    google_analytics: UA-85661914-1 # enter the tracking ID for your Google Analytics
+    google_analytics: UA-85661914-1
 
 # Miscellaneous
 miscellaneous:
-    open_graph: # see http://ogp.me
+    open_graph:
         fb_app_id:
         fb_admins:
         twitter_id:

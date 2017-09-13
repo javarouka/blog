@@ -12,12 +12,8 @@ categories: ['Tech', 'JavaScript', 'UI']
 ---
 
 Dan Abramov 의
-<br/>
 https://medium.com/@dan_abramov/you-might-not-need-redux-be46360cf367
-<br/>
 를 번역한 글입니다.
-
-<!-- toc -->
 
 ## You Might Not Need Redux
 

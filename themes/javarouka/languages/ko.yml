@@ -1,5 +1,6 @@
 index:
     home: '대문'
+    devnote: '개발노트'
     post: '글'
     about: '나'
     pt: '발표자료'
@@ -9,6 +10,9 @@ index:
     category: 'Category'
     uncategorized: 'uncategorized'
     tag: 'Tag'
+    rss: 'RSS'
+    github: 'Github'
+    facebook: 'Facebook'
 nav:
     current_page:
         other: 'Page %d '

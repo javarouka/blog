@@ -1,13 +1,13 @@
-<nav class="">
-    <ul class="nav flex-column">
-        <% for (var i in theme.menu) { %>
-            <li class="nav-item">
-                <a class="nav-link" href="<%- url_for(theme.menu[i]) %>">
-                    <%= __('index.' + i.toLowerCase()) %>
-                </a>
-            </li>
-        <% } %>
-    </ul>
+<nav class="main-nav nav flex-column nav-pills">
+    <% for (var i in theme.menu) { %>
+    <% 
+        var href = url_for(theme.menu[i]);
+        var currentPath = url_for(page.path);
+    %>
+        <a class="" href="<%- href %>">
+            <%= __('index.' + i.toLowerCase()) %>
+        </a>
+    <% } %>
     <!-- <%- list_categories({
         depth: 1,
         style: 'cloud',
