@@ -15,3 +15,12 @@
         show_count: false,
     }) %> -->
 </nav>
+<div class="social-links">
+    <% for (var i in theme.customize.social_links) { %>
+        <% if (theme.customize.social_links[i]) { %>
+            <a class="social-tooltip m-1"title="<%= i %>" href="<%- url_for(theme.customize.social_links[i]) %>" target="_blank">
+                <i class="icon fa fa-<%= i %>"></i>
+            </a>
+        <% } %>
+    <% } %>
+</div>

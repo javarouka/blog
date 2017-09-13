@@ -4,9 +4,6 @@ menu:
     About: /about/index.html
     pt: /pt/index.html
     toyproject: /toyproject/index.html
-    RSS: /atom.xml
-    github: https://github.com/javarouka
-    facebook: https://www.facebook.com/hanghui.i
 
 # Category
 categories:

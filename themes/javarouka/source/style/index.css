@@ -1,6 +1,18 @@
 .blog-title {
     font-size: 1.7em;
 }
+.social-links {
+    text-align: center;
+}
+.social-tooltip {
+    color: #333;
+    font-size: 1.5em;
+}
+
+.social-tooltip:hover {
+    color: darkblue;
+    text-decoration: none;
+}
 
 .article-summary {
     /* padding: 15px 10px;
