@@ -1,0 +1,28 @@
+<section class="post-content">
+    <div class="row">
+        <div class="col-xs-12 col-md-5">
+            <div class="github-card" data-github="javarouka" data-width="100%" data-height="" data-theme="medium"></div>
+            <script src="//cdn.jsdelivr.net/github-cards/latest/widget.js"></script>
+        </div>
+        <div class="col-xs-12 col-md-7">
+            <h1><%- page.title %></h1>
+            <div><%- page.content %></div>
+        </div>
+    </div>
+</section>
+<section id="disqus_thread"></section>
+<% if (theme.comment.disqus){ %>
+    <script>
+        (function() {
+            var disqus_shortname = '<%= theme.comment.disqus %>';
+            var loadScript = '<% if (page.comments) { %>embed.js<% } else { %>count.js<% } %>';
+            var dsq = document.createElement('script');
+            var head = document.getElementsByTagName('head')[0];
+            var body = document.getElementsByTagName('body')[0];
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/' + loadScript;
+            (head || body).appendChild(dsq);
+        }());
+    </script>
+<% } %>

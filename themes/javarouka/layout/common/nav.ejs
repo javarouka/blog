@@ -1,10 +1,13 @@
 <nav class="main-nav nav flex-column nav-pills">
     <% for (var i in theme.menu) { %>
     <% 
-        var href = url_for(theme.menu[i]);
+        var menu = theme.menu[i]
+        var icon = menu.icon;
+        var href = url_for(menu.path);
         var currentPath = url_for(page.path);
     %>
         <a class="" href="<%- href %>">
+            <% if(icon) { %><i class="fa fa-<%-icon%>" style="color: #333; margin-right: 3px;"></i><% } %>
             <%= __('index.' + i.toLowerCase()) %>
         </a>
     <% } %>

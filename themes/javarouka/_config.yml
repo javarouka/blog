@@ -1,9 +1,17 @@
 # Menus
 menu:
-    devnote: /
-    About: /about/index.html
-    pt: /pt/index.html
-    toyproject: /toyproject/index.html
+    devnote: 
+        icon: pencil
+        path: /
+    About: 
+        icon: user
+        path: /about/index.html
+    pt: 
+        icon: file-text
+        path: /pt/index.html
+    toyproject: 
+        icon: hashtag
+        path: /toyproject/index.html
 
 # Category
 categories:
