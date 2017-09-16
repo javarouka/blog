@@ -56,6 +56,10 @@ default_category: programing
 category_map:
 tag_map:
 
+auto_dir_categorize:
+	enable: true  # options:true, false; default is true
+	force: false # options:true, false; default is false
+
 # Date / Time format
 ## Hexo uses Moment.js to parse and display date
 ## You can customize the date format as defined in
