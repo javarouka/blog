@@ -6,12 +6,11 @@ date: 2018-10-28
 tags: [java, javascript, scaffolding, legacy]
 comments: true
 share: true
+toc: true
 image: 'images/brain.png'
 thumbnail: 'images/brain.png'
 categories: ['Tech', 'Java', 'JavaScript']
 ---
-
-<!-- toc -->
 
 ## CS(Customer Service) 관리 시스템 개발
 
@@ -248,7 +247,7 @@ order = vendorModule.appendVendorData(order);
 - 사용자 액션 추적
 - 에러 리포트
 
-#### Multi Store
+### Multi Store
 
 Redux 는 기본적으로 단일 스토어를 추천한다.
 
@@ -268,7 +267,7 @@ Redux 는 기본적으로 단일 스토어를 추천한다.
 
 자식 스토어는 선택적으로 부모 스토어에서 상태를 구독할 수 있고, 액션중 특정 [Symbol](https://developer.mozilla.org/ko/docs/Glossary/Symbol) 을 통해 전역 스토어에도 dispatch 를 할 수 있도록 설계했다.
 
-#### 클라이언트 라우팅
+### 클라이언트 라우팅
 
 <p align="center">
     <img width="320" src="/blog/asset/new_project/routing.jpeg" alt="표지판" title="표지판"><em>이리저리 가시오</em>
@@ -292,7 +291,7 @@ Redux 는 기본적으로 단일 스토어를 추천한다.
 
 단순하지만 프로젝트에서 필요로 하는 모든 기능이 들어있었다.
 
-#### 스크립트 용량 축소
+### 스크립트 용량 축소
 
 위에 잠깐 언급되었지만 기존 시스템의 스크립트 용량은 무려 5mb 였다.
 
@@ -396,7 +395,7 @@ webpack-dev-server 와 mock 연동에는 [express-http-proxy](https://www.npmjs.
 
 이 방법으로 mock 연계를 하고나니 좀 더 나아가서 실제 서버로 화면 개발을 진행할 수 있을것 같았다.
 
-추가 개발은 proxy 에 https 지원을 추가하고 npm 스크립트를 몇개 수정한 것 뿐으로 훌륭한 실서버 <--> webpack-dev-server 의 연계가 만들어졌다.
+추가 개발은 proxy 에 https 지원을 추가하고 npm 스크립트를 몇개 수정한 것 뿐으로 훌륭한 실서버 <==> webpack-dev-server 의 연계가 만들어졌다.
 
 이 작업으로 클라이언트 개발 매우 편해져서 작업 효율이 크게 증가했다.
 

@@ -1,0 +1,73 @@
+# Meta
+description: Private theme for artifact.me
+keywords: hexo,theme,artifact,otakism
+
+# Author
+author_avatar: https://avatars2.githubusercontent.com/u/1438503?v=4&s=250
+
+# Search
+search: 
+  enable: false
+  service: hexo # swiftype/google/hexo/algolia/azure
+  # google 
+  google_api_key: 
+  google_engine_id: 
+  # algolia
+  algolia_app_id: 
+  algolia_api_key: 
+  algolia_index_name: 
+  # azure
+  azure_service_name: 
+  azure_index_name: 
+  azure_query_key: 
+
+# Miscellaneous
+google_analytics: UA-85661914-1
+favicon: /favicon.png
+
+# Less
+less:
+  compress: true
+
+# Comment
+disqus_shortname: https-javarouka-github-io
+valine:
+  enable: false
+  appid:
+  appkey:
+  notify: false
+  verify: false
+  placeholder: Just go go
+  avatar: retro
+  guest_info: nick,mail,link
+  pageSize: 10
+  visitor: false
+
+# use url, not username
+social:
+- name: feed
+	url: /atom.xml
+- name: mail
+  url: mailto:javarouka@gmail.com
+- name: github
+  url: https://github.com/javarouka
+- name: twitter
+  url: 
+- name: google
+  url: 
+- name: facebook
+  url: https://www.facebook.com/hanghui.i
+- name: linkedin
+  url: 
+- name: weibo
+  url: 
+- name: tumblr
+  url: 
+- name: dribbble
+  url: 
+- name: pinterest
+  url: 
+- name: instagram
+  url: 
+- name: behance
+  url: 
