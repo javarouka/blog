@@ -26,7 +26,7 @@
 
 .article-summary .read-more {
     text-align: right;
-    margin-top: 5px;
+    margin-top: 8px;
 }
 
 .article-description {
@@ -40,6 +40,7 @@
 .post-content h5,
 .post-content h6 {
     font-weight: bold;
+    margin-top: 8px;
     margin-bottom: 8px;
 }
 
@@ -53,14 +54,13 @@
     font-size: 1.6em;
     margin-top: 16px;
     margin-bottom: 8px;
-    padding: 8px;
+    padding-bottom: 8px;
     border-bottom: solid 1px #ccc;
 }
 
 .post-content h3 {
     font-size: 1.4em;
     margin-top: 16px;
-    padding: 8px;
 }
 
 .post-content h4 {

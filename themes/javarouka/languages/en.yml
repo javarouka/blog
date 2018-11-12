@@ -1,5 +1,6 @@
 index:
     home: 'Home'
+    post: 'Posts'
     about: 'About'
     search: 'Search'
     archive: 'Archive'

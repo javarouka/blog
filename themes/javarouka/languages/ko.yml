@@ -1,8 +1,7 @@
 index:
     home: 'Home'
-    devnote: 'Dev Note'
-    post: '글'
-    about: 'About Me'
+    post: 'Posts'
+    about: 'About'
     pt: 'Cargo'
     toyproject: 'Toy Project'
     search: '검색'

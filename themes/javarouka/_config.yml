@@ -1,6 +1,6 @@
 # Menus
 menu:
-    devnote: 
+    Post: 
         icon: pencil
         path: /
     About: 
