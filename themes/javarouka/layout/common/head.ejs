@@ -32,9 +32,8 @@
         twitter_id:     theme.miscellaneous.open_graph.twitter_id,
         google_plus:    theme.miscellaneous.open_graph.google_plus,
     }) %>
-    <%- meta(page) %>
 
-    <%- feed_tag(config.url + "/atom.xml") %>
+    <%- feed_tag("/atom.xml") %>
 
     <% if (theme.customize.favicon) { %>
         <link rel="icon" href="<%- url_for(theme.customize.favicon) %>" />
