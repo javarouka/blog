@@ -6,12 +6,12 @@ menu:
     About: 
         icon: user
         path: /about/index.html
-    pt: 
-        icon: file-text
-        path: /pt/index.html
-    toyproject: 
-        icon: hashtag
-        path: /toyproject/index.html
+    # pt: 
+    #     icon: file-text
+    #     path: /pt/index.html
+    # toyproject: 
+    #     icon: hashtag
+    #     path: /toyproject/index.html
 
 # Category
 categories:

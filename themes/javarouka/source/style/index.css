@@ -1,3 +1,4 @@
+
 .blog-title {
     font-size: 1.7em;
 }
@@ -15,9 +16,7 @@
 }
 
 .article-summary {
-    /* padding: 15px 10px;
-    border: solid 1px #eee;
-    border-radius: 8px; */
+    border-radius: 8px;
     margin: 8px;
 }
 
@@ -33,20 +32,40 @@
 .article-description {
     margin-bottom: 0;
 }
+
+.post-content h1,
+.post-content h2,
+.post-content h3,
+.post-content h4,
+.post-content h5,
+.post-content h6 {
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
 .post-content h1 {
-    font-size: 1.6em;
-    padding: 5px 0;
-    margin: 5px 0;
+    font-size: 1.8em;
+    margin-top: 24px;
+    margin-bottom: 8px;
 }
+
 .post-content h2 {
-    font-size: 1.4em;
-    padding: 5px 0;
-    margin: 5px 0;
+    font-size: 1.6em;
+    margin-top: 16px;
+    margin-bottom: 8px;
+    padding: 8px;
+    border-bottom: solid 1px #ccc;
 }
+
 .post-content h3 {
+    font-size: 1.4em;
+    margin-top: 16px;
+    padding: 8px;
+}
+
+.post-content h4 {
     font-size: 1.2em;
-    padding: 5px 0;
-    margin: 5px 0;
+    margin-top: 8px;
 }
 
 .main-nav {
@@ -99,25 +118,13 @@
     font-weight: bold;
 }
 
-/* .card-columns {
-    column-count: 2;
-}
-
-@media (max-width: 575px) {
-    .card-columns {
-        column-count: 1;
-    }
-} */
-
 p > img {
     display: block;
     margin: 0 auto;
 }
 
 .highlight {
-    /* background: #efefef; */
     border: solid 1px #ccc;
-    /* padding: 10px 5px; */
     border-radius: 5px;
     display: block;
     overflow-x: auto;
@@ -126,6 +133,7 @@ p > img {
     font-family: "Source Code Pro", Consolas, Monaco, Menlo, Consolas, monospace;
     line-height: 22.400000000000002px;
 }
+
 .highlight .gutter {
     display: none;
 }
