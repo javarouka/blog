@@ -9,7 +9,7 @@ share: true
 toc: true
 image: 'images/brain.png'
 thumbnail: 'images/brain.png'
-categories: ['Tech', 'JavaScript', 'Async']
+categories: ['Tech']
 ---
 
 ## Run to Completion

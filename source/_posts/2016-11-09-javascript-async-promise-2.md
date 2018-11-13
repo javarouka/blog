@@ -9,7 +9,7 @@ share: true
 toc: true
 image: 'images/brain.png'
 thumbnail: 'images/brain.png'
-categories: ['Tech', 'JavaScript', 'Async']
+categories: ['Tech']
 ---
 
 [전 포스트](/blog/2016/11/08/javascript-async-promise-1/) 에 이은 글이다.

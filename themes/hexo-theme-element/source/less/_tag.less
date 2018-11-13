@@ -1,0 +1,25 @@
+.site-tag {
+    font-size: 12px;
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    line-height: 12px;
+    .tag-link {
+        position: relative;
+        padding: 4px 10px;
+        margin: 2px 4px;
+        background: @background-color;
+        border-radius: 2px;
+        &:hover {
+            background: @black;
+            color: white;
+        }
+        .flex-column-count {
+            padding-left: 4px;
+        }
+        .tag-count {
+            padding-left: 4px;
+        }
+    }
+}

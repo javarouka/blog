@@ -227,16 +227,16 @@
 .site-post-nav {
 	text-align: left;
 	position: relative;
-	background: rgba(0,0,0,.1);
-	border: 1px solid #262626;
-	overflow: auto;
+	background: rgba(0,0,0,0.1);
+  border: 1px solid lighten(black, 15%);
 	transition: all .24s ease;
 	margin: 16px 0;
-	background-image: url(/blog/img/sidebar-bg.png);
-  background-repeat: repeat;
-	background-size: 102px 102px;
-	&:empty {
-		display: none;
+	opacity: 0;
+  transform: translate3d(0px, -20px, 0px);
+  transition: all 0.24s ease;
+	&.show {
+		transform: translate3d(0px, 0px, 0px);
+		opacity: 1;
 	}
 	[class*=" icon-"], [class^=icon-] {
 		line-height: inherit;

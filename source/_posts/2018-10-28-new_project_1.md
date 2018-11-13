@@ -9,7 +9,7 @@ share: true
 toc: true
 image: 'images/brain.png'
 thumbnail: 'images/brain.png'
-categories: ['Tech', 'Java', 'JavaScript']
+categories: ['Tech']
 ---
 
 ## Customer Service 관리 시스템 개발

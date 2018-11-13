@@ -9,7 +9,7 @@ share: true
 toc: true
 image: 'images/redux/redux-logo.png'
 thumbnail: 'images/redux/redux-logo.png'
-categories: ['Tech', 'JavaScript', 'UI']
+categories: ['Tech', 'Translate']
 ---
 
 Dan Abramov 의

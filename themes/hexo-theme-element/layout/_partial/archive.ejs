@@ -1,8 +1,10 @@
 <div class="page-header">
 	<% if (is_tag()) { %>
-		- <%= page.tag %> -
-	<% } %>
-
+    - <%= page.tag %> -
+    <div class="site-tag">
+      <%- list_tags({ separator: '', style: '' }) %>
+    </div>
+  <% } %>
 </div>
 
 <ul class="post-list clearfix">
@@ -11,7 +13,7 @@
   <% }) %>
 </ul>
 
-<% if (page.total > 1){ %>
+<% if (page.total > 1) { %>
   <nav id="page-nav">
     <%- paginator({
       prev_text: 'Prev',

@@ -1,7 +1,7 @@
 <div class="site-sidebar">
 
 	<% display_toc = (is_post() || is_page()) && post.toc === true; %>
-	
+
 	<div class="sidebar-switch clearfix <%- display_toc ? 'show' : '' %>"
 		style="display: <%- display_toc ? 'block' : 'none' %>">
 		<a class="dark-btn active" data-toggle="toc">
@@ -23,7 +23,8 @@
 	  <% } %>
 	</div>
 	
-	<div class="site-post-nav">
+	<div class="site-post-nav <%- display_toc ? 'show' : '' %>" 
+			style="display: <%- display_toc ? 'block' : 'none' %>">
 	<% if (!is_home() && (page.prev || page.next)) { %>
 			<% if (page.prev) { %>
 					<div class="site-post-nav-box">
@@ -90,5 +91,7 @@
 	  </div>
 
 	</div>
+
+	<!-- <%- list_archives() %> -->
 
 </div>

@@ -23,6 +23,15 @@
   <% if (theme.favicon) { %>
     <link rel="icon" href="<%- url_for(theme.favicon) %>">
   <% } %>
+
+  <% if (page.tags) {
+      var keywords = [];
+      for (var i in page.tags.data) {
+          keywords.push(page.tags.data[i].name);
+      }
+  %>
+      <meta name="keywords" content="<%= keywords.join(',') %>" />
+  <% } %>
   
 	<!-- If needed, replace your own web font service -->
   <link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700" rel="stylesheet">
@@ -40,5 +49,7 @@
    
   <%- css('/icomoon/style.css') %>
   <%- css('/style.css') %>
+
+  <%- partial('redian') %>
 
 </head>

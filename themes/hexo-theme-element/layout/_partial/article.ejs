@@ -9,7 +9,7 @@
     <div class="article-meta">
       Posted on 
       <time class="article-time" datetime="<%= date_xml(post.date) %>" itemprop="datePublished">
-        <%= date(post.date, "MMM D, YYYY") %>
+        <%= date(post.date, page.date_format) %>
       </time>
     </div>
   </header>

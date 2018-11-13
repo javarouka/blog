@@ -6,7 +6,7 @@ tags: [ Handlebars, javascript, webpack, 개고생 ]
 image: '/asset/E.N.D.jpg'
 thumbnail: '/asset/E.N.D.jpg'
 toc: true
-categories: ['Tech', 'JavaScript']
+categories: ['Tech']
 meta:
 ---
 
@@ -112,8 +112,8 @@ export default function(conrollerPath) {
 컨트롤러 수가 작업 당시에는 그렇게 많지 않았고 동적 로딩 시 종종 Timeout 등의 네트워크 오류도 났기에 그냥 전체를 한번에 번들링해버리는 선택을 했다.
 (그리고 나중에 엄청 후회했다...)
 
-<div style="padding: 0 5px; background-color: #ECECEC; border-top: solid 1px #333; font-size: 80%;">
-<h4>👩🏽‍💻 번외 - Webpack2 에서의 Async Module Loading</h4>
+
+#### Webpack2 에서의 Async Module Loading
 Webpack 2 에서는 `import` 와 `async/await` 를 사용해서 동적 로딩을 할 수 있다.
 이런식의 코딩이 가능. 표준을 준수한다는 것 외엔 특별한 외형 차이는 없다.
 

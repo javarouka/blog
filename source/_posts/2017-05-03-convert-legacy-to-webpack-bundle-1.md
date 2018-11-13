@@ -5,7 +5,7 @@ date: 2017-05-03 23:30:17
 tags: [ Handlebars, javascript, webpack, 개고생 ]
 image: '/images/react.png'
 thumbnail: '/images/react.png'
-categories: [ 'Tech', 'JavaScript' ]
+categories: [ 'Tech' ]
 draft: false
 toc: true
 meta:
