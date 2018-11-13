@@ -73,7 +73,7 @@ prism_plugin:
 
 # Pagination
 ## Set per_page to 0 to disable pagination
-per_page: 4
+per_page: 8
 pagination_dir: page
 
 # feed
