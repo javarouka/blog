@@ -7,10 +7,9 @@ image: '/images/react.png'
 thumbnail: '/images/react.png'
 categories: [ 'Tech', 'JavaScript' ]
 draft: false
+toc: true
 meta:
 ---
-
-<!-- toc -->
 
 > 2016년 5월부터 2016년 6월까지 진행된 나의 to ES6 삽질을 기록해본다. 100% Real 은 아니고... 95% 정도?
 
@@ -167,7 +166,7 @@ loadContents('/where/are/you');
 >이 둘 관련으로 좋은 글 하나 링크한다.
 [Browserify VS Webpack - JS Drama](http://blog.namangoel.com/browserify-vs-webpack-js-drama)
 
-##### Browserify
+#### Browserify
 
 [Browserify](http://browserify.org/) 는 NPM 생태계의 모듈들을 브라우저에서 사용하는 것을 목표로 하는 도구다.
 
@@ -175,7 +174,7 @@ loadContents('/where/are/you');
 
 제일 좋은 점은 아주 적은 설정으로 바로 시작할 수 있다는 점이지만, 다른 Task 도구를 사용하지 않으면 사용이 조금 불편할 수 있어서 추가적인 Task Runner(주로 [Gulp](http://gulpjs.com/)) 설정이 들어가게 된다.
 
-##### Webpack
+#### Webpack
 
 [Webpack](https://webpack.github.io/) 은 Browserify 와는 다르게, 혼자서 할 수 있는 일이 거의 없다.
 

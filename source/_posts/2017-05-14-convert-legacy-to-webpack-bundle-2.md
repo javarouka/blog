@@ -5,11 +5,10 @@ date: 2017-05-14 23:30:17
 tags: [ Handlebars, javascript, webpack, 개고생 ]
 image: '/asset/E.N.D.jpg'
 thumbnail: '/asset/E.N.D.jpg'
+toc: true
 categories: ['Tech', 'JavaScript']
 meta:
 ---
-
-<!-- toc -->
 
 > 2016년 5월부터 2016년 6월까지 진행된 나의 to ES6 삽질을 기록해본다. 100% Real 은 아니고... 95% 정도?
 

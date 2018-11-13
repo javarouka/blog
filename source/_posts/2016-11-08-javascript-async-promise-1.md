@@ -6,12 +6,11 @@ date: 2016-11-08
 tags: [ecmascript, javascript, promise, async]
 comments: true
 share: true
+toc: true
 image: 'images/brain.png'
 thumbnail: 'images/brain.png'
 categories: ['Tech', 'JavaScript', 'Async']
 ---
-
-<!-- toc -->
 
 ## Run to Completion
 

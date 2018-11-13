@@ -224,6 +224,38 @@
 	}
 }
 
+.site-post-nav {
+	text-align: left;
+	position: relative;
+	background: rgba(0,0,0,.1);
+	border: 1px solid #262626;
+	overflow: auto;
+	transition: all .24s ease;
+	margin: 16px 0;
+	background-image: url(/blog/img/sidebar-bg.png);
+  background-repeat: repeat;
+	background-size: 102px 102px;
+	&:empty {
+		display: none;
+	}
+	[class*=" icon-"], [class^=icon-] {
+		line-height: inherit;
+	}
+	.site-post-nav-box {
+		padding: 8px;
+		font-size: 13px;
+		display: flex;
+		align-items: center;
+		.site-post-nav-text {
+			text-align: center;
+		}
+		a {
+			margin: 0 4px;
+			color: #FFF;
+		}
+	}
+}
+
 .site-toc {
 	position: relative;
 	padding: 12px 10px 15px 10px;

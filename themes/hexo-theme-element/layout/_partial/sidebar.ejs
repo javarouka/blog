@@ -21,8 +21,25 @@
 	  <% } else { %>
 	    <div class="no-index">No Index</div>
 	  <% } %>
-  </div>
-  
+	</div>
+	
+	<div class="site-post-nav">
+	<% if (!is_home() && (page.prev || page.next)) { %>
+			<% if (page.prev) { %>
+					<div class="site-post-nav-box">
+							<a href="<%- url_for(page.prev.path) %>" class="icon icon-chevron-thin-left"></span>
+							<a href="<%- url_for(page.prev.path) %>" class="site-post-nav-text"><%= page.prev.title %></a>
+					</div>
+			<% } %>
+			<% if (page.next) { %>
+					<div class="site-post-nav-box">
+							<a href="<%- url_for(page.next.path) %>" class="site-post-nav-text"><%= page.next.title %></a>
+							<a href="<%- url_for(page.next.path) %>" class="icon icon-chevron-thin-right"></span>
+					</div>
+			<% } %>
+	<% } %>
+	</div>	
+
 	<div class="site-bio <%- display_toc ? '' : 'show' %>"
 		style="display: <%- display_toc ? 'none' : 'block' %>">
 		

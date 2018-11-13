@@ -12,7 +12,7 @@ thumbnail: 'images/brain.png'
 categories: ['Tech', 'Java', 'JavaScript']
 ---
 
-## CS(Customer Service) 관리 시스템 개발
+## Customer Service 관리 시스템 개발
 
 전자상거래의 CS 관리 시스템이라는 건 생각보다 복잡하다.
 

@@ -28,7 +28,6 @@
     "hexo-renderer-markdown-it": "^3.4.1",
     "hexo-renderer-stylus": "^0.3.3",
     "hexo-server": "^0.3.3",
-    "hexo-toc": "^1.1.0",
     "markdown-it-emoji": "^1.4.0",
     "twemoji": "^11.2.0"
   },

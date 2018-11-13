@@ -6,6 +6,7 @@ date: 2017-03-18
 tags: [ ecmascript, javascript, redux, react ]
 comments: true
 share: true
+toc: true
 image: 'images/redux/redux-logo.png'
 thumbnail: 'images/redux/redux-logo.png'
 categories: ['Tech', 'JavaScript', 'UI']
