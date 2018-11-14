@@ -1,3 +1,3 @@
 ## JavaRouka blog
 
-[Go to](https://javarouka.me)
+[Go to](https://blog.javarouka.me)
