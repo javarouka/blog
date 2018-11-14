@@ -31,7 +31,7 @@ categories: ['Tech']
 그만큼 의존성이 문어발 식으로 연결되어있고, 그 만큼 타 도메인의 변화에 영향을 많이 받는다.
 
 <p align="center">
-    <img src="/blog/asset/new_project/octocat.png" alt="나...?"><em>나 말하나...?</em>
+    <img src="//asset/new_project/octocat.png" alt="나...?"><em>나 말하나...?</em>
 </p>
 
 과장하면 타 도메인에서 재채기를 하면 감기에 걸릴수도 있는게 CS 관리 프로그램이다.
@@ -62,7 +62,7 @@ MSA(`M`icro `S`ervice `A`rchitecture) 환경에서 동시다발적으로 벌어�
 리팩토링 범위를 아무리 최소로 해도 하다보면 너무나 광범위한 영역을 다루게 되며 결국 포기하는 일이 많다. 리팩토링이 때로는 새로운 버그를 만들기도 한다. 이건 이 경우와는 별개로 애초에 잘못된 습관 탓도 있고, 다른 상황에서도 마찬가지인 경우가 많긴 하다.
 
 <p align="center">
-    <img src="/blog/asset/new_project/zealot.jpeg" alt="버틸..."><em>버틸수가 없다!</em>
+    <img src="//asset/new_project/zealot.jpeg" alt="버틸..."><em>버틸수가 없다!</em>
 </p>
 
 이런 환경속에서 부족한 리소스로 일을 진행하면서 몇차례의 개편을 하다보니 코드의 유지보수성에 많은 생각을 하게 되었다.
@@ -119,7 +119,7 @@ Collector 는 각 데이터를 Aggregation 하는 레이어였다.
 DTO 도 구분했다.
 
 <p align="center">
-    <img src="/blog/asset/new_project/dto.jpeg" alt="박스"><em>데이터의 포장에도 각자의 목적이 있다</em>
+    <img src="//asset/new_project/dto.jpeg" alt="박스"><em>데이터의 포장에도 각자의 목적이 있다</em>
 </p>
 
 기본적으로 Request 로 받는 Condition 류를 제외한 모든 DTO 에는 모든 필드가 `final` 로 불변객체이다.
@@ -173,7 +173,7 @@ order = vendorModule.appendVendorData(order);
 다양한 도메인을 한번에 다루는 CS 특성상 여러 도메인의 데이터를 조합하는 경우가 많다.
 
 <p align="center">
-    <img src="/blog/asset/new_project/bibim.jpeg" alt="비빔밥" title="비빔밥"><em>재료를 잘 섞어야 맛있다.</em>
+    <img src="//asset/new_project/bibim.jpeg" alt="비빔밥" title="비빔밥"><em>재료를 잘 섞어야 맛있다.</em>
 </p>
 
 어디에도 끼는 회원이나 상품 말고도 CS의 99% 이상의 문의가 주문 관련이니 주문 데이터와 주문에 따라오는 배송 데이터 등은 항상 데이터 조합 대상이다.
@@ -196,7 +196,7 @@ order = vendorModule.appendVendorData(order);
 ### 데이터 토막치기
 
 <p align="center">
-    <img width="320" src="/blog/asset/new_project/Dr Salvador.jpg" alt="닥터 살바도르" title="닥터 살바도르"><em>토막쳐보자... 부우우우우웅!!</em>
+    <img width="320" src="//asset/new_project/Dr Salvador.jpg" alt="닥터 살바도르" title="닥터 살바도르"><em>토막쳐보자... 부우우우우웅!!</em>
 </p>
 
 최근 주문목록에 필요한 데이터를 조합한다고 가정해보자
@@ -231,7 +231,7 @@ order = vendorModule.appendVendorData(order);
 기회가 된다면 Spring Boot 부터 Mbean 등을 좀 더 잘 써보고 싶은데... 한다면 팀 스탠드얼론이 가능한 프로젝트에나 도입할 수 있을 것 같아 아쉽다.
 
 <p align="center">
-    <img width="320" src="/blog/asset/new_project/simu.jpg" alt="ㅠㅠ" title="ㅠㅠ"><em>OTL</em>
+    <img width="320" src="//asset/new_project/simu.jpg" alt="ㅠㅠ" title="ㅠㅠ"><em>OTL</em>
 </p>
 
 ## 클라이언트 기반을 수정해보자
@@ -270,7 +270,7 @@ Redux 는 기본적으로 단일 스토어를 추천한다.
 ### 클라이언트 라우팅
 
 <p align="center">
-    <img width="320" src="/blog/asset/new_project/routing.jpeg" alt="표지판" title="표지판"><em>이리저리 가시오</em>
+    <img width="320" src="//asset/new_project/routing.jpeg" alt="표지판" title="표지판"><em>이리저리 가시오</em>
 </p>
 
 라우팅 기능을 하는 [React-Router](https://github.com/ReactTraining/react-router) 라는 훌륭한 라이브러리가 이미 존재하고, 이걸 쓰면 되겠지 라고 생각했다.
@@ -376,7 +376,7 @@ Redux Saga 로 사용자의 모든 행동은 Saga 를 통해 로깅되며 사이
 ### 클라이언트 단독 개발이 가능하도록
 
 <p align="center">
-    <img width="320" src="/blog/asset/new_project/front-back.jpg" alt="프론트 엔드 백엔드" title="Front Castle on Back"><em>프론트 엔드 성 아래의 백 엔드 심해</em>
+    <img width="320" src="//asset/new_project/front-back.jpg" alt="프론트 엔드 백엔드" title="Front Castle on Back"><em>프론트 엔드 성 아래의 백 엔드 심해</em>
 </p>
 
 요청사항에 따라 클라이언트 개발만 진행하거나 소소한 수정건이 있을 수 있다. 이런 경우 예전의 구조에서는 클라이언트 수정이라도 로컬 서버를 먼저 실행시키고 로컬 서버를 구동하여 개발을 진행했다.

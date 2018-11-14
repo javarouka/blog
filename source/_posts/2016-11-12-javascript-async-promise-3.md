@@ -12,7 +12,7 @@ thumbnail: 'images/brain.png'
 categories: ['Tech']
 ---
 
-[전 포스트](/blog/2016/11/09/javascript-async-promise-2/) 에 이은 글이다.
+[전 포스트](/2016/11/09/javascript-async-promise-2/) 에 이은 글이다.
 
 > 이 포스트의 예제 코드는 ES6 으로 작성되었습니다.
 
@@ -43,7 +43,7 @@ javascript 가 코드 블럭을 수행하면 call stack 에 함수 호출을 쌓
 
 삽입된 Task 는 다음 Event Loop, 혹은 지정된 시간, 이벤트 트리거에 의해 다시 수행된다.
 
-[비동기와 Promise #1](/blog/2016/11/08/javascript-async-promise-1/) 에서 다뤘듯 특별할게 없는 동작이다.
+[비동기와 Promise #1](/2016/11/08/javascript-async-promise-1/) 에서 다뤘듯 특별할게 없는 동작이다.
 
 ## Micro Task
 
@@ -148,7 +148,7 @@ promise.then(_=> console.groupEnd('promise executed!'));
 
 이 블로그를 작성중인 작업 컴퓨터의 사양이 좀 낮은 관계로 10번만 수행시켰다. (Chrome 브라우저 콘솔)
 
-![10번 수행 결과. Timer 가 Micro Task 에 밀려 제일 늦게 수행된다](/blog/images/promise/P_T.png)
+![10번 수행 결과. Timer 가 Micro Task 에 밀려 제일 늦게 수행된다](/images/promise/P_T.png)
 
 실행 결과를 보았듯이 Timer 작업은 앞선 Micro Task 인 Promise 에 밀려 제일 나중에 실행된다.
 
@@ -161,9 +161,9 @@ promise.then(_=> console.groupEnd('promise executed!'));
 비동기에 대해서는 여기 써놓은 내용 이상으로 다룰 내용이 너무 깊고 많다. 노오력이 부족한 관계로 새로운 사실을 알게 될 때마다 포스트를 수정해나갈 생각이다.
 
 ## 참고
-- [비동기와 Promise 1](/blog/2016/11/08/javascript-async-promise-1/) 
-- [비동기와 Promise 2](/blog/2016/11/09/javascript-async-promise-2/) 
-- [비동기와 Promise 3](/blog/2016/11/12/javascript-async-promise-3/) 
+- [비동기와 Promise 1](/2016/11/08/javascript-async-promise-1/) 
+- [비동기와 Promise 2](/2016/11/09/javascript-async-promise-2/) 
+- [비동기와 Promise 3](/2016/11/12/javascript-async-promise-3/) 
 - [C언어:reentrant (재진입성) 함수와 쓰레드안전(MultiThread-safe)](http://sunyzero.tistory.com/97)
 - [BsideSoft 공식 블로그 # 동기화 vs 비동기화 1](http://www.bsidesoft.com/?p=399)
 - [BsideSoft 공식 블로그 # 동기화 vs 비동기화 2](http://www.bsidesoft.com/?p=414)

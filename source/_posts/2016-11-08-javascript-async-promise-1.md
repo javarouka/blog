@@ -365,12 +365,12 @@ work(process, 'process-1');
 
 만일 인덱싱의 종료 조건을 알고 싶다면 `work` 함수의 종료 조건절 `if(ret) go()` 에 완료 콜백으로 처리하는 방법이 있다.
 
-[다음 포스트](/blog/2016/11/09/javascript-async-promise-2/) 에서 알아볼 Promise.all 과 같이 쓰면 코드가 더욱 간결해질 것이다.
+[다음 포스트](/2016/11/09/javascript-async-promise-2/) 에서 알아볼 Promise.all 과 같이 쓰면 코드가 더욱 간결해질 것이다.
 
 ## 참고
-- [비동기와 Promise 1](/blog/2016/11/08/javascript-async-promise-1/)
-- [비동기와 Promise 2](/blog/2016/11/09/javascript-async-promise-2/)
-- [비동기와 Promise 3](/blog/2016/11/12/javascript-async-promise-3/)
+- [비동기와 Promise 1](/2016/11/08/javascript-async-promise-1/)
+- [비동기와 Promise 2](/2016/11/09/javascript-async-promise-2/)
+- [비동기와 Promise 3](/2016/11/12/javascript-async-promise-3/)
 - [BsideSoft 공식 블로그 # 동기화 vs 비동기화 1](http://www.bsidesoft.com/?p=399)
 - [BsideSoft 공식 블로그 # 동기화 vs 비동기화 2](http://www.bsidesoft.com/?p=414)
 - [BsideSoft 공식 블로그 # 동기화 vs 비동기화 3](http://www.bsidesoft.com/?p=423)

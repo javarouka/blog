@@ -119,7 +119,7 @@ loadContents('/where/are/you');
 
 그리고 일일히 파일 하나하나를 트랜스파일하여 js 를 두개를 커밋하였는데, 이 과정에서 일어나는 비효율성은 엄청났지만 마침내 작성된 ES6/React 의 코드의 결과물은 나에게 멋지게만 보였다.
 
-![wow](/blog/asset/mywow.jpg)
+![wow](/asset/mywow.jpg)
 
 ### IntelliJ File Watcher!
 
@@ -133,7 +133,7 @@ loadContents('/where/are/you');
 
 ### 괴롭다..
 
-![어째 잘못된 길을 든듯한...](/blog/asset/otl.jpg)
+![어째 잘못된 길을 든듯한...](/asset/otl.jpg)
 
 한계가 매우 빠르게 느껴졌다.
 크게는 다음과 같은 것들이 막 앞통수 뒤통수를 서라운드로 타격하기 시작했다.
@@ -210,4 +210,4 @@ NodeJS 모듈을 만들것도 아니고, 정적 파일 관리까지 지원하며
 path 의 정리도 엉망에 controller 의 로딩이 순식간에 전부 작업분으로 남아버렸고, commonjs, amd, es6 모듈은 서로 충돌하기 바빴다.
 모든게 어우러져 새빨간 컴파일 오류가 작렬했다.
 
-내용이 길어져 [2부](/blog/2017/05/14/convert-legacy-to-webpack-bundle-2/)로 나눈다.
+내용이 길어져 [2부](/2017/05/14/convert-legacy-to-webpack-bundle-2/)로 나눈다.

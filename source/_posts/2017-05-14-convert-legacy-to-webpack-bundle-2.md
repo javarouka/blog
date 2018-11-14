@@ -12,7 +12,7 @@ meta:
 
 > 2016년 5월부터 2016년 6월까지 진행된 나의 to ES6 삽질을 기록해본다. 100% Real 은 아니고... 95% 정도?
 
-[전 글](/blog/2017/05/03/convert-legacy-to-webpack-bundle-1/)
+[전 글](/2017/05/03/convert-legacy-to-webpack-bundle-1/)
 
 ## 버틸수가 없다
 
@@ -140,7 +140,7 @@ Webpack 은 분명 AMD 와 commonjs 모듈도 사용할 수 있다. 실제로도
 
 ES6 모듈 정의에는 `default export, named export` 라는 AMD, commonjs 에 없는 개념이 있었기 때문이다.
 
-![뭐냐...](/blog/asset/howthefuck.jpg)
+![뭐냐...](/asset/howthefuck.jpg)
 
 다음에 세가지 스타일로 모듈을 정의해보았다.
 이 모듈의 이름은 `rouka/blog/module` 이라고 해보자
@@ -301,7 +301,7 @@ es6Module.otherSome();
 
 webpack 에서 뱉어내는 빨간색 천지의 오류 메시지와 함께 내 마음도 붉게 물들기 시작했다
 
-![아...그냥 그만두고 여길 나갈까](/blog/asset/doc-heatal.jpg)
+![아...그냥 그만두고 여길 나갈까](/asset/doc-heatal.jpg)
 
 <div style="padding: 0 5px; background-color: #ECECEC; border-top: solid 1px #333; font-size: 80%;">
 위의 ES6 및 commonjs 모듈의 다른 점을 알고 싶다면 엑셀박사님의 블로그를 한번 읽어보자.<br/>
