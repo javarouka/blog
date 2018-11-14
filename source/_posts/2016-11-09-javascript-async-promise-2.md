@@ -407,7 +407,7 @@ Timer 수행되었습니다
   
 Timer 에 아주 짧은 시간을 설정해도 소용없다.
 
-이 건에 대해서는 [다음 포스트](/blog/2016/11/12/javascript-async-promise-3/) 에서 다룬다. 지금은 Timer 보다 Promise 의 콜백이 내부적으로 실행 우선권을 가지고 있다고만 생각하자.
+이 건에 대해서는 [다음 포스트](/2016/11/12/javascript-async-promise-3/) 에서 다룬다. 지금은 Timer 보다 Promise 의 콜백이 내부적으로 실행 우선권을 가지고 있다고만 생각하자.
 
 ### 체이닝!
 
@@ -545,7 +545,7 @@ catch(ex) {
 }
 ```
 
-이 코드의 catch 블럭안의 stack 은 찍히지 않는다. [다음 포스트](/blog/2016/11/12/javascript-async-promise-3/) 의 Task 와 MicroTask 에서 다루겠지만, Promise 는 이런식의 예외 처리는 불가능하다.
+이 코드의 catch 블럭안의 stack 은 찍히지 않는다. [다음 포스트](/2016/11/12/javascript-async-promise-3/) 의 Task 와 MicroTask 에서 다루겠지만, Promise 는 이런식의 예외 처리는 불가능하다.
 
 Promise 는 Timer 와 비슷하면서도 다른 비동기 처리를 하며 Promise 의 콜백들은 그룹화된 **Task Queue** 로 관리된다. (MicroTask 라고 한다)
 
