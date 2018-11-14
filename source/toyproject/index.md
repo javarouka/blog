@@ -8,4 +8,4 @@ share: true
 - [decorator class method hook](http://github.com/javarouka/class-method-hook)
 - [decorator advice](http://github.com/javarouka/decorator-advice)
 - [tipJS (Client-Side MVC Framework)](http://github.com/tipjs/tipjs-JavaScript-MVC-Framework)
-- [crosscutting.js (JavaScript AOP Library)](http://javarouka.github.com/crosscutting.js)
+- [crosscutting.js (JavaScript AOP Library)](http://javarouka.me.com/crosscutting.js)
