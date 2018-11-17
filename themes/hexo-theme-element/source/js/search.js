@@ -598,13 +598,16 @@ var HexoSearch;
      * @param queryText : the search query
      */
     self.contentSearch = function(post, queryText) {
-      var post_title = post.title.trim().toLowerCase(),
-          post_content = post.content.trim().toLowerCase(),
+      var post_title = (post.title|| '').trim().toLowerCase(),
+          post_content = (post.text|| '').trim().toLowerCase(),
           keywords = queryText.trim().toLowerCase().split(" "),
+          tags = post.tags || [],
+          categories = post.categories || [],
           foundMatch = false,
           index_title = -1,
           index_content = -1,
           first_occur = -1;
+
       if (post_title !== '' && post_content !== '') {
         $.each(keywords, function(index, word) {
           index_title = post_title.indexOf(word);
@@ -621,8 +624,22 @@ var HexoSearch;
               first_occur = index_content;
             }
           }
+          if(tags.length > 0) {
+            const match = tags.map(item => item.name).some(name => name.indexOf(queryText) > -1);
+            if(match) {
+              foundMatch = true;
+            }
+          }
+          if(categories.length > 0) {
+            const match = categories.map(item => item.name).some(name => {
+              return name.indexOf(queryText) > -1
+            });
+            if(match) {
+              foundMatch = true;
+            }
+          }
           if (foundMatch) {
-            post_content = post.content.trim();
+            post_content = (post.title|| '').trim();
             var start = 0, end = 0;
             if (first_occur >= 0) {
               start = Math.max(first_occur-30, 0);
@@ -636,7 +653,7 @@ var HexoSearch;
             }
             else {
               end = Math.min(200, post_content.length);
-              post.digest = post_content.trim().substring(0, end);
+              post.digest = (post.text|| '').trim().substring(0, end);
             }
           }
         });

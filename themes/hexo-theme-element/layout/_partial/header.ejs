@@ -1,7 +1,6 @@
 <%- partial('_partial/loading') %>
 
 <header id="header" class="site-header clearfix">
-
   <a class="logo square clearfix" href="<%- url_for() %>">
     <!-- 
       Replace with your own size name, for example:
@@ -23,3 +22,18 @@
 
 </header>
 <%- partial('_partial/category', {post: page}) %>
+
+<% if (!is_post() && theme.search.enable === true) { %>
+  <div class="search">
+    <form name="searchform" id="searchform" class="u-search-form">
+      <input type="text" id="searchinput" 
+        class="u-search-input st-default-search-input"
+        data-list-highlight="true" 
+        data-list-value-completion="true" 
+        placeholder="Looking for something in this page?" />
+      <button type="submit" id="u-search-btn-submit" class="u-search-btn-submit">
+        <span class="icon icon-search"></span>
+      </button>
+    </form>
+  </div>
+<% } %>
