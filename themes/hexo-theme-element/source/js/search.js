@@ -625,15 +625,13 @@ var HexoSearch;
             }
           }
           if(tags.length > 0) {
-            const match = tags.map(item => item.name).some(name => name.indexOf(queryText) > -1);
+            const match = tags.map(item => item.name).some(name => name === queryText);
             if(match) {
               foundMatch = true;
             }
           }
           if(categories.length > 0) {
-            const match = categories.map(item => item.name).some(name => {
-              return name.indexOf(queryText) > -1
-            });
+            const match = categories.map(item => item.name).some(name =>  name === queryText);
             if(match) {
               foundMatch = true;
             }
