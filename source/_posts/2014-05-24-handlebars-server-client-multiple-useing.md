@@ -8,7 +8,7 @@ comments: true
 share: true
 image: 'images/brain.png'
 thumbnail: 'images/brain.png'
-categories: ['Stub-Tech']
+categories: ['Tech-Piece']
 ---
 
 ## 웹 템플릿 엔진

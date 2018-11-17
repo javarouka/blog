@@ -8,7 +8,7 @@ comments: true
 share: true
 image: 'images/brain.png'
 thumbnail: 'images/brain.png'
-categories: ['Stub-Tech']
+categories: ['Tech-Piece']
 ---
 
 > 모듈 패턴은 전통적인 소프트웨어 공학에서 클래스 사용에 private 과 public 으로 나뉜 캡슐화를 제공하는 방법이다.<br/><br/>

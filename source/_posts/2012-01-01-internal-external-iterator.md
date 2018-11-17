@@ -9,7 +9,7 @@ share: true
 toc: true
 image: 'images/brain.png'
 thumbnail: 'images/brain.png'
-categories: ['Stub-Tech']
+categories: ['Tech-Piece']
 ---
 
 ## 스터디중의 의문. Internal and External Iterator

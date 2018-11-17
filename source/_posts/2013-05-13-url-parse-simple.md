@@ -8,7 +8,7 @@ comments: true
 share: true
 image: 'images/brain.png'
 thumbnail: 'images/brain.png'
-categories: ['Stub-Tech']
+categories: ['Tech-Piece']
 ---
 
 웹프로그래밍을 하다보면 간간히 특정 문자열로 `window.location` 객체를 생성하고 싶은데 Location은 내부 함수라 사용할 수 없다.

@@ -8,7 +8,7 @@ comments: true
 share: true
 image: 'images/brain.png'
 thumbnail: 'images/brain.png'
-categories: ['Stub-Tech']
+categories: ['Tech-Piece']
 ---
 
 ## 코드 포인트 : 문자셋의 특정 문자를 지정하는 번호

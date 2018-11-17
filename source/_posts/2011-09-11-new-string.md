@@ -8,7 +8,7 @@ comments: true
 share: true
 image: 'images/brain.png'
 thumbnail: 'images/brain.png'
-categories: ['Stub-Tech']
+categories: ['Tech-Piece']
 ---
 
 캐릭터셋 변환에 대해 인터넷 블로그 등에 잘못 떠돌고 있는 괴담(?) 은아니고 괴코드(?) 가 있다.
