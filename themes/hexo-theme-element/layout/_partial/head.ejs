@@ -20,9 +20,8 @@
   <% if (theme.rss) { %>
     <link rel="alternative" href="<%- url_for(theme.rss) %>" title="<%= config.title %>" type="application/atom+xml">
   <% } %>
-  <% if (theme.favicon) { %>
-    <link rel="icon" href="<%- url_for(theme.favicon) %>">
-  <% } %>
+
+  <%- partial('favicon') %>
 
   <% if (page.tags) {
       var keywords = [];
