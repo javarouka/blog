@@ -6,8 +6,8 @@ date: 2018-01-01
 tags: [css]
 comments: true
 share: true
-image: 'images/brain.png'
-thumbnail: 'images/brain.png'
+image: '/asset/images/java-logo.png'
+thumbnail: '/asset/images/java-logo.png'
 categories: ['Tech-Piece']
 ---
 

@@ -6,8 +6,8 @@ date: 2012-02-27
 tags: ['javascript', 'design pattern']
 comments: true
 share: true
-image: 'images/brain.png'
-thumbnail: 'images/brain.png'
+image: '/asset/images/java-logo.png'
+thumbnail: '/asset/images/java-logo.png'
 categories: ['Tech-Piece']
 ---
 

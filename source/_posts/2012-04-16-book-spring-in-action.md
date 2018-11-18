@@ -6,8 +6,8 @@ date: 2012-07-30
 tags: [review, spring]
 comments: true
 share: true
-image: 'images/brain.png'
-thumbnail: 'images/brain.png'
+image: '/asset/images/java-logo.png'
+thumbnail: '/asset/images/java-logo.png'
 categories: ['Book Review']
 ---
 

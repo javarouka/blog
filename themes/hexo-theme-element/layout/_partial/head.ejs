@@ -31,7 +31,11 @@
   %>
       <meta name="keywords" content="<%= keywords.join(',') %>" />
   <% } %>
-  
+
+  <% if (is_post()) { %>
+    <meta name="og:image" content="<%= page.image %>" />
+  <% } %>
+
 	<!-- If needed, replace your own web font service -->
   <link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700" rel="stylesheet">
 
