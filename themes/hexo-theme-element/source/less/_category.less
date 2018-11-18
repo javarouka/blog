@@ -4,17 +4,26 @@
     display: flex;
     line-height: 13px;
     flex-wrap: wrap;
+    margin-bottom: 8px;
     .flex-column-link {
         position: relative;
-		padding: 4px 10px;
+		padding: 4px 8px;
 		background: @background-color;
-		border-radius: 2px;
+        border-radius: 2px;
+        margin-right: 4px;
 		&:hover {
 			background: @black;
 			color: white;
-		}
+        }
+        &:last-child {
+            margin-right: 0px;
+        }
         .flex-column-count {
             padding-left: 4px;
         }
+    }
+
+    @media (max-width: 600px) {
+        display: none;
     }
 }
