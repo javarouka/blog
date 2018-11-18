@@ -51,12 +51,18 @@ var customSearch;
 		toggleActive($('.site-nav-switch'), e);
 	};
 
+	var addHref = function(e) {
+		var link = $(e.target).find('a.headerlink');
+		location.href = link.attr('href')
+	};
+
 	$(function () {
 		$(".post-list, #footer, #page-nav").addClass('show');
 		$('.site-nav-switch').on('click', openBio);
 		$('.site-wrapper .overlay').on('click', closeBio);
 		$('.window-nav, .go-comment, .site-toc a').on('click', scrolltoElement);
 		$('.sidebar-switch .dark-btn').on('click', switchSidebarTab);
+		$('.article-entry :has(a.headerlink)').on('click', addHref)
 
 		setTimeout(function () {
 			$('#loading-bar-wrapper').fadeOut(500);

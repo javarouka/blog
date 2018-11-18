@@ -65,13 +65,16 @@
     @media (max-width: @on-phone) {
 	    left: 15px;
     }
-    &::before {
-	    position: absolute;
-	    left: -20px;
-	    top: 0px;
-	    content: "#";
-	    color: @material-green;
-	    font-weight: normal;
+    &:hover {
+      cursor: pointer;
+      &::before {
+        position: absolute;
+        left: -20px;
+        top: 0px;
+        content: "#";
+        color: @material-green;
+        font-weight: normal;
+      }
     }
   }
   p {
