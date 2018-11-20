@@ -83,7 +83,8 @@ Object readResolve() throws ObjectStreamException;
 ```
 
 ### writeObject/readObject
-해당 class 에 override 하면 Serialize/Deserialize 시 호출된다. 보통은 해당 클래스의 상태에 전처리를 할때 사용한다. 
+
+해당 class 에 위의 전처리 메서드를 구현할 경우 Serialize/Deserialize 시에 호출된다. 보통은 해당 클래스의 상태에 전처리를 할때 사용한다. 
 
 특정 데이터를 writeObject 시에 추가한뒤 readObject 시에 다시 읽거나, 외부 시스템으로부터 받은 수상한 데이터에 대한 방어 목적으로도 사용할 수 있다. 객체에 특정 서명을 추가하거나 해서 어느정도의 보안도 적용 가능해진다.
 
