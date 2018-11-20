@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "Java 의 Serializ (Effective java 3th - Item3)"
-description: "Java 의 Serializ (Effective java 3th - Item3)"
+title: "Java 의 Serialize (Effective java 3th - Item3)"
+description: "Java 의 Serialize (Effective java 3th - Item3)"
 date: 2018-11-19
 tags: [java, serialize, effective]
 comments: true
