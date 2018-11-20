@@ -7,8 +7,8 @@ tags: [ecmascript, javascript, promise, async]
 comments: true
 share: true
 toc: true
-image: '/asset/images/java-logo.png'
-thumbnail: '/asset/images/java-logo.png'
+image: '/asset/images/js.jpg'
+thumbnail: '/asset/images/js.jpg'
 categories: ['Tech']
 ---
 

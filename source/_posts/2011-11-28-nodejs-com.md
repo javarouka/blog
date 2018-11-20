@@ -6,9 +6,9 @@ date: 2012-07-30
 tags: [nodejs]
 comments: true
 share: true
-image: '/asset/images/java-logo.png'
-thumbnail: '/asset/images/java-logo.png'
-categories: ['Tech-Piece']
+image: '/asset/images/js.jpg'
+thumbnail: '/asset/images/js.jpg'
+categories: ['Tech']
 ---
 
 Node.js은 암일까요?

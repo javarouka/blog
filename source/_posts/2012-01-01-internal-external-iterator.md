@@ -9,7 +9,7 @@ share: true
 toc: true
 image: '/asset/images/java-logo.png'
 thumbnail: '/asset/images/java-logo.png'
-categories: ['Tech-Piece']
+categories: ['Tech']
 ---
 
 ## 스터디중의 의문. Internal and External Iterator

@@ -7,8 +7,8 @@ tags: [css, seo]
 comments: true
 share: true
 toc: true
-image: '/asset/images/java-logo.png'
-thumbnail: '/asset/images/java-logo.png'
+image: '/asset/images/css.png'
+thumbnail: '/asset/images/css.png'
 categories: ['Tech']
 ---
 

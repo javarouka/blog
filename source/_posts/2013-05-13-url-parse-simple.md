@@ -6,9 +6,9 @@ date: 2013-05-13
 tags: [ecmascript, javascript]
 comments: true
 share: true
-image: '/asset/images/java-logo.png'
-thumbnail: '/asset/images/java-logo.png'
-categories: ['Tech-Piece']
+image: '/asset/images/js.jpg'
+thumbnail: '/asset/images/js.jpg'
+categories: ['Tech']
 ---
 
 웹프로그래밍을 하다보면 간간히 특정 문자열로 `window.location` 객체를 생성하고 싶은데 Location은 내부 함수라 사용할 수 없다.

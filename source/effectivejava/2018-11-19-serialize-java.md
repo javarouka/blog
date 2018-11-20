@@ -1,15 +1,15 @@
 ---
 layout: post
-title: "Java 의 Serializ (Effective java 3th - Item3)"
-description: "Java 의 Serializ (Effective java 3th - Item3)"
+title: "Java 의 Serialize"
+description: "Java 의 Serializ"
 date: 2018-11-19
-tags: [java, serialize, effective]
+tags: [java, serialize, 'effective java 3th']
 comments: true
 share: true
 toc: true
 image: '/asset/images/java-logo.png'
 thumbnail: '/asset/images/java-logo.png'
-categories: ['Effective Java']
+categories: ['Tech', 'Book']
 ---
 
 ## Serialize?

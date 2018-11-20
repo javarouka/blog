@@ -6,9 +6,9 @@ date: 2018-01-01
 tags: [css]
 comments: true
 share: true
-image: '/asset/images/java-logo.png'
-thumbnail: '/asset/images/java-logo.png'
-categories: ['Tech-Piece']
+image: '/asset/images/css.png'
+thumbnail: '/asset/images/css.png'
+categories: ['Tech']
 ---
 
 ## 인라인 스타일에 대한 생각

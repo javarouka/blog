@@ -8,7 +8,7 @@ comments: true
 share: true
 image: '/asset/images/java-logo.png'
 thumbnail: '/asset/images/java-logo.png'
-categories: ['Book Review']
+categories: ['Review']
 ---
 
 <p align="center">

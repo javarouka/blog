@@ -1,9 +1,11 @@
-<aside class="site-category">
-    <%- list_categories({
-        depth: 5,
-        style: 'cloud',
-        class: 'nav flex-column',
-        separator: '',
-        show_count: true,
-    }) %>
+<aside class="category-wrapper">
+    <div class="site-category">
+        <%- list_categories({
+            depth: 5,
+            style: 'cloud',
+            class: 'nav flex-column',
+            separator: '',
+            show_count: false,
+        }) %>
+    </div>
 </nav>

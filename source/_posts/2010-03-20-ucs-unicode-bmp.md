@@ -8,7 +8,7 @@ comments: true
 share: true
 image: '/asset/images/java-logo.png'
 thumbnail: '/asset/images/java-logo.png'
-categories: ['Tech-Piece']
+categories: ['Tech']
 ---
 
 ## 코드 포인트 : 문자셋의 특정 문자를 지정하는 번호
