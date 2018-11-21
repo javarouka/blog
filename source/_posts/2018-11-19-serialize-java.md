@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Java 의 Serialize (Effective java 3th - Item3)"
-description: "Java 의 Serialize (Effective java 3th - Item3)"
+description: "private 생성자나 열거 타입으로 싱글턴임을 보장하라"
 date: 2018-11-19
 tags: [java, serialize, effective]
 comments: true
