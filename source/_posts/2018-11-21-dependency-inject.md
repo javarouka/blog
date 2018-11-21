@@ -55,7 +55,7 @@ public class DragonBallRadar {
         this.heightMap = supplier.get();
     }
 
-    public static AttactResult detect() { /* 구현 */ }
+    public static Coordinate detect() { /* 구현 */ }
 }
 ```
 
