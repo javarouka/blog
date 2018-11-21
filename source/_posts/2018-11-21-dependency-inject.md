@@ -27,7 +27,7 @@ public class DragonBallRadar {
     
     private DragonBallRadar() {}
 
-    public static AttactResult detect() { /* 구현 */ }
+    public static Coordinate detect() { /* 구현 */ }
 }
 ```
 
