@@ -45,9 +45,7 @@ public class DragonBallRadar {
 
 > 사용하는 자원에 따라 동작이 달라지는 클래스에는 정적 유틸리티 클래스나 싱글턴 방식이 적합하지 않다<br/>-Effective Java 3th 29 page
 
-이 경우에는 사용자 측에서 높이맵을 바꿔줄 수 있어야 한다.
-
-그리고 정적 메서드의 사용도 할 필요가 없다.
+이 경우에는 사용자 측에서 높이맵을 바꿔줄 수 있어야 한다. 그리고 정적 메서드의 사용도 해서는 안된다.
 
 ```java
 public class DragonBallRadar {
