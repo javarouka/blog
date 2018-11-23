@@ -107,7 +107,7 @@ MSA(`M`icro `S`ervice `A`rchitecture) 환경에서 동시다발적으로 벌어�
     - 단일 비즈니스를 처리하기 위한 모듈
     - Repository 등에 의존성이 있다.
 - `Repository`
-    - 데이터에 대한 CRUD 제공과 외부 API 에 대한 래퍼.
+    - 팀 오너십 데이터에 대한 CRUD 및 외부 API 에 대한 래퍼.
     - Repository 와 Api 를 나누려고 했으나 그냥 하나의 레이어로 래핑하기로 함.
 - `Helper`
     - 유틸리티. 무상태이거나 Controller, Service, Behavior, Repository 에는 의존성이 없는 모듈.
@@ -115,9 +115,7 @@ MSA(`M`icro `S`ervice `A`rchitecture) 환경에서 동시다발적으로 벌어�
 
 Helper 를 제외한 각 레이어끼리는 의존성을 걸지 않는게 기본이다.
 
-초창기에는 Collector Layer 도 추가했지만, 나중에 설명할 `데이터 토막치기` 덕분에 잘 쓰이지 않아 사장되었다.
-
-Collector 는 각 데이터를 Aggregation 하는 레이어였다.
+초창기에는 Collector Layer 도 추가했지만, 나중에 설명할 `데이터 토막치기` 덕분에 잘 쓰이지 않아 사장되었다. Collector 는 각 데이터를 Aggregation 하는 레이어였다.
 
 ### DTO
 
@@ -128,8 +126,6 @@ DTO 도 구분했다.
 </p>
 
 기본적으로 Request 로 받는 Condition 류를 제외한 모든 DTO 에는 모든 필드가 `final` 로 불변객체이다.
-
-<p align="center">모든 객체는 불변 (immutable) 이 좋다</p>
 
 불변이 아닐 경우 각 로직이나 레이어를 거치면서 전달되는 객체의 필드가 실제 값이 있는지, 중간에 값이 어떻게 변하는지, 등의 상황에서 한 레이어만 보고서는 추적이 되지 않기 때문이다.
 
@@ -147,18 +143,15 @@ order = productModule.appendProductData(order);
 order = vendorModule.appendVendorData(order);
 ```
 
-이러한 로직이 있을 경우 `productModule.appendProductData`, `vendorModule.appendVendorData` 는 주문의 특정 필드의 nullable 여부가 중요해진다.
-게다가 상품에 업체정보가 있으므로 앞선 로직에서 상품정보가 정상적이지 않을 경우 다음 업체정보도 얻을 수 없게 된다.
+이러한 로직이 있을 경우 `productModule.appendProductData`, `vendorModule.appendVendorData` 는 주문의 특정 필드의 nullable 여부가 중요해진다. 게다가 상품에 업체정보가 있으므로 앞선 로직에서 상품정보가 정상적이지 않을 경우 다음 업체정보도 얻을 수 없게 된다.
 
 이 상황에서는 필드의 초기화 여부와 각 모듈의 호출 순서가 매우 중요하다. 이 규칙아래 에서 모듈 의존성 뿐 아니라 로직 의존성까지 발생한다.
 
 리팩토링을 할 때도 문제가 된다.
 
-각 모듈 호출 순서를 반드시 지켜야하며 각 모듈안의 로직을 자세히 살펴보고 완전히 로직을 파악한 뒤에야 리팩토링을 할 수 있다.
+각 모듈 호출 순서를 반드시 지켜야 하며 각 모듈안의 로직을 자세히 살펴보고 완전히 로직을 파악한 뒤에야 리팩토링을 할 수 있다.
 
-하지만, 모든 필드가 `final` 일 경우(Setter 자체가 존재하지 않음) 어떠한 DTO 를 전달받았을 경우 각 필드들이 반드시 초기화가 되었다는걸 의미하기에 앞선 문제의 대부분이 해소된다.
-
-어디선가 전달받은 객체라도 값의 내용물에 대해 안심하고 쓸 수 있다는 뜻이다. (필드의 Null 여부가 아니라 초기화 여부를 말한다)
+하지만, 모든 필드가 `final` 일 경우 어떠한 DTO 를 전달받았을 경우 각 필드들이 반드시 초기화가 되었다는 걸 의미하기에 앞선 문제의 대부분이 해소된다. 어디선가 전달받은 객체라도 값의 내용물에 대해 안심하고 쓸 수 있다는 뜻이다. (필드의 Null 여부가 아니라 초기화 여부를 말한다)
 
 각 레어이간 데이터는 다음과 같은 기준으로 정했다. 네이밍이 약간 이상한것 같지만 그런가보다 하자;
 
