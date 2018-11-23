@@ -155,7 +155,7 @@ Public Path 가 고정되니 배포 Scope 으로 asset 을 요청하게 되고 �
 
 [Redux-Saga](https://github.com/redux-saga/redux-saga) 의 사용에 미숙하여 여러 착오를 겪었다.
 
-제일 심하게 겪은 문제는 [take](https://redux-saga.js.org/docs/api/#takepattern) 관련인데 Ajax 요청의 경우 같은 요청이 다수가 중복될 경우 첫번째만 취하는 것이 보통 효율이 좋다. 이런 경우는 대부분 사용자의 반복된 클릭등으로 요청되는게 대부분이기 때문이다.
+제일 심하게 겪은 문제는 [take](https://redux-saga.js.org/docs/api/#takepattern) 관련인데 `Ajax 등의 비동기 Side-Effect 를 동반하는 Task` 일 경우 같은 요청이 다수가 중복된다면 첫번째만 처리하는 것이 보통 효율이 좋다. 이런 경우는 대부분 사용자의 반복된 클릭등으로 요청되는게 대부분이기 때문이다.
 
 Saga 에서는 [Helper 함수](https://redux-saga.js.org/docs/api/)로 `takeLatest`, `takeEvery`, `takeLeading` 등을 지원한다
 
@@ -166,7 +166,7 @@ Saga 에서는 [Helper 함수](https://redux-saga.js.org/docs/api/)로 `takeLate
 - takeLeading
     - 제일 첫번째 건만 처리
 
-하지만 실전에서는 다양한 이유로 짧은 시간에 다수의 요청이 진행되었다. 개발 초기에는 대부분의 Saga Watcher 에 takeLeading (1.x) 을 걸어두었다. 중복 요청일 경우 두번째는 무시하기 위해서이다.
+개발 초기에는 대부분의 Saga Watcher 에 takeLeading (1.x) 을 걸어두었다. 중복 요청일 경우 두번째는 무시하기 위해서이다. 
 
 하지만 나중에 테스트와 액션 리포트를 보면 사용자의 반복 요청에 막히는 것은 거의 없고 오히려 특정 사이드이펙트 action watcher (트리거 action이 여러개 존재하는 watcher) 가 서로 다른 action dispatch 에 영향받게 되면서 나중 요청을 전부 씹는 상황이 발생했다
 
