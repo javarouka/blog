@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "신규 통합 CS 시스템 관리 개발기"
-description: "설계편"
+title: "신규 통합 CS 시스템 관리 개발기 # 설계편"
+description: "일단 지른다"
 date: 2018-10-28
 tags: [java, javascript, scaffolding, legacy]
 comments: true
@@ -10,6 +10,11 @@ toc: true
 image: '/asset/images/java-logo.png'
 thumbnail: '/asset/images/java-logo.png'
 categories: ['Tech']
+---
+
+---
+- 신규 통합 CS 시스템 관리 개발기 # 설계편 #
+- [신규 통합 CS 시스템 관리 개발기 # 혼란편 #](/2018/11/23/new_project_2/)
 ---
 
 ## Customer Service 관리 시스템 개발
@@ -403,4 +408,4 @@ webpack-dev-server 와 mock 연동에는 [express-http-proxy](https://www.npmjs.
 
 지금까지 개선과 설계 방향을 쭉 나열한 것 같다.
 
-다음에는 이러한 개념을 적용하며 겪은 문제점과 아쉬운 부분을 나열해보겠다.
+[다음 글](/2018/11/23/new_project_2/) 에는 이러한 개념을 적용하며 겪은 문제점과 아쉬운 부분을 나열해보겠다.

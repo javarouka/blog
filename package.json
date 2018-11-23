@@ -6,7 +6,7 @@
     "version": "3.8.0"
   },
   "scripts": {
-    "server": "hexo server",
+    "start": "hexo server",
     "clean": "hexo clean",
     "write": "hexo new --",
     "w": "npm run write --",
