@@ -21,23 +21,19 @@ categories: ['Tech']
 
 단순 조회라도 Controller -> Service -> Behavior -> Repository 로 이어진다.
 
-그 도중 각자의 레이어들이 요구하는 DTO 를 만들다보면 비슷하지만 상당히 많은 Class 가 생성된다.
+그리고 그 레이어간의 통신시마다 각자의 레이어들이 요구하는 DTO 를 만들다보면, 필드 값들이 매우 유사한 많은 Class 가 정의된다.
 
-특히 단순 아이디 조회건의 경우에는 정말 형식적인 레이어링이나 메서드의 경로와 각 DTO 의 변환 로직이 만들어진다.
+특히 단순 아이디 조회건의 경우에는 형식적인 각 레이어 관련 class 들이 생성되고 의미없는 동일 필드의 DTO 들이 정의되고, 그를 위한 변환 로직이 들어간다.
 
 <p align="center">
     <img src="/asset/new_project/boxes.jpeg" alt="수많은..."><em>많다...</em>
 </p>
 
-각 도메인의 지식이 명확하고 이해도가 깊다면, 모든 Layer 에서 참고할 수 있는 Top-Level 레이어 수준으로 Entity (JPA Entity 말고) 를 만들어볼 수 있겠지만, 기간도 그렇고 그렇게 이해하기엔 전사 도메인의 복잡도와 변화도가 컸다.
-
-아무리 명확한 요구사항도 시간이 가면 불명확해지는, 어딘가에 있다고만 믿고있는 여자친구 같은 존재가 되어버렸다. 
-
-또한, 전사 도메인이 그렇게 일관된 통일성이 있는게 아니라 A 비즈니스 팀 에서 해야할 일을 B 비즈니스 팀에서 하는 일도 있고 자주 바뀌기에 이것에 대응하려는 설계는 참으로 어려웠다.
+각 도메인의 지식이 명확하고 이해도가 깊다면, 모든 Layer 에서 참고할 수 있는 Top-Level 레이어 수준으로 Entity (JPA Entity 말고) 를 만들어볼 수 있겠지만, 현실은 쉽지 않았다. 전사 도메인이 그렇게 일관된 통일성이 있는게 아니라 A 비즈니스 팀 에서 해야할 일을 B 비즈니스 팀에서 하는 일도 있고 자주 바뀌기에 이것에 대응하려는 설계는 참으로 어려웠다.
 
 하지만 정석은 언제나 통한다고 생각한다. 많은 시간을 들여 분석해가며 설계하면 이런 점까지 커버할 수 있는 시스템을 만들 수 있다. 하지만 이번에는 일단 초기에 만든 규칙대로 다수의 파일 생성도 감안하며 가는 방식을 선택했다.
 
-이 방법을 고민하다보면 [DDD](https://docs.microsoft.com/ko-kr/dotnet/standard/microservices-architecture/microservice-ddd-cqrs-patterns/ddd-oriented-microservice) 로 가는 것이 답일 것 같은데, DDD 에 대한 지식이 얕아서 잘은 알 수가 없어 적용을 꽤나 망설였고 적용하지 못해 많이 아쉽다. 공부가 부족한걸 매번 탓하지만 안하는 나의 뇌의 잘못이다. 
+이 방법을 고민하다보면 [DDD](https://docs.microsoft.com/ko-kr/dotnet/standard/microservices-architecture/microservice-ddd-cqrs-patterns/ddd-oriented-microservice) 로 가는 것이 답일 것 같은데, 지식이 얕아서 잘은 알 수가 없어 적용을 꽤나 망설였고 적용하지 못해 많이 아쉽다. 공부가 부족한걸 매번 탓하지만 안하는 나의 뇌의 잘못이다. 
 
 후에 리팩토링을 통해서라도 개선하고 싶다.
 
@@ -45,9 +41,9 @@ categories: ['Tech']
 
 [전 글](https://blog.javarouka.me/2018/10/28/new_project_1/#%EB%8D%B0%EC%9D%B4%ED%84%B0-%ED%86%A0%EB%A7%89%EC%B9%98%EA%B8%B0) 에서 언급한 `데이터 토막치기` 로 간단히 데이터를 합쳐서 한방에 내려주는 방식이 아닌 각각의 논리적 단위로 데이터를 가져오는 방식으로 변하면서, 서버 API 설계가 상당히 중요해졌다.
 
-API 를 전체적으로 알지 못하면, 비슷한 기능의 API 가 마구 생성될 수 있다는 뜻이며, 나중에는 결국 비슷비슷한 응답으로 endpoint 만 조금씩 다른 API가 많아질 수 있다는 뜻이다.
+API 를 전체적으로 알지 못하면 같은 데이터가 필요할 때 비슷한 기능의 API 가 생성될 수도 있고, 적절한 관리가 안될 경우 나중엔 비슷비슷한 응답의 endpoint 만 조금씩 다른 API가 많아질 수 있다.
 
-이번에 작업한 내용은 주문정보라는 컨텐츠 하나였지만 그 안에서도 서로 비슷한, 필드 몇개만이 다른 endpoint API 가 몇개 정도 존재하게 되었고, 그대로 product 배포 상태이다.
+이번에 작업한 내용은 `주문정보` 라는 컨텐츠 하나였지만 그 안에서도 서로 비슷한 필드 몇개만이 다른 endpoint API 가 몇개 정도 존재하게 되었고 그대로 product 배포 상태이다.
 
 이 점은 문서화와 관련이 깊다고 생각한다.
 
@@ -57,11 +53,15 @@ API 를 전체적으로 알지 못하면, 비슷한 기능의 API 가 마구 생
     <img src="/asset/new_project/use-swagger.png" alt="문서"><em>문서 정리는 언제나 귀찮다</em>
 </p>
 
+개발단계에서 보다 쉽게 API 를 파악할 방법이 있다면 좋겠는데.
+
 ## Client 에서의 요청 증가 문제
 
 역시 `데이터 토막치기` 로 인해 기존에 한방에서 여러 요청으로 나뉘면서 Http Request 의 숫자가 늘어났다.
 
-데이터 각자가 자신이 필요한 데이터만 응답하기에 경량화된건 사실이지만, 그만큼의 데이터를 모으려면 필요한 수만큼 요청을 해야 하기에 복잡한 도메인 비즈니스 다수가 필요한 컨테이너의 경우 네트워크의 Latency 가 나쁜 상황에서는 엄청나게 느려진다.
+데이터 각자가 자신이 필요한 데이터만 응답하기에 경량화된건 사실이다. 하지만 화면에서는 여전히 여러 데이터가 필요하고 그 데이터를 구하려면 필요한 수 만큼의 API 요청을 해야 한다. 
+
+복잡한 도메인이 포함된 비즈니스로 구성되는 컨테이너의 경우 많은 요청으로 인해 느릴 수밖에 없고 네트워크의 Latency 가 나쁜 상황에서는 몇배로 느려진다.
 
 <p align="center">
     <img src="/asset/new_project/receipts.jpeg" alt="많은 영수증">
@@ -69,7 +69,7 @@ API 를 전체적으로 알지 못하면, 비슷한 기능의 API 가 마구 생
 
 이 때문에 논리적인 데이터 토막을 잘 정의하는게 매우 중요한데, 유보수성과 성능 둘 동시에 영향을 주기 때문이다. 
 
-데이터를 과하게 합쳐 응답할 경우 특정 UI 나 비즈니스만을 위한 API 가 되고 과도하게 나눠 응답할 경우 Client 로직이 복잡해지고 Http request 가 증가한다.
+데이터를 과하게 합쳐 응답할 경우 특정 UI 나 비즈니스만을 위한 API 가 되고, 과도하게 나눠 응답할 경우 Client 로직이 복잡해지고 Http request 가 증가한다.
 
 이에 대해서는 확실한 기준을 세우지 못했다. 대략적으로 만든 아래와 같은 기준이 있을 뿐이다.
 
@@ -83,19 +83,17 @@ API 를 전체적으로 알지 못하면, 비슷한 기능의 API 가 마구 생
 
 데이터를 분할해서 받았으니 역시 분할된 데이터를 조립해야 한다.
 
-그 영역은 Container 라 부르는 Redux Store 에 connect 되는 영역에서 처리하기로 했다.
+그 영역은 Container 라 부르는 Redux Store 에 [connect](https://github.com/reduxjs/react-redux/blob/master/docs/api.md#connect) 되는 영역에서 처리하기로 했다.
 
-각 [Ducks](https://github.com/erikras/ducks-modular-redux) 를 확장한 [ReDucks](https://github.com/alexnm/re-ducks) 에서 [selector](https://github.com/alexnm/re-ducks#selectors) entity 들의 데이터를 잘 조합하는 Container 용 selector 를 만든다.
-
-(selector 는 메모이징을 지원하도록 [reselect](https://github.com/reduxjs/reselect) 를 사용했다)
+각 [Ducks](https://github.com/erikras/ducks-modular-redux) 를 확장한 [ReDucks](https://github.com/alexnm/re-ducks) 에서 [selector](https://github.com/alexnm/re-ducks#selectors) entity 들의 데이터를 잘 조합하는 Container 용 selector 를 만든다. (selector 는 메모이징을 지원하도록 [reselect](https://github.com/reduxjs/reselect) 를 사용했다)
 
 Container 는 특정 목적의 비즈니스의 집합이라 UI 와 강하게 결합되기에 그냥 한파일에 selector 를 넣었다.
 
-이렇다보니 Container 를 잘못 정의할 경우 엄청난 크기의 selector 가 만들어진다. 특히 회원 상세 영역의 경우 생각보다 많은 정책 및 데이터가 섞이기에 Container 가 한없이 커지고 그만큼 entity 의 변화에 따라 반복적인 selector 호출이 일어나서 성능이 좋지 못한 상태이다.
+이렇다보니 Container 를 잘못 정의할 경우 엄청난 크기의 selector 가 만들어진다. 그렇다고 모든 UI Component 들을 Container 화 할 경우 모든 UI 에 entitiy selector 가 달리게 되고, 데이터 구조 변경에 강한 영향을 받게 된다.
 
-그렇다고 모든 UI Component 들을 Container 화 할 경우 모든 UI 에 entitiy selector 가 달리게 되고, 데이터 구조 변경에 강한 영향을 받게 된다.
+현재는 데이터의 응집력(나름대로의...) 단위로 나눠두긴 했는데, 이것도 불명확하긴 매한가지. 
 
-현재는 데이터의 응집력(나름대로의...) 단위로 나눠두긴 했는데, 이것도 불명확하긴 매한가지. 참고할 만한 기준따위 있을리도 없고, 결국에는 실전 운영으로 타협점을 찾아가는게 좋을 듯 하다.
+참고할 만한 기준따위 있을리도 없고, 결국에는 실전 운영으로 타협점을 찾아가는게 좋을 듯 하다.
 
 ## Webpack Code Splitting 문제
 
@@ -159,7 +157,7 @@ Public Path 가 고정되니 배포 Scope 으로 asset 을 요청하게 되고 �
 
 제일 심하게 겪은 문제는 [take](https://redux-saga.js.org/docs/api/#takepattern) 관련인데 Ajax 요청의 경우 같은 요청이 다수가 중복될 경우 첫번째만 취하는 것이 보통 효율이 좋다. 이런 경우는 대부분 사용자의 반복된 클릭등으로 요청되는게 대부분이기 때문이다.
 
-Saga 에서는 [Helper 함수](https://redux-saga.js.org/docs/api/)로 takeLatest, takeEvery, takeLeading 등을 지원한다
+Saga 에서는 [Helper 함수](https://redux-saga.js.org/docs/api/)로 `takeLatest`, `takeEvery`, `takeLeading` 등을 지원한다
 
 - takeEvery
     - 매번 요청건 처리
@@ -168,11 +166,9 @@ Saga 에서는 [Helper 함수](https://redux-saga.js.org/docs/api/)로 takeLates
 - takeLeading
     - 제일 첫번째 건만 처리
 
-하지만 이건 짧은 생각이고 실전에서는 다양한 이유로 짧은 시간에 다수의 요청이 진행되었다.
+하지만 실전에서는 다양한 이유로 짧은 시간에 다수의 요청이 진행되었다. 개발 초기에는 대부분의 Saga Watcher 에 takeLeading (1.x) 을 걸어두었다. 중복 요청일 경우 두번째는 무시하기 위해서이다.
 
-처음에는 대부분의 Saga Watcher 에 takeLeading (1.x) 을 걸어두었다. 중복 요청일 경우 두번째는 무시하기 위해서이다.
-
-하지만 나중에 테스트와 액션 리포트를 보면 사용자의 반복 요청에 막히는 것은 거의 없고 오히려 특정 사이드이펙트 action watcher (트리거 action이 여러개 존재하는 watcher) 가 서로 다른 action dispatch 에 trigger 되면서 나중 요청을 전부 씹는 상황이 발생했다
+하지만 나중에 테스트와 액션 리포트를 보면 사용자의 반복 요청에 막히는 것은 거의 없고 오히려 특정 사이드이펙트 action watcher (트리거 action이 여러개 존재하는 watcher) 가 서로 다른 action dispatch 에 영향받게 되면서 나중 요청을 전부 씹는 상황이 발생했다
 
 예를 들면 주문 상세를 트리거하는 ORDER_DETAIL 액션으로 주문 A 를 trigger 했다가 바로 B 를 trigger 하면 주문 A 의 정보를 로딩하는 watcher 들이 takeLeading 방식이라 나중에 들어온 B 정보 action 을 dispatch 하지 않고 주문 A 관련만을 처리하게 되는 것이다.
 
