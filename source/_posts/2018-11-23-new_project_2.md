@@ -172,7 +172,7 @@ Saga 에서는 [Helper 함수](https://redux-saga.js.org/docs/api/)로 `takeLate
 
 예를 들면 주문 상세를 트리거하는 ORDER_DETAIL 액션으로 주문 A 를 trigger 했다가 바로 B 를 trigger 하면 주문 A 의 정보를 로딩하는 watcher 들이 takeLeading 방식이라 나중에 들어온 B 정보 action 을 dispatch 하지 않고 주문 A 관련만을 처리하게 되는 것이다.
 
-`take` 디자인에도 생각없이 하면 안된다는 걸 깨닫고 액션과 UI 의 관계에 따라 다른 `take` 전략을 사용하게 되었다.
+`take` 디자인에도 생각없이 하면 안된다는 걸 깨닫고 액션과 UI 의 관계에 따라 다른 `take` 전략을 사용해야 한다는 걸 깨달았다. 잘 모르겠으면 [take helper](https://redux-saga.js.org/docs/api/) 들을 안쓰는 것도 좋은 방법인것 같다.
 
 `fork` 된 액션은 부모의 try-catch 에 영향이 없다라든지 `call` 은 비동기라든지 하는 Redux-Saga 알못등의 오류도 있었지만 이런건 [Document](https://mskims.github.io/redux-saga-in-korean/) 를 잘 봤으면 해결될 문제라...
 
