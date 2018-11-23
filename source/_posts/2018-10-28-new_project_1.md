@@ -3,7 +3,7 @@ layout: post
 title: "신규 통합 CS 시스템 관리 개발기 # 설계편"
 description: "일단 지른다"
 date: 2018-10-28
-tags: [java, javascript, scaffolding, legacy]
+tags: [java, javascript, scaffolding, legacy, new-cs-system]
 comments: true
 share: true
 toc: true

@@ -3,7 +3,7 @@ layout: post
 title: "신규 통합 CS 시스템 관리 개발기 # 혼란편"
 description: "혼란하다"
 date: 2018-11-23
-tags: [java, javascript, scaffolding, legacy]
+tags: [java, javascript, scaffolding, legacy, new-cs-system]
 comments: true
 share: true
 toc: true
