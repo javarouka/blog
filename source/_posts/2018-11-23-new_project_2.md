@@ -159,8 +159,6 @@ Public Path 가 고정되니 배포 Scope 으로 asset 을 요청하게 되고 �
 
 제일 심하게 겪은 문제는 [take](https://redux-saga.js.org/docs/api/#takepattern) 관련인데 Ajax 요청의 경우 같은 요청이 다수가 중복될 경우 첫번째만 취하는 것이 보통 효율이 좋다. 이런 경우는 대부분 사용자의 반복된 클릭등으로 요청되는게 대부분이기 때문이다.
 
-하지만 이건 짧은 생각이고 실전에서는 다양한 이유로 짧은 시간에 다수의 요청이 진행되었다.
-
 Saga 에서는 [Helper 함수](https://redux-saga.js.org/docs/api/)로 takeLatest, takeEvery, takeLeading 등을 지원한다
 
 - takeEvery
@@ -169,6 +167,8 @@ Saga 에서는 [Helper 함수](https://redux-saga.js.org/docs/api/)로 takeLates
     - 제일 마지막 건만 처리
 - takeLeading
     - 제일 첫번째 건만 처리
+
+하지만 이건 짧은 생각이고 실전에서는 다양한 이유로 짧은 시간에 다수의 요청이 진행되었다.
 
 처음에는 대부분의 Saga Watcher 에 takeLeading (1.x) 을 걸어두었다. 중복 요청일 경우 두번째는 무시하기 위해서이다.
 
