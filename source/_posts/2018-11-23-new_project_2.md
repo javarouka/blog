@@ -172,7 +172,7 @@ Saga 에서는 [Helper 함수](https://redux-saga.js.org/docs/api/)로 `takeLate
 
 `take` 디자인에도 생각없이 하면 안된다는 걸 깨닫고 액션과 UI 의 관계에 따라 다른 `take` 전략을 사용해야 한다는 걸 깨달았다. 잘 모르겠으면 [take helper](https://redux-saga.js.org/docs/api/#saga-helpers) 들을 안쓰는 것도 좋은 방법인것 같다.
 
-`fork` 된 액션은 부모의 try-catch 에 영향이 없다라든지 `call` 은 비동기라든지 하는 Redux-Saga 알못등의 오류도 있었지만 이런건 [Document](https://mskims.github.io/redux-saga-in-korean/) 를 잘 봤으면 해결될 문제라...
+`fork` 된 액션은 부모의 try-catch 에 영향이 없다라든지 `call` 과 `fork` Blocking 차이라든지 하는 Redux-Saga 이해도가 부족한 것에서 오는 어려움도 있었지만 이런건 [Document](https://mskims.github.io/redux-saga-in-korean/) 를 잘 봤으면 해결될 문제라...
 
 ## 결론
 
