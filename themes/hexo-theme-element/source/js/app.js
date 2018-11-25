@@ -36,7 +36,6 @@ var customSearch;
 		e.preventDefault();
 		var self = $(this),
 			correction = e.data ? e.data.correction ? e.data.correction : 0 : 0;
-		console.log(e, e.data);
 		$('html, body').animate({'scrollTop': $(self.attr('href')).offset().top - correction }, 400);
 	};
 
