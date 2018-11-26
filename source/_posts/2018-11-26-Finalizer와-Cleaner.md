@@ -90,6 +90,7 @@ public class Boss {
             throw new RuntimeException("work Exception!");
         }
 
+        @Override
         public void close() {
             throw new RuntimeException("close Exception!");
         }
