@@ -6,8 +6,8 @@ date: 2018-11-21
 tags: [java, di, double dispatch, effective]
 comments: true
 share: true
-image: '/asset/images/Effective-Java-Third-Edition.jpg'
-thumbnail: '/asset/images/Effective-Java-Third-Edition.jpg'
+image: '/asset/images/effective/effective.webp'
+thumbnail: '/asset/images/effective/effective.webp'
 categories: ['Effective Java']
 ---
 

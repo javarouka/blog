@@ -7,8 +7,8 @@ tags: [java, singleton, lazyholder, effective]
 comments: true
 share: true
 toc: true
-image: '/asset/images/Effective-Java-Third-Edition.jpg'
-thumbnail: '/asset/images/Effective-Java-Third-Edition.jpg'
+image: '/asset/images/effective/effective.webp'
+thumbnail: '/asset/images/effective/effective.webp'
 categories: ['Effective Java']
 ---
 
