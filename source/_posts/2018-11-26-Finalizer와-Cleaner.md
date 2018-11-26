@@ -100,7 +100,6 @@ public class Boss {
         // 짧다!
         try(Worker worker = new Worker()) {
             worker.work();
-            System.out.println("AAA");
         }
     }
 }
