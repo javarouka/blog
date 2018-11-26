@@ -6,6 +6,11 @@
     <h1 class="article-title" itemprop="name">
       <%= post.title %>
     </h1>
+    <% if(post.description) { %>
+      <h2 class="article-sub-title">
+        <%= post.description %>
+      </h2>
+    <% } %>
     <% if(!post.noDate) { %>
       <div class="article-meta">
         Posted on 
