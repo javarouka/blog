@@ -7,8 +7,8 @@ tags: [java, serialize, effective]
 comments: true
 share: true
 toc: true
-image: '/asset/images/java-logo.png'
-thumbnail: '/asset/images/java-logo.png'
+image: '/asset/images/Effective-Java-Third-Edition.jpg'
+thumbnail: '/asset/images/Effective-Java-Third-Edition.jpg'
 categories: ['Effective Java']
 ---
 
