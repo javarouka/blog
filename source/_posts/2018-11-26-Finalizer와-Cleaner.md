@@ -110,11 +110,11 @@ public class Boss {
 
 ```
 Exception in thread "main" java.lang.RuntimeException: work Exception!
-	at A$AA.work(A.java:6)
-	at A.main(A.java:16)
+	at Boss$Worker.work(Boss.java:6)
+	at Boss.main(Boss.java:16)
 	Suppressed: java.lang.RuntimeException: close Exception!
-		at A$AA.close(A.java:10)
-		at A.main(A.java:18)
+		at Boss$Worker.close(Boss.java:10)
+		at Boss.main(Boss.java:18)
 ```
 
 ## Cleaner / Finalizer 둘다 애매하다.
@@ -132,5 +132,6 @@ JVM 구현에 따라 동작도 매우 달라질 여지가 많다.
 
 ## 읽을만한 글
 
+- [Java's Finalizer Is Still There](https://dzone.com/articles/javas-finalizer-is-still-there)
 - [Java Reference와 GC](https://d2.naver.com/helloworld/329631)
 - [Java Garbage Collection - Understanding Phantom Reference with examples](https://www.logicbig.com/tutorials/core-java-tutorial/gc/phantom-reference.html)
