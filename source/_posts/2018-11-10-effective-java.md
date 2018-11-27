@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Effective Java 3th 정리노트"
+description: "책 읽고 간단히 정리한 흔적들"
 date: 2018-11-10
 tags: [java, effective]
 comments: true
