@@ -2,7 +2,7 @@
 layout: post
 title: "Equals 구현과 리스코프 치환 법칙 (Effective java 3th - Item10)"
 description: "equals 는 일반 규약을 지켜 재정의하라"
-date: 2018-11-26
+date: 2018-11-27
 tags: [java, effective]
 comments: true
 share: true
