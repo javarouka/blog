@@ -21,4 +21,5 @@ categories: ['Effective Java']
 - [Item 6 불필요한 객체 생성을 피하라](/2018/11/25/불필요한-객체생성-회피)
 - [Item 8,9 finalizer 와 cleaner 사용을 피하라 & Try-With-Resource](/2018/11/26/Finalizer와-Cleaner)
 - [Item 10 equals 는 일반 규약을 지켜 재정의하라](/2018/11/27/object-equals-liskov)
+- [Item 11 equals를 재정의하려거든 hashCode도 재정의하라](/2018/11/28/java의-HashMap-구현에-대해)
 - ...
