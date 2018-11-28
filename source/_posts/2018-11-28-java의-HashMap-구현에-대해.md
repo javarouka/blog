@@ -59,7 +59,7 @@ JDK 9 에서는 좀더 기능이 확장되어 불변 맵을 생성하는 [of def
 
 오버로딩이 꽤 많이 되어 최대 인자 20개로 10개까지의 원소를 가지는 맵을 생성할 수 있다. 구현이 너무 정직해서 놀랐다.
 
-[Google Guava](https://github.com/google/guava) 에는 이미 구현되어 있던 기능이다. 그냥 Guava를 정식 라이브러리로 하면 어떨까 싶다. [Reddit: Map.of](https://www.reddit.com/r/java/comments/49y6iu/new_java_9_mapof_methods/) 의 글도 한번 읽어보면 재미있을 것이다.
+[Google Guava](https://github.com/google/guava) 에는 이미 구현되어 있던 기능이다. 그냥 Guava를 정식 라이브러리로 하면 어떨까 싶다.
 
 ```java
 Map<String, String> immutableMap = Map.of("키1", "값1", "키2", "값2");
