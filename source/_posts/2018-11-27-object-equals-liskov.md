@@ -113,7 +113,7 @@ class Square extends Rectangle {
 ```java
 // 직사각형 문맥 로직 수행
 public void changeWideSize(Rectangle rec) {
-    dim.setSuze(dim.getHeight(), dim.getWidth() * 2); // throw Exception.
+    dim.setSize(dim.getHeight(), dim.getWidth() * 2); // throw Exception.
 }
 ```
 
