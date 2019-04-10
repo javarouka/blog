@@ -119,7 +119,7 @@ public void changeWideSize(Rectangle rec) {
 
 사용자 측에서는 직사각형이라고 생각하고 인자를 처리하고 있다.
 
-하지만 불행히도 객체지향의 인자는 [공변적(covariant)](https://edykim.com/ko/post/what-is-coercion-and-anticommunism/)이다. 이 뜻은 인자는 실제 객체의 하위타입이 올 수 있다는 뜻이다.
+하지만 불행히도 객체지향의 인자는 [반공변적(contravariant)](https://edykim.com/ko/post/what-is-coercion-and-anticommunism/)이다. 이 뜻은 인자는 실제 객체의 하위타입이 올 수 있다는 뜻이다.
 
 예제에서는 **직사각형(Rectangle) 뿐 아니라 정사각형(Square)** 도 올 수 있다는 뜻이다.
 
