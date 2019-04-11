@@ -112,7 +112,7 @@ ArrayList<Truck> trucks = new ArrayList<Truck>();
 다음 코드는 컴파일 오류이다.
 
 ```java
-// 호환되지 않는 타입 컴파일 오류가 발생한다.
+// 호환되지 않는 타입. 컴파일 오류가 발생한다.
 ArrayList<Car> cars = new ArrayList<Truck>();
 ```
 
@@ -125,7 +125,7 @@ ArrayList<Car> cars = new ArrayList<Truck>();
 배열은 위의 성질과 다르게 공변관계를 허용한다. 그래서 다음 코드는 문제가 없다
 
 ```java
-Number[] numbers = new Long[1];
+Car[] cars = new Truck[1];
 ```
 
 문제는 위의 배열에 다음과 같은 코드를 실행할 때다. `ArrayStoreException` 이 발생한다.
@@ -134,16 +134,17 @@ Number[] numbers = new Long[1];
 
 ```java
 // ArrayStoreException
-numbers[0] = 1;
+cars[0] = new Taxi();
 ```
 
-배열은 제네릭과 다르게 런타임 시에도 타입이 소거되지 않고 유지하기 때문이다. 런타임 시 이 소거되지 않은 타입을 검사하며, 오류를 출력한다.
+배열은 제네릭과 다르게 런타임 시에도 타입이 소거되지 않고 유지하기 때문이다. 런타임 시 이 소거되지 않은 타입을 검사하며 오류를 출력한다.
 
 ### 와일드카드 변성
 
 Java 에서는 배열의 제네릭 파라미터일 경우 이 관계를 와일드카드와 함께 써서 `PECS (Producer-extends, Consumer-super)` 로 정의한다.
 
 ```java
+
 // 공변 제네릭 리스트
 List<? extends GirlGroupSinger> girlGroups1 = new ArrayList<>();
 
