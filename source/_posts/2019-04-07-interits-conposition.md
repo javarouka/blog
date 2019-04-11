@@ -54,7 +54,7 @@ public class MainClass {
 
 ## 타입과 클래스
 
-`Truck`의 인스턴스는 `Truck` 와 `Car` 타입이 될 수 있다. `Truck` 은 두가지의 타입을 가지고 있다.
+`Truck`의 인스턴스는 `Truck` 와 `Car` 타입이 될 수 있다.
 
 ```java
 Car car = new Car();
