@@ -100,11 +100,29 @@ Java 에서는 배열의 제네릭 파라미터일 경우 이 관계를 와일�
 
 ```java
 // 공변 제네릭 리스트
-List<? extends GirlGroupSinger> girlGroups1 = new ArrayList<>(); 
+List<? extends GirlGroupSinger> girlGroups1 = new ArrayList<>();
+
+// 이 문은 컴파일 오류이다. 이 값이 어떤 값인지 특정지을 수 없다.
+girlGroups1.add(new Twice());
+girlGroups1.add(new Sistar());
+
+// 걸그룹임이 보장된다.
+GirlGroupSinger some = girlGroups.get(0);
 
 // 반공변 제네릭 리스트
 List<? super GirlGroupSinger> girlGroups2 = new ArrayList<>(); 
+
+// 걸그룹의 수퍼타입이면 뭐든 입력할 수 있다
+girlGroups1.add(new People());
+girlGroups1.add(new Animal());
+
+// 이 문은 컴파일 오류이다. 이 타입이 무엇인지 특정지을 수 없다.
+GirlGroupSinger some = girlGroups.get(0);
 ```
+
+이와 관련해서 몇몇 Java의 책에서는 상한(super)/하한(extends)이라는 용어로 설명되기도 한다
+
+> 이 주제와 관련해서 좋은 StackOverflow 링크가 있다. https://bit.ly/2GdGEUh
 
 ## 자동 선언
 
