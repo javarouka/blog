@@ -116,7 +116,7 @@ ArrayList<Truck> trucks = new ArrayList<Truck>();
 ArrayList<Car> cars = new ArrayList<Truck>();
 ```
 
-제네릭의 경우는 모든 타입과 수퍼/서브타입이 성립하지 않는다. 제네릭 파라미터가 어떤 관계이든 항상 다른 타입이다.
+제네릭의 경우는 모든 타입은 다른 모든 타입과 수퍼/서브타입이 성립하지 않는다. 제네릭 파라미터가 어떤 관계이든 항상 다른 타입이다.
 
 이것을 유식한 단어로 `불공변(invariant)` 이리고 한다.
 
