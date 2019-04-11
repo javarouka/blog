@@ -18,7 +18,7 @@ categories: ['java', 'kotlin']
 
 상속은 [Simula](https://ko.wikipedia.org/wiki/시뮬라) 라는 언어의 객체지향적 부분에서 발전했다고 알려져 있다. C++ 개발자인 [비야네 스트로스트롭](https://ko.wikipedia.org/wiki/비야네_스트롭스트룹)이나 Java 개발자인 [제임스 고슬링](https://ko.wikipedia.org/wiki/제임스_고슬링)도 Simula 에서 언어 개발에 상당한 아이디어를 얻었다고.
 
-자바의 상속은 다음과 같은 성격을 지닌다
+Java 의 상속은 다음과 같은 성격을 지닌다
 
 ## 수퍼/서브클래스
 어떤 클래스 B 가 다른 클래스 A 를 상속할 때 A를 수퍼클래스, B 를 서브클래스라고 한다. 간혹 수퍼타입/서브타입으로도 부르기도 하는데 다소 다른 의미다.
@@ -47,7 +47,7 @@ class CarStore {
 
 상속관계인 클래스 `Car` 와 `Truck` 은 서로 각자의 타입이면서 클래스이다.
 
-그렇다면 왜 타입과 클래스를 정확하게 구분해야 하는가. 그것은 하나의 클래스는 대부분 두가지 이상의 타입으로 표현될 수 있기 때문이다.
+그렇다면 왜 타입과 클래스를 정확하게 구분해야 하는가. 그것은 *하나의 클래스는 대부분 두가지 이상의 타입으로 표현* 될 수 있기 때문이다.
 
 ### 타입과 클래스
 
@@ -130,7 +130,7 @@ Java 를 처음 학습할때 접하는 `private`, `protected`, `public` 이고 �
 
 애매한 건 `default` 접근 제어인데 이 케이스는 일반적인 케이스의 경우 잘 사용되지 않지만, 구현체를 직접적으로 사용하지 못하게 할때 유용하게 쓸 수 있다.
 
-만일 같은 패키지에 `UserInputController` 클래스와 `UserInputController` 을 상속한 `Mouse` 클래스, `Keyboard` 클래스가 있다고 할 때 타 패키지에서는 `GameController` 으로만 추상적으로 접근하게 하고 싶다면 다음과 같이 구현하면 된다
+만일 같은 패키지에 `UserInputController` 클래스와 `UserInputController` 을 상속한 `Mouse` 클래스, `Keyboard` 클래스가 있다고 할 때 타 패키지에서는 `UserInputController` 으로만 추상적으로 접근하게 하고 싶다면 다음과 같이 구현하면 된다
 
 ```java
 // @file UserInputController.java
