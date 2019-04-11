@@ -31,16 +31,19 @@ class Car {}
 class Truck extends Car {}
 
 class CarStore {
-
+    private Set<Car> carList = new HashSet<>();
     public void put(Car car) {
-        // ...
+        carList.add(car);
     }
+}
+
+public class MainClass {
 
     public static void main(String... args) {
         CarStore shop = new CarStore();
         shop.put(new Car());
         shop.put(new Truck());
-        shop.put(new Ship()); // Error.
+        shop.put(new Ship()); // 컴파일 에러. 배는 차가 아니다.
     }
 }
 ```
