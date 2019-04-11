@@ -144,7 +144,6 @@ cars[0] = new Taxi();
 Java 에서는 배열의 제네릭 파라미터일 경우 이 관계를 와일드카드와 함께 써서 `PECS (Producer-extends, Consumer-super)` 로 정의한다.
 
 ```java
-
 // 공변 제네릭 리스트
 List<? extends GirlGroupSinger> girlGroups1 = new ArrayList<>();
 
@@ -154,7 +153,9 @@ girlGroups1.add(new Sistar());
 
 // 걸그룹임이 보장된다.
 GirlGroupSinger some = girlGroups.get(0);
+```
 
+```java
 // 반공변 제네릭 리스트
 List<? super GirlGroupSinger> girlGroups2 = new ArrayList<>(); 
 
