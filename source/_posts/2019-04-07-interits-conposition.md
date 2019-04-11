@@ -78,7 +78,7 @@ ArrayList<Truck> trucks = new ArrayList<Truck>();
 
 ## 타입 관계
 
-서브클래스는 수퍼클래스 타입의 변수에 할당할 수 있다. 이 뜻은 자식은 부모 자식은 부모의 모든 기능을 상속했으므로, 이 법칙은 당연하다. [리스코프 치환 원칙](https://blog.javarouka.me/2018/11/27/object-equals-liskov/#%EB%A6%AC%EC%8A%A4%EC%BD%94%ED%94%84-%EC%B9%98%ED%99%98-%EB%B2%95%EC%B9%99) 으로도 부른다.
+서브클래스는 수퍼클래스 타입의 변수에 할당할 수 있다. 자식은 부모의 모든 기능을 상속받았고 부모가 할 수 있는 모든 일을 할 수 있으므로, 이 법칙은 당연하다. [리스코프 치환 원칙](https://blog.javarouka.me/2018/11/27/object-equals-liskov/#%EB%A6%AC%EC%8A%A4%EC%BD%94%ED%94%84-%EC%B9%98%ED%99%98-%EB%B2%95%EC%B9%99) 으로도 부른다.
 
 타입 관계에서는 `변성(variance)` 이라는 개념이 존재한다.
 
