@@ -167,8 +167,6 @@ girlGroups1.add(new Animal());
 GirlGroupSinger some = girlGroups.get(0);
 ```
 
-이와 관련해서 몇몇 Java의 책에서는 상한(super)/하한(extends)이라는 용어로 설명되기도 한다.
-
 여기서 Producer 와 Consumer 의 주체는 제네릭 타입의 인자이다.
 
 extends 일 경우 인자가 값을 생산 (get) 한다는 의미이며 super 일 경우 인자가 값을 소비(set) 한다는 의미이다.
