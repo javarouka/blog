@@ -1,14 +1,14 @@
 ---
 layout: post
 title: "Java / Kotlin 의 상속과 구성 (Inheritance & Composition) #1"
-description: "자바와 코틀린에서 본 상속과 구성에 대한 개인적 정리 #1"
+description: "자바의 상속과 클래스, 타입"
 date: 2019-04-07
-tags: [java, kotlin, composition, delegate]
+tags: [java, kotlin, composition, type, class, delegate]
 comments: true
 share: true
 toc: true
 image: '/asset/images/rrr.jpg'
-thumbnail: '/asset/images/rrrr.jpg'
+thumbnail: '/asset/images/rrr.jpg'
 categories: ['java', 'kotlin']
 ---
 
@@ -130,7 +130,7 @@ Car[] cars = new Truck[1];
 
 문제는 위의 배열에 다음과 같은 코드를 실행할 때다. `ArrayStoreException` 이 발생한다.
 
-컴파일 타임이 아닌 런타임에 발생한다. 이래서는 곤란하다.
+컴파일 타임이 아닌 런타임에 발생한다. 택시를 차로 분류하지 않으면 아무래도 곤란할 것이다.
 
 ```java
 // ArrayStoreException
@@ -201,7 +201,9 @@ Java 를 처음 학습할때 접하는 `private`, `protected`, `public` 이고 �
 
 애매한 건 `default` 접근 제어인데 이 케이스는 일반적인 케이스의 경우 잘 사용되지 않지만, 구현체를 직접적으로 사용하지 못하게 할때 유용하게 쓸 수 있다.
 
-만일 같은 패키지에 `UserInputController` 클래스와 `UserInputController` 을 상속한 `Mouse` 클래스, `Keyboard` 클래스가 있다고 할 때 타 패키지에서는 `UserInputController` 으로만 추상적으로 접근하게 하고 싶다면 다음과 같이 구현하면 된다
+만일 같은 패키지에 `UserInputController` 클래스와 `UserInputController` 을 상속한 `Mouse` 클래스, `Keyboard` 클래스가 있다고 할 때 타 패키지에서는 `UserInputController` 으로만 추상적으로 접근하게 하고 싶다면 다음과 같이 구현하면 된다.
+
+구현 클래스에는 public 접근제어 없이 default 로 선언했다
 
 ```java
 // @file UserInputController.java
@@ -217,7 +219,25 @@ package me.javarouka.input;
 class Keyboard implements UserInputController {}
 ```
 
-외부에서는 클래스를 생성하지 못한다. *private 생성자* 로도 이런 방법을 쓸 수 있지만, DI 프레임워크(Spring Framework 가 대중적이다.) 등을 쓰고 있다면 이 방법이 유용할 것이다.
+외부에서는 클래스를 생성하지 못한다. 
+
+*private 생성자* 로도 이런 방법을 쓸 수 있지만, DI 프레임워크(Spring Framework 가 대중적이다.) 등을 쓰고 있다면 이 방법이 유용할 것이다.
+
+DI 프레임워크 등이 없다면 팩토리 클래스 같은 생성 헬퍼를 만들어줘야 할 것이다.
+
+```java
+package me.javarouka.input;
+public interface UserInputControllers {
+
+    public static UserInputController createMouse() {
+        return new Mouse();
+    }
+
+    public static UserInputController createKeyboard() {
+        return new Keyboard();
+    }
+}
+```
 
 # 결론
 
