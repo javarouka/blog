@@ -28,7 +28,7 @@ List<String> strList = new ArrayList<>();
 - Subclassing 된 class 라면 자식 생성자 호출 시 부모의 생성자도 연쇄적으로 호출한다. 생성자 체이닝이라고도 부른다.
 - 어떤 클래스가 기본 생성자가 아닌 생성자가 정의되었다면 Subclass 도 반드시 생성자를 정의해야 한다. 그리고 그 생성자에는 super로 명시적 체이닝을 해줘야 한다
 
-생성자 호출은 모듈에는 Spring 등의 [DI Framework](https://en.wikipedia.org/wiki/Dependency_injection#Dependency_injection_frameworks) 에 일반 객체는 [Builder 패턴](https://johngrib.github.io/wiki/builder-pattern/) 을 사용하게 되면 거의 쓸일이 없어진다.
+생성자 호출은 모듈에는 Spring 등의 [DI Framework](https://en.wikipedia.org/wiki/Dependency_injection#Dependency_injection_frameworks) 를 쓰고, 일반 객체는 [Builder 패턴](https://johngrib.github.io/wiki/builder-pattern/) 을 사용하게 되면 거의 쓸일이 없어진다.
 
 하지만 독자 레이어링 시에는 간간히 호출하는 경우가 있기에 알아두면 좋을 것 같다.
 
