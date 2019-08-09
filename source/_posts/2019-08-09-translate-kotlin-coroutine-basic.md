@@ -79,7 +79,7 @@ fun main() {
 
 > 전체 코드는 [여기](https://github.com/kotlin/kotlinx.coroutines/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-basic-02.kt)에 있다
 
-결과는 같지만, 이 코드는 단지 넌블럭킹 `delay` 를 사용한다. 메인 스레드를 실행하는 `runBlocking` 은 `runBlocking` 내부의 코루티이 완료될 때까지 블럭된다. 
+결과는 같지만, 이 코드는 단지 넌블럭킹 `delay` 를 사용한다. 메인 스레드를 실행하는 `runBlocking` 은 `runBlocking` 내부의 코루틴이 완료될 때까지 블럭된다. 
 
 이 예제는 더 관용적 방법으로 재작성할 수 있는데, main 함수 실행을 `runBlocking` 을 사용해 감싸는 것이다:
 
