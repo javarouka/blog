@@ -188,6 +188,8 @@ fun main() = runBlocking { // this: CoroutineScope
 }
 ```
 
+> 예제에 대해 말을 덧붙이면, runBlocking 빌더로 생성되어 실행된 코루틴 블럭은 이름 그대로 실행이 안료되기 전까지 블럭되어 스코프를 빠져나올 수 없는 반면, coroutineScope 빌더로 생성되어 실행된 코루틴 블럭은 내부의 자식 코루틴 실행 완료와 관련없이 현재 스레드를 차단하지 않고 스코프를 "탈출" 한다. 예제의 숫자를 바꿔가며 테스트해보면 이해가 빨리 올 것이다.  
+
 > 전체 코드는 [여기](https://github.com/kotlin/kotlinx.coroutines/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-basic-04.kt)에 있다
 
 # Extract function refactoring
