@@ -52,7 +52,7 @@ World!
 
 `GlobalScope.launch { ... }` 를 `thread { ... }` 로 `delay { ... }` 을 `Thread.sleep { ... }` 로 바꿔도 같은 결과를 얻을 수 있다. 한번 해보자.
 
-만일 `GlobalScope.launch` 를 `thread` 로 바꾸려고 하면 컴파일러는 다음과 같은 에러를 낸다:
+만일 `GlobalScope.launch` 를 `thread` 로 바꾸려고 하기 시작하면 컴파일러는 다음과 같은 에러를 낸다:
 
 > Error: Kotlin: Suspend functions are only allowed to be called from a coroutine or another suspend function<br/>(에러: 코틀린: Suspend 함수들은 코루틴이나 다른 Suspend 함수에서의 호출만을 허용한다.)
 
