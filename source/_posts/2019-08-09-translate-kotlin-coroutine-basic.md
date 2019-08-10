@@ -81,7 +81,7 @@ fun main() {
 
 결과는 같지만, 이 코드는 단지 넌블럭킹 `delay` 를 사용한다. 메인 스레드를 실행하는 `runBlocking` 은 `runBlocking` 내부의 코루틴이 완료될 때까지 블럭된다. 
 
-이 예제는 더 관용적 방법으로 재작성할 수 있는데, main 함수 실행을 `runBlocking` 을 사용해 감싸는 것이다:
+이 예제는 더 관용적 방법으로 재작성할 수 있는데, main 함수 실행을 `runBlocking` 을 사용해 감싸는 것이다:
 
 ```kotlin
 import kotlinx.coroutines.*
@@ -252,7 +252,7 @@ fun main() = runBlocking {
 
 # Global coroutines are like daemon threads
 
-다음 코드는 `GlobalScope` 에서 "I'm sleeping" 을 1초에 두번 인쇄하고 그후 메인 함수에 약간의 `delay` 후 복귀하는 긴 시간의 코루틴을 실행한다:
+다음 코드는 `GlobalScope` 에서 "I'm sleeping" 을 1초에 두번 인쇄하고 그후 메인 함수에 약간의 `delay` 후 복귀하는 긴 시간의 코루틴을 실행한다:
 
 ```
 GlobalScope.launch {
