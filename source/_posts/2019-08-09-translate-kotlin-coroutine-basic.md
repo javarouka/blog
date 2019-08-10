@@ -50,7 +50,7 @@ World!
 
 여기서는 `GlobalScope` 에서 새 코루틴을 시작하고 있다. 이는 새 코루틴의 생명주기가 전체 어플리케이션의 생명주기에 제한된다는 것을 의미한다. 
 
-`GlobalScope.launch { ... }` 를 `launch { ... }` 로 `delay { ... }` 을 `Thread.sleep { ... }` 로 바꿔도 같은 결과를 얻을 수 있다. 한번 해보자.
+`GlobalScope.launch { ... }` 를 `thread { ... }` 로 `delay { ... }` 을 `Thread.sleep { ... }` 로 바꿔도 같은 결과를 얻을 수 있다. 한번 해보자.
 
 만일 `GlobalScope.launch` 를 `thread` 로 바꾸려고 하면 컴파일러는 다음과 같은 에러를 낸다:
 
