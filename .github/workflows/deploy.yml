@@ -1,16 +1,41 @@
-name: Build and Deploy
-on: [push]
-jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout
-      uses: actions/checkout@master
+# .github/workflows/hexo-deploy.yml
 
-    - name: Build and Deploy
-      uses: renzhaosy/hexo-deploy-action@master
+name: Node CI
+
+on: 
+  push:
+    branches:
+    - master
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: Hexo-Cli Install
+      run: npm i -g hexo
+    - name : Change Environment
       env:
-        PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        PUBLISH_REPOSITORY: renzhaosy/renzhaosy.github.io # The repository the action should deploy to.
-        BRANCH: gh-pages  # The branch the action should deploy to.
-        PUBLISH_DIR: ./public
+        GITHUB_TOKEN: "2ceaa32e1f367623cf02881792970dd01d37bdc7"
+      run: |
+        git config --global user.name "javarouka"
+        git config --global user.email "javarouka@gmail.com"
+        sed -i "s/__GITHUB_TOKEN__/${GITHUB_TOKEN}/" _config.yml
+    - name: NPM Install
+      run: npm install
+    - name: Hexo Clean
+      run: hexo clean
+    - name: Hexo Generate
+      run: hexo g
+    - name: Hexo Deploy
+      run: hexo d
