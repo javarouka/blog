@@ -26,7 +26,7 @@ jobs:
       run: npm i -g hexo
     - name : Change Environment
       env:
-        GITHUB_TOKEN: "2ceaa32e1f367623cf02881792970dd01d37bdc7"
+        GITHUB_TOKEN: "516674c34e9fe6aab6e2404de08908d2c18b17cb"
       run: |
         git config --global user.name "javarouka"
         git config --global user.email "javarouka@gmail.com"
