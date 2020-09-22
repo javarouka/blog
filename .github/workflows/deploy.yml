@@ -1,30 +1,19 @@
-name: Site CI
+name: Hexo Build and Deploy
 
-on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+on: [push]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+      - name: Cache node modules
+        uses: actions/cache@v1
         with:
-          node-version: ${{ matrix.node-version }}
-      - name: npm install, build
-        run: |
-          npm install
-          npm run build
-        env:
-          CI: true
-      - name: Deploy
-        uses: s0/git-publish-subdir-action@develop
-        env:
-          REPO: self
-          BRANCH: gh-pages
-          FOLDER: build
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          path: node_modules
+          key: ${{runner.OS}}-${{hashFiles('**/package-lock.json')}}
+      - uses: yrpang/github-actions-hexo@master
+        with:
+          deploykey: ${{secrets.DEPLOY_KEY}}
+          username: YOUR_USER_NAME
+          email: YOUR_EMAIL_ADDRESS
