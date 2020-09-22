@@ -111,6 +111,11 @@ toc:
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://github.com/javarouka/blog.git
-  branch: gh-pages
+  name: javarouka
+  email: javarouka@gmail.com
+  repo: 
+    github: 
+      url: https://github.com/javarouka/blog.git
+      token: $GITHUB_TOKEN
+      branch: gh-pages
   message: .
