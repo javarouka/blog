@@ -113,7 +113,7 @@ deploy:
   type: git
   name: javarouka
   email: javarouka@gmail.com
-  repo: https://516674c34e9fe6aab6e2404de08908d2c18b17cb@github.com/javarouka/blog.git
-  token: $GITHUB_TOKEN
+  repo: https://github.com/javarouka/blog.git
+  token: 516674c34e9fe6aab6e2404de08908d2c18b17cb
   branch: gh-pages
   message: .
