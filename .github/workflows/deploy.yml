@@ -13,9 +13,13 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Build the site
+    - name: npm install
       run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        npm install
-        npm run deploy
+        git config --global user.email "action@github.com"
+        git config --global user.name "GitHub Action"
+    - name: npm install
+      run: npm run build
+    - name: deploy
+      uses: ad-m/github-push-action@some
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
