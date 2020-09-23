@@ -48,7 +48,7 @@
     </url>
 
     <url>
-        <loc>https://blog.javarouka.me/2018/11/26/Finalizer%EC%99%80-Cleaner/</loc>
+        <loc>https://blog.javarouka.me/2018/11/27/object-equals-liskov/</loc>
         <lastmod>2020-09-22T04:18:02.874Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -56,7 +56,7 @@
     </url>
 
     <url>
-        <loc>https://blog.javarouka.me/2018/11/27/object-equals-liskov/</loc>
+        <loc>https://blog.javarouka.me/2018/11/26/Finalizer%EC%99%80-Cleaner/</loc>
         <lastmod>2020-09-22T04:18:02.874Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -104,7 +104,7 @@
     </url>
 
     <url>
-        <loc>https://blog.javarouka.me/2018/11/19/serialize-java/</loc>
+        <loc>https://blog.javarouka.me/2018/11/14/builder/</loc>
         <lastmod>2020-09-22T04:18:02.871Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -112,7 +112,7 @@
     </url>
 
     <url>
-        <loc>https://blog.javarouka.me/2018/11/14/builder/</loc>
+        <loc>https://blog.javarouka.me/2018/11/19/serialize-java/</loc>
         <lastmod>2020-09-22T04:18:02.871Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -248,7 +248,7 @@
     </url>
 
     <url>
-        <loc>https://blog.javarouka.me/2012/02/27/js-module-pattern/</loc>
+        <loc>https://blog.javarouka.me/2012/01/01/volatile-in-java/</loc>
         <lastmod>2020-09-22T04:18:02.864Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -256,7 +256,7 @@
     </url>
 
     <url>
-        <loc>https://blog.javarouka.me/2012/01/01/volatile-in-java/</loc>
+        <loc>https://blog.javarouka.me/2012/02/27/js-module-pattern/</loc>
         <lastmod>2020-09-22T04:18:02.864Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -272,7 +272,7 @@
     </url>
 
     <url>
-        <loc>https://blog.javarouka.me/2011/09/11/ucs-unicode-bmp/</loc>
+        <loc>https://blog.javarouka.me/2011/09/11/new-string/</loc>
         <lastmod>2020-09-22T04:18:02.863Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -280,7 +280,7 @@
     </url>
 
     <url>
-        <loc>https://blog.javarouka.me/2011/09/11/new-string/</loc>
+        <loc>https://blog.javarouka.me/2011/09/11/ucs-unicode-bmp/</loc>
         <lastmod>2020-09-22T04:18:02.863Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
