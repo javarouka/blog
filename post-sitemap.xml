@@ -16,14 +16,6 @@
     </url>
 
     <url>
-        <loc>https://blog.javarouka.me/2019/08/10/translate-kotlin-Cancellation%20and%20timeouts/</loc>
-        <lastmod>2020-09-22T04:18:02.877Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>https://blog.javarouka.me/2019/04/07/interits-conposition/</loc>
         <lastmod>2020-09-22T04:18:02.876Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -112,7 +104,7 @@
     </url>
 
     <url>
-        <loc>https://blog.javarouka.me/2018/11/14/builder/</loc>
+        <loc>https://blog.javarouka.me/2018/11/19/serialize-java/</loc>
         <lastmod>2020-09-22T04:18:02.871Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -120,7 +112,7 @@
     </url>
 
     <url>
-        <loc>https://blog.javarouka.me/2018/11/19/serialize-java/</loc>
+        <loc>https://blog.javarouka.me/2018/11/14/builder/</loc>
         <lastmod>2020-09-22T04:18:02.871Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -208,14 +200,6 @@
     </url>
 
     <url>
-        <loc>https://blog.javarouka.me/2012/05/22/image-replacement/</loc>
-        <lastmod>2020-09-22T04:18:02.865Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>https://blog.javarouka.me/2012/07/30/event-ie/</loc>
         <lastmod>2020-09-22T04:18:02.865Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -224,7 +208,7 @@
     </url>
 
     <url>
-        <loc>https://blog.javarouka.me/2014/05/24/handlebars-server-client-multiple-useing/</loc>
+        <loc>https://blog.javarouka.me/2012/05/22/image-replacement/</loc>
         <lastmod>2020-09-22T04:18:02.865Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -240,7 +224,7 @@
     </url>
 
     <url>
-        <loc>https://blog.javarouka.me/2016/03/31/let-const/</loc>
+        <loc>https://blog.javarouka.me/2014/05/24/handlebars-server-client-multiple-useing/</loc>
         <lastmod>2020-09-22T04:18:02.865Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -248,8 +232,8 @@
     </url>
 
     <url>
-        <loc>https://blog.javarouka.me/2012/01/01/volatile-in-java/</loc>
-        <lastmod>2020-09-22T04:18:02.864Z</lastmod>
+        <loc>https://blog.javarouka.me/2016/03/31/let-const/</loc>
+        <lastmod>2020-09-22T04:18:02.865Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -265,6 +249,14 @@
 
     <url>
         <loc>https://blog.javarouka.me/2012/02/27/js-module-pattern/</loc>
+        <lastmod>2020-09-22T04:18:02.864Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://blog.javarouka.me/2012/01/01/volatile-in-java/</loc>
         <lastmod>2020-09-22T04:18:02.864Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -288,7 +280,7 @@
     </url>
 
     <url>
-        <loc>https://blog.javarouka.me/2012/07/30/nodejs-com/</loc>
+        <loc>https://blog.javarouka.me/2011/09/11/new-string/</loc>
         <lastmod>2020-09-22T04:18:02.863Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -296,7 +288,7 @@
     </url>
 
     <url>
-        <loc>https://blog.javarouka.me/2011/09/11/new-string/</loc>
+        <loc>https://blog.javarouka.me/2012/07/30/nodejs-com/</loc>
         <lastmod>2020-09-22T04:18:02.863Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>

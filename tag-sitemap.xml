@@ -227,6 +227,13 @@
     </url>
 
     <url>
+        <loc>https://blog.javarouka.me/tags/seo/</loc>
+        <lastmod>2020-09-22T04:18:02.865Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://blog.javarouka.me/tags/ie/</loc>
         <lastmod>2020-09-22T04:18:02.865Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -235,13 +242,6 @@
 
     <url>
         <loc>https://blog.javarouka.me/tags/browser/</loc>
-        <lastmod>2020-09-22T04:18:02.865Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://blog.javarouka.me/tags/seo/</loc>
         <lastmod>2020-09-22T04:18:02.865Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -262,14 +262,14 @@
     </url>
 
     <url>
-        <loc>https://blog.javarouka.me/tags/design-pattern/</loc>
+        <loc>https://blog.javarouka.me/tags/volatile/</loc>
         <lastmod>2020-09-22T04:18:02.864Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://blog.javarouka.me/tags/volatile/</loc>
+        <loc>https://blog.javarouka.me/tags/design-pattern/</loc>
         <lastmod>2020-09-22T04:18:02.864Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
