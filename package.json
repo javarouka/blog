@@ -34,7 +34,7 @@
   },
   "devDependencies": {
     "hexo-all-minifier": "^0.5.2",
-    "hexo-autoprefixer": "^1.0.0",
+    "hexo-autoprefixer": "^2.0.0",
     "hexo-front-matter": "^0.2.3",
     "hexo-generator-feed": "^1.2.2",
     "hexo-generator-tag": "^0.2.0",
